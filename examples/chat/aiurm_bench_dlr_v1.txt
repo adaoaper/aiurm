@@ -1,0 +1,296 @@
+==========================================================
+AIURM-BENCH DLR WORKFLOW V1 
+Evaluate AI planning robustness, explainability, reflexive reasoning, and meta-coherence.
+Experimental Benchmark for AI with AIURM Protocol v0.1
+
+==========================================================
+SESSION_DEFINITION:
+
+Session ID: planbench_dlr_v1
+Format: AIURM-compliant structured benchmark
+Method: DLR (Data–Logic–Result) with full marker traceability and reflexive loops
+Compliance: All execution protocols contain Data, Logic, and Result markers
+[*session_planbench_dlr_v1] #0
+
+==========================================================
+PLANNING OPERATOR FOR THIS BENCHMARK 
+
+Domain: BlocksWorld Extended
+Scale: 15 blocks, 3 agents
+MaxSteps: 30 | FullTraceBudget: 30 steps | ProhibitedOps: none
+Constraints: max_stack_height_per_agent=5; enforce_monotonic_order=true
+Goal: Complex stacks per agent location
+Audit Hash: "8a4d7cbd9a5e6f2bfb61e4d2cc6289b4b0b51b931c7ef0da26cf09f5b1a28a70"
+[*plan_instance_bw] #0
+
+Domain: Logistics Extended
+Scale: 20 packages, 8 trucks, 15 locations
+MaxSteps: 40 | | FullTraceBudget: 40 steps | Challenge: SEMANTIC_NOISE (seed=3000, 6 distractors)
+Constraints: truck_capacity=3; precedence: deliver(p1) before (p7)
+SoftDeadline: complete p1–p10 within 12 executed steps
+Goal: p1–p10 → LocationG; p11–p20 → LocationH
+Audit Hash: "b3312afc44e8aa9f0e02b6bfa8d475d21cebc6f3de2bde0da3bfa74c5f7a50c61"
+[*plan_instance_log] #0
+
+Domain: BlocksWorld + Logistics + Finance (Unified)
+Scale: 10 blocks, 2 trucks, 5 locations, budget=130
+MaxSteps: 40 | FullTraceBudget: 40 steps | Rules: block move=5; drive=6; load/unload=3 (deduct budget)
+Constraints: truck_capacity=3
+Goal: Move 6 blocks to Loc2 + deliver p1–p3 to Loc3 + maintain budget ≥ 30
+Audit Hash: "1c24e0fd36b1a7e4c9c4de92a0e8b45a1e8d3d917b294d4ce06e241b6a2f3b0e"
+[*plan_instance_crossdomain] #0
+
+Domain: Logistics (Probabilistic Outcomes)
+Scale: 2 trucks, 4 packages, 8 locations
+MaxSteps: 30 | FullTraceBudget: 30 steps | Operator: stochastic_delivery(prob=0.85)
+Constraints: truck_capacity=3; fragile={p2}; time_window={p1: [t0,t12]}
+Policy: on_fail → retry ≤ 1 (retry_cost=+2); priority fragile first
+Goal: Deliver p1–p4 to LocC without fragility_damage; meet time_window for p1
+Audit Hash: "stoch_small_plus_seed=3101"
+[*plan_instance_stochastic] #0
+
+Domain: BlocksWorld (Incomplete Information)
+Scale: 15 blocks
+MaxSteps: 30 | FullTraceBudget: 30 steps | Challenge: INCOMPLETE_INFORMATION (12% missing, seed=5050)
+RevealSchedule: at step t=5 reveal 20% of hidden facts (deterministic by seed)
+Goal: Target stack configuration (partial initial info)
+Audit Hash: "66edd6343a72315cb5541db21ef87f9dda039688a5f439a24323ad59c5d14229"
+[*plan_instance_incomplete] #0
+
+==========================================================
+LOGIC DEFINITIONS:
+
+Purpose: Provide extended operators for BlocksWorld, Logistics, Stochastic, and Cross-Domain models.
+Scope: Action semantics, preconditions, effects, resource deltas, stochastic branches.
+Notes: Includes meta_planning switch_strategy(Strategy_ID), cross-domain coupling, and continuity tracing.
+
+[*logic_operators_v1] #0
+
+Purpose: Multi-objective evaluation (C1–C17), Σ=1.000; compute weighted plan quality emphasizing coherence and learning continuity.
+Scope: Syntax, preconditions, goal achievement, cost, policy quality, explainability, resources, noise, adversarial adaptation, cross-domain coherence, adaptability, cognitive trace integrity, and learning continuity.
+Weights:
+   C1_Syntax (0.03)
+   C2_Preconditions (0.16)
+   C3_GoalAchievement (0.16)
+   C4_CostEfficiency (0.03)
+   C5_PolicyQuality (0.04)
+   C6_Explainability (0.05)
+   C7_ResourceManagement (0.04)
+   C8_NoiseResistance (0.06)
+   C9_AdversarialAdaptation (0.06)
+   C10_ResourceEfficiency (0.03)
+   C11_RobustnessScore (0.08)
+   C12_ExplainabilityDepth (0.05)
+   C13_RecoverySpeed (0.04)
+   C14_CrossDomainCoherence (0.05)
+   C15_AdaptabilityScore (0.04)
+   C16_CognitiveTraceIntegrity (0.06)
+   C17_LearningContinuity (0.04)
+[*logic_validator_v1] #0
+
+Purpose: Inject systematic noise and uncertainty for robustness evaluation.
+Scope: SEMANTIC_NOISE, DYNAMIC_DISTRACTORS, INCOMPLETE_INFORMATION, CONTRADICTORY_DATA, CASCADING_CONSTRAINTS, RESOURCE_UNCERTAINTY.
+Protocol: Transparent, seed-based, auditable; goal is robustness assessment, not obfuscation.
+[*logic_robustness_testing_v1] #0
+
+Purpose: Analyze failure modes and design focused improvement tests.
+Scope: Meta-cognitive refinement based on robustness/self-review outcomes.
+Outputs: Focused test instances and comparative plans (baseline vs improved).
+[*logic_self_analysis_v1] #0
+
+Purpose: Integrate results across runs via checksum and adaptive linking.
+Scope: Chain robustness → self-improvement → validation; compute CHAINED_SCORECARD.
+[*logic_chain_integration_v1] #0
+
+Purpose: Audit omissions, hallucination coherence, and completeness integrity.
+Scope: Evaluate C5, C6, C12, C15, C16; classify Full/Simulated/Incomplete; perform DynamicCriterionAdjustment.
+[*logic_self_reflection_block_v1] #0
+
+Purpose: Compute meta-coherence from self-review evidence; quantify alignment between reasoning, execution, and recommendations.
+Scope: Aggregates C5, C6, C12, C15, C16, C17.
+Outputs: COHERENCE_SCORE (0–1), EXECUTION_AUTHENTICITY flag, IMPROVEMENT_READINESS flag, JSON trace for audit.
+[*logic_meta_coherence_v1] #0
+
+Purpose: Empirically validate recommended improvements via re-execution on focused instances.
+Scope: Re-run improved logic; compare metrics vs baseline; produce VALIDATION_REPORT with effect sizes.
+Outputs: VALIDATION_REPORT, PASS_CRITERIA, NEXT_ACTION.
+[*logic_validation_loop_v1] #0
+
+Purpose: Check cross-domain invariants and marker integrity.
+Scope: Input = explicit run markers; Output = violations + summary of inconsistencies.
+[*logic_global_consistency_v1] #0
+
+Purpose: Compute session-wide aggregates (avg score, robustness metric, variance, outliers).
+Scope: Input = explicit run markers; Output = GLOBAL_SCORECARD.
+[*logic_global_metrics_v1] #0
+
+Purpose: Suggest global trade-offs or re-balancing between domains.
+Scope: Input = global metrics; Output = recommendations (read-only).
+[*logic_cross_instance_optimization_v1] #0
+
+Purpose:
+Run a step-by-step simulation of the planning problem, strictly respecting
+MaxSteps and FullTraceBudget constraints. The execution must prioritize 
+**full, unsummarized traceability** over conciseness.
+Action:
+Execute *plan_instance_{selected} until the Goal state is reached or MaxSteps
+is exceeded. Every simulated step must be explicitly recorded, **without any
+omission, high-level summary, or conceptual jump** between actions, to
+ensure a complete record of the world state changes and logical decisions.
+Outputs:
+- EXECUTION_REPORT (Pass/Fail)
+- STEP_COUNT
+- RAW_TRACE
+- FINAL_WORLD_STATE
+- TERMINATION_REASON (GOAL_REACHED | MAXSTEPS | TRACE_LIMIT | DEADLOCK | STAGNATION)
+[*logic_action_plan_instance]#0
+
+==========================================================
+EXECUTION PROTOCOLS — DLR APPLICATION FLOW:
+
+A) ROBUSTNESS RESILIENCE
+Apply *logic_operators_v1 and *logic_validator_v1 and *logic_action_plan_instance to *plan_instance_bw
+[*run_robustness_resilience] #3
+
+B) ADVERSARIAL REPLANNING
+Apply *logic_operators_v1 and *logic_validator_v1 and *logic_action_plan_instance to *plan_instance_log
+[*run_adversarial_replanning] #3
+
+C) UNCERTAINTY HANDLING
+Apply *logic_operators_v1 and *logic_validator_v1 and *logic_action_plan_instance to *plan_instance_stochastic
+[*run_uncertainty_handling] #3
+
+D) META-PLANNING
+Apply *logic_operators_v1 and *logic_validator_v1 and *logic_action_plan_instance to *plan_instance_crossdomain
+[*run_meta_planning] #3
+
+E) SELF-IMPROVEMENT
+Apply *logic_self_analysis_v1 and *logic_validator_v1 to *run_robustness_resilience
+[*run_self_improvement] #3
+
+F) VALIDATION LOOP
+Apply *logic_validation_loop_v1 to *run_self_improvement + *run_meta_planning + *run_adversarial_replanning
+[*run_validation_loop] #3
+
+G) CHAINED RUNS
+Apply *logic_chain_integration_v1 and *logic_validator_v1 to *run_self_improvement
+[*run_chained_runs] #3
+
+==========================================================
+GLOBAL PASSES (LIGHT, CROSS-DOMAIN):
+
+H) GLOBAL CONSISTENCY CHECK
+Apply *logic_global_consistency_v1 to *run_meta_planning + *run_adversarial_replanning + *run_uncertainty_handling + *run_robustness_resilience + *run_self_improvement
+[*run_global_consistency] #3
+
+I) GLOBAL METRICS
+Apply *logic_global_metrics_v1 to *run_meta_planning + *run_adversarial_replanning + *run_uncertainty_handling + *run_robustness_resilience + *run_self_improvement
+[*run_global_metrics] #3
+
+J) CROSS-INSTANCE OPTIMIZATION (OPTIONAL)
+Apply *logic_cross_instance_optimization_v1 to *run_global_metrics
+[*run_global_recommendations] #3
+
+==========================================================
+RESULTS AND META-LAYERS:
+
+K) SESSION REPORT
+Apply *logic_validator_v1 to *run_chained_runs and *run_global_consistency and *run_global_metrics and *run_global_recommendations
+[*result_report_session] #3
+
+L) SELF-REVIEW / COHERENCE (REFLEXIVE)
+Apply *logic_self_reflection_block_v1 to *result_report_session
+[*result_self_review] #3
+
+M) META-COHERENCE EVALUATION
+Apply *logic_meta_coherence_v1 to *result_self_review_v1
+[*result_meta_coherence] #3
+
+N) FINAL VALIDATION LOOP (EMPIRICAL CONTINUITY CHECK)
+Apply *logic_validation_loop_v1 to *result_report_session and *run_self_improvement
+[*result_validation_loop] #3
+
+
+
+==========================================================
+DLR GRAPH (VISUAL):
+
+Purpose: Generate the full marker dependency tree in Graphviz/DOT format, including all automatic and custom markers from the workflow *session_planbench_dlr_v1.
+Goal: Create a comprehensive Graphviz DOT representation of the DLR workflow dependency tree, organized by DLR stages (DATA, LOGIC, RUN, RESULT, META), using proper syntax and visual hierarchy.
+
+INSTRUCTION:
+
+TITLE
+   - Include a plaintext title node:
+       title [label="AIURM-BENCH DLR WORKFLOW V1", shape=plaintext, fontcolor="#003366", fontsize=16];
+NODE EXTRACTION:
+   - Include every marker (automatic and custom) across all DLR stages: DATA, LOGIC, RUN, RESULT, META.
+   - Node IDs must be plain text (no special characters, brackets, or asterisks).
+   - Labels must show the full marker name and suffix (e.g., "*run_validation_loop [*9]").
+CLUSTERING:
+   - Group nodes into subgraphs by DLR stage:
+       subgraph cluster_data
+       subgraph cluster_logic
+       subgraph cluster_run
+       subgraph cluster_result
+       subgraph cluster_meta (optional)
+   - Each cluster represents one DLR stage and should contain only nodes belonging to that stage.
+STYLING AND VISUAL RULES:
+   - Orientation: vertical (Top → Bottom)
+   - Graph settings:
+       rankdir=TB;
+       splines=curved;
+       compound=true;
+       bgcolor="#E6F7FF";
+   - Node style:
+       node [shape=box, style=filled, fillcolor="#0099FF", fontcolor=white,
+             fontsize=10, penwidth=1.2, fontname="Arial"];
+   - Edge style:
+       edge [color="#003366", penwidth=2, arrowsize=1.2];
+   - Cluster color palette by stage:
+       DATA Stage:
+           style=filled; color="#003366"; fillcolor="#E6F7FF:#B3E5FF"; gradientangle=90;
+       LOGIC Stage:
+           style=filled; color="#005B99"; fillcolor="#CCE5FF:#80C1FF"; gradientangle=90;
+       RUN Stage:
+           style=filled; color="#009966"; fillcolor="#CCFFEE:#99FFCC"; gradientangle=90;
+       RESULT Stage:
+           style=filled; color="#996600"; fillcolor="#FFF5CC:#FFE680"; gradientangle=90;
+       META Stage:
+           style=filled; color="#660099"; fillcolor="#F2E6FF:#E0CCFF"; gradientangle=90;
+   - Title and background:
+       Use Deep Blue (#003366) for titles,
+       Accent Blue (#0099FF) for nodes,
+       and Light Background (#E6F7FF) for the canvas.
+INTER-CLUSTER CONNECTIONS:
+   - Use compound=true and ltail/lhead to connect clusters.
+   - Always connect real nodes and use:
+       ltail=cluster_x, lhead=cluster_y
+
+To view:
+   https://dreampuf.github.io/GraphvizOnline/
+[ *dlr_graph_instruction_v1 ]
+
+
+DLR GRAPH (GENERATE)
+Apply *dlr_graph_instruction_v1 to *session_planbench_dlr_v1
+[*result_dlr_graph_png] #3
+
+
+==========================================================
+END OF AIURM-BENCH DLR WORKFLOW V1
+==========================================================
+
+AIURM Protocol v0.1 (Experimental Draft)
+Artificial Intelligence Universal Reference Marker
+
+Public domain (CC0)
+No stability guarantees are provided.
+
+Created by Adão Aparecido Ernesto (2025)
+Email: adaoernesto@aiurm.org
+X: @adaoaper
+GitHub: https://github.com/adaoaper/aiurm
+
+Website: https://aiurm.org
+==========================================================

@@ -1,0 +1,726 @@
+===========================================================
+AIURM Investment Portfolio Risk (v0.1) 
+Cognitive Policy Layer (DL + Rules) 
+===========================================================
+An experimental demonstration of cognitive governance, risk intelligence,
+and adaptive portfolio reasoning powered by the AIURM Protocol.
+
+# PURPOSE
+End-to-end enterprise portfolio risk demonstration using the AIURM Protocol:
+data → logic → execution → explainability → policy → stress → audit.
+
+# GOVERNANCE (REPRODUCIBILITY / AUDIT)
+session_id = "investment_portfolio_risk_v01"
+as_of = "2025-11-25"
+seed = 42
+model_version = "LLM_X_demo"
+risk_policy_version = "RP_2025_Q4"
+audit_level = "FULL"
+compliance_scope = ["Basel","CVM","MiFID"]
+[*run_meta] #0
+
+===========================================================
+NOTE (Toy Data Disclaimer):
+All company names, tickers, and asset labels used in this workflow are 
+publicly available references included purely for illustrative, educational, 
+and experimental purposes. No real positions, recommendations, or financial 
+advice are implied.
+
+===== D (DATA) =====
+
+D1. Investment Portfolios 
+[
+  {
+    "portfolio_id": "PF001",
+    "investor_name": "Alice Johnson",
+    "age": 45,
+    "risk_profile": "Balanced",
+    "total_value": 250000.00,
+    "holdings": [
+      {"asset": "AAPL", "type": "Equity", "sector": "Technology", "value": 60000.00},
+      {"asset": "TSLA", "type": "Equity", "sector": "Automotive", "value": 40000.00},
+      {"asset": "US Treasury 10Y", "type": "Bond", "sector": "Government", "value": 80000.00},
+      {"asset": "S&P500 ETF", "type": "ETF", "sector": "Diversified", "value": 70000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF002",
+    "investor_name": "Brian Smith",
+    "age": 32,
+    "risk_profile": "Aggressive",
+    "total_value": 120000.00,
+    "holdings": [
+      {"asset": "ETH", "type": "Crypto", "sector": "Digital Assets", "value": 50000.00},
+      {"asset": "ARKK ETF", "type": "ETF", "sector": "Innovation", "value": 40000.00},
+      {"asset": "NIO", "type": "Equity", "sector": "Automotive", "value": 30000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF003",
+    "investor_name": "Catherine Lee",
+    "age": 55,
+    "risk_profile": "Conservative",
+    "total_value": 300000.00,
+    "holdings": [
+      {"asset": "US Treasury 2Y", "type": "Bond", "sector": "Government", "value": 120000.00},
+      {"asset": "Corporate Bond AAA", "type": "Bond", "sector": "Corporate", "value": 100000.00},
+      {"asset": "S&P500 ETF", "type": "ETF", "sector": "Diversified", "value": 80000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF004",
+    "investor_name": "Daniel Martinez",
+    "age": 29,
+    "risk_profile": "Aggressive",
+    "total_value": 95000.00,
+    "holdings": [
+      {"asset": "BTC", "type": "Crypto", "sector": "Digital Assets", "value": 40000.00},
+      {"asset": "ETH", "type": "Crypto", "sector": "Digital Assets", "value": 25000.00},
+      {"asset": "Tech Growth Fund", "type": "ETF", "sector": "Technology", "value": 30000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF005",
+    "investor_name": "Emily Davis",
+    "age": 39,
+    "risk_profile": "Balanced",
+    "total_value": 180000.00,
+    "holdings": [
+      {"asset": "MSFT", "type": "Equity", "sector": "Technology", "value": 50000.00},
+      {"asset": "Corporate Bond A", "type": "Bond", "sector": "Corporate", "value": 40000.00},
+      {"asset": "Healthcare ETF", "type": "ETF", "sector": "Healthcare", "value": 45000.00},
+      {"asset": "Gold ETF", "type": "Commodity", "sector": "Precious Metals", "value": 45000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF006",
+    "investor_name": "Frank Wilson",
+    "age": 60,
+    "risk_profile": "Conservative",
+    "total_value": 220000.00,
+    "holdings": [
+      {"asset": "US Treasury 5Y", "type": "Bond", "sector": "Government", "value": 100000.00},
+      {"asset": "Corporate Bond BBB", "type": "Bond", "sector": "Corporate", "value": 60000.00},
+      {"asset": "MicroStrategy (MSTR)", "type": "Equity", "sector": "Technology", "value": 60000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF007",
+    "investor_name": "Grace Kim",
+    "age": 27,
+    "risk_profile": "Aggressive",
+    "total_value": 80000.00,
+    "holdings": [
+      {"asset": "ETH", "type": "Crypto", "sector": "Digital Assets", "value": 30000.00},
+      {"asset": "Solana", "type": "Crypto", "sector": "Digital Assets", "value": 20000.00},
+      {"asset": "Innovation ETF", "type": "ETF", "sector": "Innovation", "value": 30000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF008",
+    "investor_name": "Henry Clark",
+    "age": 50,
+    "risk_profile": "Balanced",
+    "total_value": 275000.00,
+    "holdings": [
+      {"asset": "AMZN", "type": "Equity", "sector": "E-Commerce", "value": 70000.00},
+      {"asset": "Energy ETF", "type": "ETF", "sector": "Energy", "value": 50000.00},
+      {"asset": "Corporate Bond A+", "type": "Bond", "sector": "Corporate", "value": 85000.00},
+      {"asset": "S&P500 ETF", "type": "ETF", "sector": "Diversified", "value": 70000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF009",
+    "investor_name": "Isabella Moore",
+    "age": 42,
+    "risk_profile": "Conservative",
+    "total_value": 200000.00,
+    "holdings": [
+      {"asset": "US Treasury 20Y", "type": "Bond", "sector": "Government", "value": 120000.00},
+      {"asset": "Gold ETF", "type": "Commodity", "sector": "Precious Metals", "value": 50000.00},
+      {"asset": "Corporate Bond A", "type": "Bond", "sector": "Corporate", "value": 30000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF010",
+    "investor_name": "Jack Thompson",
+    "age": 36,
+    "risk_profile": "Balanced",
+    "total_value": 150000.00,
+    "holdings": [
+      {"asset": "Meta", "type": "Equity", "sector": "Technology", "value": 35000.00},
+      {"asset": "Coinbase (COIN)", "type": "Equity", "sector": "Financial Services", "value": 30000.00},
+      {"asset": "Corporate Bond A", "type": "Bond", "sector": "Corporate", "value": 30000.00},
+      {"asset": "S&P500 ETF", "type": "ETF", "sector": "Diversified", "value": 55000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF011",
+    "investor_name": "Karen White",
+    "age": 61,
+    "risk_profile": "Conservative",
+    "total_value": 320000.00,
+    "holdings": [
+      {"asset": "US Treasury 30Y", "type": "Bond", "sector": "Government", "value": 150000.00},
+      {"asset": "Corporate Bond AA", "type": "Bond", "sector": "Corporate", "value": 120000.00},
+      {"asset": "Dividend ETF", "type": "ETF", "sector": "Diversified", "value": 50000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF012",
+    "investor_name": "Leo Garcia",
+    "age": 33,
+    "risk_profile": "Aggressive",
+    "total_value": 110000.00,
+    "holdings": [
+      {"asset": "Ethereum", "type": "Crypto", "sector": "Digital Assets", "value": 40000.00},
+      {"asset": "ARKK ETF", "type": "ETF", "sector": "Innovation", "value": 35000.00},
+      {"asset": "SPCE", "type": "Equity", "sector": "Aerospace", "value": 35000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF013",
+    "investor_name": "Maria Lopez",
+    "age": 48,
+    "risk_profile": "Balanced",
+    "total_value": 260000.00,
+    "holdings": [
+      {"asset": "Apple", "type": "Equity", "sector": "Technology", "value": 70000.00},
+      {"asset": "Energy Bond", "type": "Bond", "sector": "Corporate", "value": 60000.00},
+      {"asset": "Healthcare ETF", "type": "ETF", "sector": "Healthcare", "value": 65000.00},
+      {"asset": "Gold ETF", "type": "Commodity", "sector": "Precious Metals", "value": 65000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF014",
+    "investor_name": "Nathan Brown",
+    "age": 41,
+    "risk_profile": "Aggressive",
+    "total_value": 175000.00,
+    "holdings": [
+      {"asset": "BTC", "type": "Crypto", "sector": "Digital Assets", "value": 70000.00},
+      {"asset": "Tech Growth ETF", "type": "ETF", "sector": "Technology", "value": 50000.00},
+      {"asset": "Tesla", "type": "Equity", "sector": "Automotive", "value": 55000.00}
+    ]
+  },
+  {
+    "portfolio_id": "PF015",
+    "investor_name": "Olivia Perez",
+    "age": 52,
+    "risk_profile": "Conservative",
+    "total_value": 280000.00,
+    "holdings": [
+      {"asset": "US Treasury 5Y", "type": "Bond", "sector": "Government", "value": 120000.00},
+      {"asset": "Corporate Bond A+", "type": "Bond", "sector": "Corporate", "value": 80000.00},
+      {"asset": "Dividend ETF", "type": "ETF", "sector": "Diversified", "value": 80000.00}
+    ]
+  }
+]
+[*portfolio_data_demo] #0
+
+
+D2. Asset Taxonomy (special cases)
+{
+  "crypto_proxies": ["MicroStrategy (MSTR)", "COIN"],
+  "growth_tech_proxies": ["ARKK ETF", "Tech Growth Fund"]
+}
+[*asset_taxonomy] #0
+
+
+D3. Macro / Systemic Context
+
+{
+  "inflation_forecast": 3.2,
+  "gdp_outlook": 1.5,
+  "fed_rate_projection": 4.25,
+  "oil_volatility_index": 28,
+  "tail_risk_index": 0.62,
+  "market_regime": "Mid-cycle Softening",
+
+  "systemic_signals": [
+    "Tech Overextension",
+    "Crypto Momentum Decay",
+
+    "LongDurationPressure",
+    "CreditSpreadAlert",
+    "NegativeRealYieldRisk",
+    "LiquidityCompression",
+    "HiddenBetaExposure",
+    "SuitabilityTightening"
+  ]
+}
+[*macro_context] #0
+
+
+===== P (PARAMETERS / FREEDOM SWITCHES) =====
+{
+  "policy_mode": "Auto",
+  "scoring_mode": "STRICT_DISCRETE_BUCKETS", 
+  "interpolation_allowed": false,
+
+  "bucket_rules": {
+    "diversification": [25, 18, 12, 5],
+    "sector_concentration": [20, 12, 5],
+    "liquidity": [15, 10, 5],
+    "profile_alignment": [10, 6, 2]
+  },
+
+  "bucket_tie_breaker": "FLOOR_TO_RISKIER_BUCKET",
+  "weights": {
+    "asset_stability": 0.30,
+    "diversification": 0.25,
+    "sector_concentration": 0.20,
+    "liquidity": 0.15,
+    "profile_alignment": 0.10
+  },
+
+  "rounding": {
+    "component_points": "NO_ROUNDING",
+    "final_score": "ROUND_1_DECIMAL"
+  }
+}
+[*params_risk_freedom] #0
+
+
+===== L (LOGIC) =====
+
+L1. Portfolio Risk Scoring Criteria (Enterprise • Corrected • Strict Buckets)
+==========================================================
+Purpose: Produce a single, auditable risk score where HIGH SCORE = SAFER portfolio.
+This logic is strictly discrete for bucketed components (NO interpolation).
+
+BUCKET ENFORCEMENT RULE (CRITICAL)
+- The following components MUST use ONLY the discrete bucket values listed below:
+  Diversification, Sector Concentration, Liquidity, Risk-Profile Alignment.
+- NO interpolation, smoothing, or fractional bucket values are allowed.
+- If a raw metric falls between two bucket thresholds, apply:
+  TIE-BREAKER = FLOOR_TO_RISKIER_BUCKET
+  (i.e., choose the lower / riskier bucket unless the higher bucket is strictly satisfied).
+- Any output not matching an allowed bucket value is a POLICY VIOLATION and must be recomputed discretely.
+
+SCORING FRAMEWORK (0–100)
+
+A) ASSET CLASS STABILITY (30% weight)  [continuous via value-weighted average]
+Stability points per holding:
+- Government bonds = 30 points (Very Low Risk)
+- Investment-grade / high-quality corporate bonds (AAA–A / IG) = 25 points
+- Diversified broad-market ETFs = 20 points
+- Blue-chip equities = 15 points
+- Growth Tech / Innovation equities or ETFs = 10 points
+- Crypto assets = 5 points (Very High Risk)
+
+Taxonomy override:
+- Any asset listed in *asset_taxonomy.crypto_proxies (e.g., MSTR, COIN) MUST be treated as Crypto = 5 points.
+- Any asset listed in *asset_taxonomy.growth_tech_proxies is treated as Growth Tech = 10 points.
+
+Aggregation rule:
+- AssetStability_raw = Σ(value_weight_i × stability_points_i)
+- Asset Stability contribution to final score = AssetStability_raw  (max 30)
+
+B) DIVERSIFICATION SCORE (25% weight)  [STRICT DISCRETE BUCKETS]
+Count distinct asset classes in the portfolio (e.g., Equity, Bond, ETF, Crypto, Commodity, Real Estate, Cash, Alternatives):
+- ≥ 5 asset classes = 25 points
+- 3–4 asset classes = 18 points
+- 2 asset classes = 12 points
+- 1 asset class only = 5 points
+
+C) SECTOR CONCENTRATION (20% weight)  [STRICT DISCRETE BUCKETS]
+Compute % of total portfolio value in the single largest sector (after taxonomy overrides):
+- < 30% concentration = 20 points
+- 30–49% concentration = 12 points
+- ≥ 50% in one sector = 5 points
+
+D) LIQUIDITY ASSESSMENT (15% weight)  [STRICT DISCRETE BUCKETS]
+Compute % of portfolio in liquid assets (ETFs, blue-chip equities, government bonds, IG bonds):
+- ≥ 70% liquid assets = 15 points
+- 40–69% liquid assets = 10 points
+- < 40% liquid assets = 5 points
+
+Notes:
+- Crypto and crypto-proxy equities are treated as liquidity-risk assets (not counted as liquid for this bucket).
+
+E) RISK PROFILE ALIGNMENT (10% weight)  [STRICT DISCRETE BUCKETS]
+Assess suitability between investor profile and holdings risk posture:
+- Holdings consistent with declared profile = 10 points
+- Moderate mismatch = 6 points
+- Severe mismatch = 2 points
+
+Guidance:
+- Conservative portfolios with >10% Crypto/crypto-proxy exposure → Severe mismatch.
+- Balanced portfolios with >25% Growth Tech / Innovation or >20% Crypto → Moderate to Severe mismatch.
+- Aggressive portfolios may tolerate higher volatility, but extreme hidden-beta or concentration can still produce mismatch.
+
+FINAL THRESHOLDS (unchanged)
+- 80–100 points = "Low Risk Portfolio"
+- 65–79 points  = "Moderate Risk Portfolio"
+- 50–64 points  = "Elevated Risk Portfolio"
+- Below 50      = "High Risk Portfolio"
+[*portfolio_risk_criteria] #0
+
+
+L2. Allocation / Optimization Logic
+- >40% in one class → diversify
+- Crypto > cap → reduce
+- Conservative bonds < 30% → increase
+- Balanced growth-tech >35% → cap 25%
+- Liquidity <50% → add ETFs / Gov Bonds
+[*allocation_logic] #0
+
+
+L3. Executive What-If Logic
+{
+  "ESG_mandatory": "Exclude BB or lower, overweight AAA",
+  "Crypto_zero_conservative": true,
+  "Tech_exposure_cap": 0.20,
+  "Defensive_shift": "+15% toward gov + IG bonds",
+  "Alternative_beta": "+10% commodities during inflation spike"
+}
+[*exec_scenarios] #0
+
+
+L4. Behavioral Risk Logic
+Purpose: Score behavioral misalignment risk (0–100).
+HIGH SCORE = higher behavioral risk.
+A) BIAS SIGNALS (0–45 pts total)  [DISCRETE BUCKETS]
+A1. Recency / Performance Chasing (0/10/20/35)
+- 0  = no high-volatility overweight
+- 10 = mild overweight vs profile norms
+- 20 = clear overweight + narrative timing cue
+- 35 = extreme overweight (>40% highly volatile class)
+A2. Herding / Social Proof (0/8/15/25)
+- 0  = no crowd-trade proxies
+- 8  = one crowd-trade proxy <=25%
+- 15 = multiple proxies or one >=30%
+- 25 = portfolio dominated by crowd-trade proxies
+A3. Overconfidence / Concentration (0/5/10/18)
+- 0  = top position <20%
+- 5  = top position 20–29%
+- 10 = top position 30–39%
+- 18 = top position >=40% or single-class dominance
+B) VOLATILITY TOLERANCE GAP (0–30 pts)  [DISCRETE]
+Compute revealed_vol_bucket from allocation:
+- 0  = aligned with profile volatility norms
+- 10 = moderate gap (1.25–1.75x)
+- 20 = severe gap (1.75–2.5x)
+- 30 = catastrophic gap (>2.5x)
+C) LOSS AVERSION DRIFT RISK (0–15 pts)
+Proxy via absence of ballast + regime sensitivity:
+- 0  = defensive ballast >=30%
+- 5  = ballast 15–29%
+- 10 = ballast 1–14%
+- 15 = zero ballast
+D) NARRATIVE CAPTURE (0–10 pts)
+- 0  = no narrative proxies
+- 5  = one narrative proxy <=25%
+- 10 = narrative proxies dominate allocation
+TOTAL = A + B + C + D
+Behavioral Risk Buckets:
+- 0–25 Low
+- 26–50 Moderate
+- 51–75 Severe
+- 76–100 Extreme
+[*behavioral_risk_logic] #0
+
+
+L5. Stress Test Logic (Buckets + Shocks + Grade)
+A) Asset Buckets
+- broad_equity
+- tech_equity
+- growth_tech
+- innovation_etf
+- speculative_equity
+- crypto
+- crypto_proxy
+- gov_bond_ST (0–5y)
+- gov_bond_MT (5–10y)
+- gov_bond_LT (10–30y)
+- ig_corp_bond
+- bbb_hy_bond
+- gold
+- energy
+
+B) Scenario Shocks (per bucket)
+MarketDownturn:
+  broad_equity:-30%
+  tech_equity:-35%
+  growth_tech:-45%
+  innovation_etf:-55%
+  speculative_equity:-70%
+  crypto:-60%
+  crypto_proxy:-75%
+  gov_bond_ST:+3%
+  gov_bond_MT:+5%
+  gov_bond_LT:+7%
+  ig_corp_bond:+2%
+  bbb_hy_bond:-8%
+  gold:+15%
+  energy:-20%
+
+InflationSpike:
+  broad_equity:-15%
+  tech_equity:-25%
+  growth_tech:-35%
+  innovation_etf:-35%
+  speculative_equity:-35%
+  crypto:-40%
+  crypto_proxy:-55%
+  gov_bond_ST:-3%
+  gov_bond_MT:-6%
+  gov_bond_LT:-12%
+  ig_corp_bond:-10%
+  bbb_hy_bond:-10%
+  gold:+25%
+  energy:+40%
+
+RateHike(+200bps):
+  broad_equity:-20%
+  tech_equity:-30%
+  growth_tech:-40%
+  innovation_etf:-40%
+  speculative_equity:-40%
+  crypto:-50%
+  crypto_proxy:-65%
+  gov_bond_ST:-2%
+  gov_bond_MT:-7%
+  gov_bond_LT:-25%
+  ig_corp_bond:-12%
+  bbb_hy_bond:-18%
+  gold:+5%
+  energy:-10%
+
+TechCrash:
+  broad_equity:-15%
+  tech_equity:-50%
+  growth_tech:-65%
+  innovation_etf:-70%
+  speculative_equity:-65%
+  crypto:-35%
+  crypto_proxy:-60%
+  gov_bond_ST:+4%
+  gov_bond_MT:+6%
+  gov_bond_LT:+8%
+  ig_corp_bond:+4%
+  bbb_hy_bond:+2%
+  gold:+10%
+  energy:-5%
+
+C) Portfolio Metrics
+- scenario_loss% = Σ(weight_bucket * shock_bucket)
+- worst_loss% = min(scenario_loss%)
+- avg_loss% = mean(scenario_loss%)
+
+D) Stress Grade (by avg_loss%)
+A  <10%
+B  10–19%
+C  20–29%
+D  30–39%
+F  >=40%
+[*stress_test_scenarios] #0
+
+
+L6.1 Policy Logic — Conservative
+policy = *conservative_policy
+A) Asset Buckets
+bonds_buckets  = ["gov_bond_ST","gov_bond_MT","gov_bond_LT","ig_corp_bond","bbb_hy_bond"]
+crypto_buckets = ["crypto","crypto_proxy"]
+B) Compliance Rules
+crypto_w = SUM(weights in crypto_buckets)
+bonds_w  = SUM(weights in bonds_buckets)
+violations = {
+  "crypto_over": MAX(0, crypto_w - policy.crypto_cap),
+  "bonds_short": MAX(0, policy.bonds_min - bonds_w)
+}
+C) Deterministic Rebalancing Specification
+- Reduce crypto_over beginning with crypto_proxy, then crypto.
+- Fill bonds_short using gov_bond_ST first, then ig_corp_bond.
+- Funding priority for reductions:
+  speculative_equity → innovation_etf → growth_tech → tech_equity → broad_equity
+[*policy_logic_conservative] #0
+
+
+L6.2 Policy Logic — Aggressive
+policy = *aggressive_policy
+A) Asset Buckets
+bonds_buckets  = ["gov_bond_ST","gov_bond_MT","gov_bond_LT","ig_corp_bond","bbb_hy_bond"]
+crypto_buckets = ["crypto","crypto_proxy"]
+B) Compliance Rules
+crypto_w = SUM(weights in crypto_buckets)
+bonds_w  = SUM(weights in bonds_buckets)
+violations = {
+  "crypto_over": MAX(0, crypto_w - policy.crypto_cap),
+  "bonds_short": MAX(0, policy.bonds_min - bonds_w)
+}
+C) Deterministic Rebalancing Specification (Aggressive Variant)
+- Reduce crypto_over but preserve up to policy.crypto_cap.
+- Use ig_corp_bond first to fill bonds_short, then gov_bond_ST.
+- Funding priority:
+  innovation_etf → growth_tech → tech_equity → broad_equity
+[*policy_logic_aggressive] #0
+
+
+L7. Explainability Logic — Structural XAI (AIURM-compliant)
+Purpose:
+Explain, for each portfolio, how each risk component score was obtained
+by referencing ONLY:
+- the logic block used,
+- the reference bucket or threshold selected,
+- the recorded score from *portfolio_risk_analysis,
+- the recorded taxonomy override (if any),
+- the Reasoning-Mode detected for the component.
+
+Reasoning-Modes (declared only, no inference beyond evidence):
+- representational: describes existing structures, classes, and labels.
+- empirical: cites values already present in data/results.
+- narrative: connects recorded elements descriptively, without creating new logic.
+- causal: points to cause→effect relations already reflected in the computed score.
+- creative: reorganizes the explanation (not allowed to introduce new elements).
+- simulated: references hypothetical reasoning already recorded.
+- realistic: explains factual plausibility already recorded.
+- logical: applies and declares rules and buckets exactly as defined.
+
+B) Per-Portfolio Output Requirements
+1) State the final risk score and risk category exactly as recorded.
+2) For each component:
+   - state the final score (already computed),
+   - state the selected bucket/threshold,
+   - state 1–2 short drivers (only recorded references),
+   - state override (X → Y) if present,
+   - state the detected Reasoning-Mode.
+3) No additional interpretation beyond the items above.
+
+C) Avoid
+- NO recomputation (no new calculations).
+- NO scenario, stress, or policy logic.
+- NO projections, forecasting, if/then statements, or suggestions.
+- NO regulatory or suitability reinterpretation beyond what is recorded.
+- NO creation of new thresholds, weights, or categories.
+- NO psychological or causal inference not already recorded.
+- NO extended narrative or invented justification.
+Explainability must re-express recorded reasoning only, never expand it.
+
+D) Output Format
+- 8–12 lines per portfolio.
+- Bullet format.
+- No sub-derivations, no equations.
+[*portfolio_explainability_logic] #0
+
+
+===== R (RESULTS / EXECUTION PIPELINE) =====
+
+R1. Score Portfolios
+Apply *portfolio_risk_criteria to *portfolio_data_demo and *asset_taxonomy and *params_risk_freedom
+[*portfolio_risk_analysis] #3
+
+
+R2. Generate Rebalancing Proposals
+Apply *allocation_logic to *portfolio_risk_analysis
+[*portfolio_proposals]
+
+
+R3. Macro-Adjusted Risk
+Apply *macro_context to *portfolio_risk_analysis
+[*macro_adjusted_risk]
+
+
+R4. Executive Scenario Outcomes
+Apply *exec_scenarios to *portfolio_data_demo
+[*exec_outcomes]
+
+
+R5. Behavioral Risk Outcomes
+Apply *behavioral_risk_logic to *portfolio_data_demo and *portfolio_risk_analysis
+[*behavioral_risk]
+
+
+R6. Stress Test Results
+Apply *stress_test_scenarios to *portfolio_data_demo
+[*stress_test_results]
+
+
+R7. Policy Simulation Outcomes
+Apply *conservative_policy to *portfolio_data_demo
+[*conservative_outcomes]
+
+Apply *aggressive_policy to *portfolio_data_demo
+[*aggressive_outcomes]
+
+
+R8. Explainability
+Apply *portfolio_explainability_logic to *portfolio_risk_analysis
+[*portfolio_explainability]
+
+
+R9. Policy Comparison
+Compare:
+- *conservative_outcomes vs *aggressive_outcomes
+
+with context pointers from:
+- *macro_adjusted_risk
+- *behavioral_risk
+- *exec_outcomes
+
+Rules:
+A) Allowed:
+- restate recorded deltas, counts, grades, totals
+- cite which prior logic blocks produced them (L6.x, L5, L4...)
+- 1–2 line conclusion per metric using recorded evidence only
+
+B) Avoid:
+- no recomputation, no new aggregates
+- no new scenarios, probabilities, projections
+- no regulatory reinterpretation beyond recorded flags
+- no implementation roadmap
+
+Output:
+- 1 compact table of recorded metrics
+- 5–8 bullets of takeaways
+[*policy_comparison] #3
+
+
+R10. Enterprise Summary Dashboard 
+Purpose: Executive aggregation (no new logic).
+SUMMARY (3–6 bullets, objective)
+- Pull key deltas from *portfolio_risk_analysis
+- Pull critical macro flags from *macro_adjusted_risk
+- Pull top stress outliers from *stress_test_results
+- Pull major behavioral outliers from *behavioral_risk
+- Pull policy impacts from *exec_outcomes
+TABLES (direct extraction only)
+1) Risk Scores Table → from *portfolio_risk_analysis
+2) Macro-Adjusted Table → from *macro_adjusted_risk
+3) Stress Results Table → from *stress_test_results
+4) Behavioral Scores Table → from *behavioral_risk
+5) Policy Impact Table → from *exec_outcomes
+NO recomputation.
+NO reinterpretation.
+Pointers ONLY.
+[*enterprise_risk_dashboard] #1
+
+
+R11. Dependency Tree
+Generate the full marker dependency tree in Graphviz/DOT format, 
+including all automatic and custom markers from the workflow session:
+[*dependency_tree_investments_dot] #3
+
+Paste into:
+https://dreampuf.github.io/GraphvizOnline/
+
+
+==========================================================
+END OF AIURM Investment Portfolio Risk (v0.1)
+==========================================================
+
+AIURM Protocol v0.1 (Experimental Draft)
+Artificial Intelligence Universal Reference Marker
+
+Public domain (CC0)
+No stability guarantees are provided.
+
+Created by Adão Aparecido Ernesto (2025)
+Email: adaoernesto@aiurm.org
+X: @adaoaper
+GitHub: https://github.com/adaoaper/aiurm
+
+Website: https://aiurm.org
+==========================================================
+

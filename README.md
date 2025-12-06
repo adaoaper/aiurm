@@ -1,7 +1,7 @@
 # aiurm
 AIURM Protocol - Artificial Intelligence Universal Reference Marker
 
-IURM Protocol v0.1 (Experimental Draft)
+AIURM Protocol Protocol v0.1 (Experimental Draft)
 
 For community discussion, testing, study, and evolution.
 

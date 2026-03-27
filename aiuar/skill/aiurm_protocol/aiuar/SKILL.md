@@ -33,7 +33,7 @@ The physical representation depends on the substrate (filesystem, JSON, or key-v
 The diagram below uses tree notation for readability only.
 
 ```
-aiuar_root/
+aiuar_root/aiuar/
 └── *****contextspace_environment/
     └── ****entity/
         ├── governance/   ← pipeline definition (read-only during execution)

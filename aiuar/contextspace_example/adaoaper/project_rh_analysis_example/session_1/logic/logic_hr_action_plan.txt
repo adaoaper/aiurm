@@ -1,0 +1,16 @@
+L4. HR action plan policy
+- Use *performance_analysis and *retention_analysis.
+- Build an action plan using *params_hr_outputs.action_plan_horizons.
+- Include:
+  immediate priorities
+  medium-term actions
+  long-term strategies
+  estimated budget
+  action owners
+- Prioritize actions based on:
+  promotion readiness
+  retention risk
+  burnout indicators
+  departmental concentration of issues
+- Emit structured action plan with rationale.
+[*logic_hr_action_plan] #0

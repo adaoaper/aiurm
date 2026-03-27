@@ -1,0 +1,25 @@
+L1. Performance analysis policy
+- Compute average performance rating for each employee from *employees.performance_ratings.
+- Classify performance using *params_performance_hr.performance_rules:
+  average_rating >= excellent_min -> "Excellent"
+  average_rating >= very_good_min -> "Very Good"
+  average_rating >= good_min -> "Good"
+  otherwise -> "Needs Improvement"
+- Classify engagement using *params_performance_hr.engagement_rules:
+  absences <= high_engagement.max_absences AND overtime_hours >= high_engagement.min_overtime_hours -> "High Engagement"
+  absences <= normal_engagement.max_absences AND overtime_hours >= normal_engagement.min_overtime_hours -> "Normal Engagement"
+  otherwise -> "Low Engagement"
+- Classify growth potential using *params_performance_hr.growth_potential_rules:
+  certifications >= ready_for_promotion.min_certifications AND tenure_months >= ready_for_promotion.min_tenure_months -> "Ready for Promotion"
+  certifications >= development_track.min_certifications AND tenure_months >= development_track.min_tenure_months -> "Development Track"
+  otherwise -> "Entry Level"
+- Emit per employee:
+  employee_id
+  employee_name
+  department
+  average_rating
+  performance_classification
+  engagement_classification
+  growth_potential
+  reasoning_pointers
+[*logic_performance_analysis_hr] #0

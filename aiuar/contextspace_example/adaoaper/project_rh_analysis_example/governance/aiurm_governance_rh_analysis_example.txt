@@ -1,0 +1,137 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+HR Analysis with Simulated Data (v0.3)
+Onboarding Example
+
+# Purpose
+Demonstrate AIURM/AIUAR through an HR analysis workflow using simulated data.
+
+---
+
+# Governance
+as_of                    = "2026-03-25"
+policy_version           = "HRPOL_ONBOARDING_V1"
+seed                     = 42
+
+execution_mode           = "ONE_STEP"
+response_contract        = "STRUCTURED_OUTPUT_REQUIRED"
+output_format            = "JSON"
+runtime                  = "python"
+execution_trigger        = "python_runtime"
+
+audit_level              = "FULL"
+audit_policy             = "LOG_EACH_RESULT_STEP"
+
+language_policy_default  = "EN"
+schema_mode              = "restrict"
+
+aiurm_markers_location   = "IN_JSON_BODY"
+
+aiuar_root               = "c:\aiurm\aiuar\"
+aiuar                    = *****contextspace_example****adaoaper***project_rh_analysis_example**session_1
+aiuar_data_source        = aiuar
+aiuar_logic_source       = aiuar
+aiuar_result_output      = aiuar
+
+project_audit     = *****contextspace_environment****general***project_audit**session_1
+project_code      = *****contextspace_environment****general***project_code**session_1
+project_log       = *****contextspace_environment****general***project_log**session_1
+project_exception = *****contextspace_environment****general***project_exception**session_1
+
+[*aiurm_governance_rh_analysis_example] #0
+
+---
+
+# Data
+
+*data_employees
+*data_performance_rules
+*data_retention_rules
+*data_promotion_scenarios
+*data_output_configuration
+
+---
+
+# Logic
+
+*logic_performance_analysis_hr
+*logic_retention_analysis_hr
+*logic_department_summary_hr
+*logic_hr_action_plan
+*logic_executive_dashboard_hr
+*logic_conservative_promotions_hr
+*logic_aggressive_promotions_hr
+*logic_scenario_comparison_hr
+*logic_ready_for_promotion_filter_hr
+*logic_hr_filters_hr
+*logic_explainability_hr
+*logic_transformation_trace_hr
+*logic_json_export_performance_hr
+*logic_dependency_tree_hr
+
+---
+
+# Result
+
+R1. Performance analysis
+apply *logic_performance_analysis_hr to *data_employees and *data_performance_rules
+[*result_performance_analysis] #3
+
+R2. Retention analysis
+apply *logic_retention_analysis_hr to *data_employees and *data_retention_rules
+[*result_retention_analysis] #3
+
+R3. Department summary
+apply *logic_department_summary_hr to *data_employees and *result_performance_analysis and *result_retention_analysis and *data_output_configuration
+[*result_department_summary] #3
+
+R4. HR action plan
+apply *logic_hr_action_plan to *result_performance_analysis and *result_retention_analysis and *data_output_configuration
+[*result_hr_action_plan] #3
+
+R5. Executive dashboard
+apply *logic_executive_dashboard_hr to *result_performance_analysis and *result_retention_analysis and *result_department_summary and *data_output_configuration
+[*result_executive_dashboard] #3
+
+R6. Conservative promotion scenario
+apply *logic_conservative_promotions_hr to *data_employees and *data_promotion_scenarios
+[*result_conservative_promotions] #3
+
+R7. Aggressive promotion scenario
+apply *logic_aggressive_promotions_hr to *data_employees and *data_promotion_scenarios
+[*result_aggressive_promotions] #3
+
+R8. Scenario comparison
+apply *logic_scenario_comparison_hr to *result_conservative_promotions and *result_aggressive_promotions and *data_output_configuration
+[*result_scenario_comparison] #3
+
+R9. Ready-for-promotion filtered view
+apply *logic_ready_for_promotion_filter_hr to *data_employees and *result_performance_analysis
+[*result_ready_for_promotion_filter_hr] #3
+
+R10. Quick filtered analytical views
+apply *logic_hr_filters_hr to *result_performance_analysis and *result_retention_analysis and *result_department_summary
+[*result_hr_filters_hr] #3
+
+R11. Explainability results
+apply *logic_explainability_hr to *result_performance_analysis and *result_retention_analysis and *result_aggressive_promotions and *result_scenario_comparison
+[*result_explainability_hr] #3
+
+R12. Transformation trace results
+apply *logic_transformation_trace_hr to *data_employees and *result_performance_analysis and *result_conservative_promotions and *result_aggressive_promotions
+[*result_transformation_trace_hr] #3
+
+R13. JSON export results
+apply *logic_json_export_performance_hr to *result_performance_analysis
+[*result_json_performance_hr] #3
+
+R14. Dependency tree results
+apply *logic_dependency_tree_hr to *aiurm_governance_rh_analysis_example and *result_performance_analysis and *result_retention_analysis and *result_department_summary and *result_hr_action_plan and *result_executive_dashboard and *result_conservative_promotions and *result_aggressive_promotions and *result_scenario_comparison and *result_ready_for_promotion_filter_hr and *result_hr_filters_hr and *result_explainability_hr and *result_transformation_trace_hr and *result_json_performance_hr
+[*result_dependency_tree_hr] #3
+
+---
+
+# End of AIURM/AIUAR DLR Workflow

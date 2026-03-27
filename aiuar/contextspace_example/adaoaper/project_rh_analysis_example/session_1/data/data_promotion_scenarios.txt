@@ -1,0 +1,14 @@
+D4. Promotion scenario criteria
+{
+  "conservative_criteria": {
+    "rating_min": 9.0,
+    "tenure_months_min": 36,
+    "certifications_min": 3
+  },
+  "aggressive_criteria": {
+    "rating_min": 8.5,
+    "tenure_months_min": 18,
+    "certifications_min": 2
+  }
+}
+[*params_promotion_scenarios_hr] #0

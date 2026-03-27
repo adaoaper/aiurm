@@ -1,0 +1,28 @@
+D5. Output configuration
+{
+  "department_summary_dimensions": [
+    "count_by_performance_classification",
+    "average_salary_by_department",
+    "retention_risk_distribution",
+    "top_performers_identified",
+    "priority_actions_by_area"
+  ],
+  "action_plan_horizons": {
+    "immediate_days": 30,
+    "medium_term_days": 90,
+    "long_term_months": 12
+  },
+  "executive_dashboard_dimensions": [
+    "key_performance_indicators",
+    "critical_alerts",
+    "top_5_priorities",
+    "required_budget"
+  ],
+  "scenario_comparison_dimensions": [
+    "number_of_promotions_each_scenario",
+    "estimated_financial_impact",
+    "risks_and_benefits",
+    "final_recommendation"
+  ]
+}
+[*params_hr_outputs] #0

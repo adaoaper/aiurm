@@ -1,0 +1,52 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Environment — Communication Project (v0.1-potential)
+
+# Purpose
+Inter-project and inter-agent message passing.
+Enables asynchronous communication between projects within the same contextspace or across contextspaces.
+Potential applications: event notification, agent messaging, pub/sub coordination.
+
+---
+
+# Governance
+as_of                    = "2026-03-26"
+status                   = "POTENTIAL"
+language_policy_default  = "EN"
+
+aiuar_root               = "c:\aiurm\aiuar\"
+aiuar                    = *****contextspace_environment****general***project_communication**session_1
+
+[*aiurm_governance_project_communication] #0
+
+---
+
+# Data
+
+*data_message
+
+---
+
+# Logic
+
+*logic_communication_send
+*logic_communication_receive
+
+---
+
+# Result
+
+R1. Send message
+apply *logic_communication_send to *data_message
+[*result_communication_send] #0
+
+R2. Receive message
+apply *logic_communication_receive to *data_message
+[*result_communication_receive] #0
+
+---
+
+# End of AIURM/AIUAR DLR Workflow

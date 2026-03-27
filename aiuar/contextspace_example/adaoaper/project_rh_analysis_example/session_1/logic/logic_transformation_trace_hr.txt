@@ -1,0 +1,10 @@
+L12. Transformation trace policy
+- Use *employees and *performance_analysis and *conservative_promotions and *aggressive_promotions.
+- Compare source-to-result transformations.
+- Highlight:
+  transformation steps
+  derived fields
+  classification path
+  promotion inclusion logic
+- Support tree-style trace from *employees to *aggressive_promotions.
+[*logic_transformation_trace_hr] #0

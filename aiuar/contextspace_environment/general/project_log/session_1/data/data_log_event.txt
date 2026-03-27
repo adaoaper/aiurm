@@ -1,0 +1,12 @@
+D1. Log event schema
+origin_contextspace : contextspace of the calling project
+origin_entity       : entity of the calling project
+origin_project      : project name of the calling project
+origin_session      : session of the calling project
+timestamp           : YYYYMMDD_HHMMSS
+step_marker         : result marker of the executed step (primary identifier)
+step_title          : full step title including label (e.g. "R1. Performance analysis")
+status              : completed | exception | pending | skipped
+exception_ref       : result_exception marker if status = exception (or null)
+ai_observation      : optional AI insight about the step execution
+[*data_log_event] #0

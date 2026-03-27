@@ -1,0 +1,5 @@
+L13. JSON export policy
+- Use *performance_analysis.
+- Export *performance_analysis as valid JSON.
+- Preserve marker references in the JSON body where applicable.
+[*logic_json_export_performance_hr] #0

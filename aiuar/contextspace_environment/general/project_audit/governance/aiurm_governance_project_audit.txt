@@ -1,0 +1,48 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Environment — Audit Project (v0.1)
+
+# Purpose
+Receives execution events from business projects and writes append-only audit records.
+Each result artifact is named with the origin context and timestamp for full traceability.
+
+---
+
+# Governance
+as_of                = "2026-03-25"
+execution_mode       = "ONE_STEP"
+output_format        = "JSON"
+audit_level          = "MINIMAL"
+language_policy_default = "EN"
+
+aiuar_root           = "c:\aiurm\aiuar\"
+aiuar                = *****contextspace_environment****general***project_audit**session_1
+
+[*aiurm_governance_project_audit] #0
+
+---
+
+# Data
+
+*data_audit_event
+
+---
+
+# Logic
+
+*logic_audit_write
+
+---
+
+# Result
+
+R1. Write audit record
+apply *logic_audit_write to *data_audit_event
+[*result_audit__{origin_contextspace}__{origin_project}__{origin_session}__{timestamp}] #0
+
+---
+
+# End of AIURM/AIUAR DLR Workflow

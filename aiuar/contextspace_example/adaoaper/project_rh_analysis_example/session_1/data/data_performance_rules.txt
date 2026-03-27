@@ -1,0 +1,29 @@
+D2. Performance thresholds
+{
+  "performance_rules": {
+    "excellent_min": 9.0,
+    "very_good_min": 8.5,
+    "good_min": 8.0
+  },
+  "engagement_rules": {
+    "high_engagement": {
+      "max_absences": 1,
+      "min_overtime_hours": 40
+    },
+    "normal_engagement": {
+      "max_absences": 3,
+      "min_overtime_hours": 20
+    }
+  },
+  "growth_potential_rules": {
+    "ready_for_promotion": {
+      "min_certifications": 3,
+      "min_tenure_months": 24
+    },
+    "development_track": {
+      "min_certifications": 2,
+      "min_tenure_months": 12
+    }
+  }
+}
+[*params_performance_hr] #0

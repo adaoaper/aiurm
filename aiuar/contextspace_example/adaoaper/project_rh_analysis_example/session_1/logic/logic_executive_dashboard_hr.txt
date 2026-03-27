@@ -1,0 +1,10 @@
+L5. Executive dashboard policy
+- Combine *performance_analysis and *retention_analysis and *department_summary.
+- Use *params_hr_outputs.executive_dashboard_dimensions.
+- Derive:
+  key performance indicators
+  critical alerts
+  top 5 priorities
+  required budget
+- Emit dashboard-ready executive summary object.
+[*logic_executive_dashboard_hr] #0

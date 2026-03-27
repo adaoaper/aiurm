@@ -1,0 +1,84 @@
+D1. Employee dataset
+[
+  {
+    "id": "E001",
+    "name": "Ana Silva",
+    "position": "Senior Analyst",
+    "department": "IT",
+    "salary": 8500.0,
+    "tenure_months": 36,
+    "performance_ratings": [
+      8.5,
+      9.0,
+      8.8
+    ],
+    "absences": 2,
+    "overtime_hours": 45,
+    "certifications": 3
+  },
+  {
+    "id": "E002",
+    "name": "Carlos Santos",
+    "position": "Manager",
+    "department": "Sales",
+    "salary": 12000.0,
+    "tenure_months": 48,
+    "performance_ratings": [
+      9.2,
+      9.1,
+      9.5
+    ],
+    "absences": 1,
+    "overtime_hours": 60,
+    "certifications": 2
+  },
+  {
+    "id": "E003",
+    "name": "Maria Costa",
+    "position": "Junior Analyst",
+    "department": "HR",
+    "salary": 4500.0,
+    "tenure_months": 12,
+    "performance_ratings": [
+      7.5,
+      8.0,
+      7.8
+    ],
+    "absences": 5,
+    "overtime_hours": 20,
+    "certifications": 1
+  },
+  {
+    "id": "E004",
+    "name": "John Smith",
+    "position": "Developer",
+    "department": "IT",
+    "salary": 7200.0,
+    "tenure_months": 24,
+    "performance_ratings": [
+      8.8,
+      8.5,
+      9.0
+    ],
+    "absences": 3,
+    "overtime_hours": 80,
+    "certifications": 4
+  },
+  {
+    "id": "E005",
+    "name": "Paula Johnson",
+    "position": "Coordinator",
+    "department": "Marketing",
+    "salary": 9500.0,
+    "tenure_months": 60,
+    "performance_ratings": [
+      9.0,
+      8.9,
+      9.2
+    ],
+    "absences": 0,
+    "overtime_hours": 35,
+    "certifications": 2
+  }
+]
+[*employees] #0

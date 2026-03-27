@@ -1,0 +1,13 @@
+L3. Snapshot write policy
+- Receive *data_changelog_event from the changelog SKILL.
+- *data_changelog_event must contain:
+    origin_contextspace : contextspace of the modified project
+    origin_entity       : entity of the modified project
+    origin_project      : project name of the modified project
+    origin_session      : session of the modified project
+    timestamp           : YYYYMMDD_HHMMSS
+    artifact            : relative path from project root (e.g. governance/aiurm_governance_x.txt)
+- Read the current content of the artifact at the full AIUAR address.
+- Emit the result artifact with the full content of the current file as snapshot payload.
+- If the artifact does not exist (FILE_ADDED case), emit null content.
+[*logic_snapshot_write] #0

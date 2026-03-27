@@ -1,0 +1,9 @@
+L6. Conservative promotion policy
+- Use *employees and *params_promotion_scenarios_hr.conservative_criteria.
+- For each employee, compute average_rating.
+- Promote only when:
+  average_rating >= rating_min
+  tenure_months >= tenure_months_min
+  certifications >= certifications_min
+- Emit promoted subset plus inclusion reasoning.
+[*logic_conservative_promotions_hr] #0

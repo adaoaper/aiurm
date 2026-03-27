@@ -1,0 +1,15 @@
+L8. Promotion scenario comparison policy
+- Compare *conservative_promotions and *aggressive_promotions.
+- Use *params_hr_outputs.scenario_comparison_dimensions.
+- Derive:
+  number_of_promotions_each_scenario
+  estimated_financial_impact
+  risks_and_benefits
+  final_recommendation
+- Final recommendation should balance:
+  talent acceleration
+  organizational risk
+  budget impact
+  promotion strictness
+- Emit structured scenario comparison object with reasoning.
+[*logic_scenario_comparison_hr] #0

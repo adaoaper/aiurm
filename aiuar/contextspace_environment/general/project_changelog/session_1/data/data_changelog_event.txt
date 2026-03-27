@@ -1,0 +1,12 @@
+D1. Changelog event schema
+origin_contextspace : contextspace of the modified project
+origin_entity       : entity of the modified project
+origin_project      : project name of the modified project
+origin_session      : session of the modified project
+timestamp           : YYYYMMDD_HHMMSS
+owner               : AI | HUMAN
+event               : FILE_ADDED | FILE_MODIFIED | FILE_DELETED
+artifact            : relative path from project root (e.g. governance/aiurm_governance_x.txt)
+reason              : AI_AUTONOMOUS | HUMAN_REQUESTED
+snapshot_ref        : result_snapshot marker of R1 of the same operation (or null for FILE_ADDED)
+[*data_changelog_event] #0

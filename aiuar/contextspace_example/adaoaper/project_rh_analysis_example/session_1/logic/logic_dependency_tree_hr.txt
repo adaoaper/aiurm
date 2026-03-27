@@ -1,0 +1,6 @@
+L14. Dependency Tree Visualization Policy
+- Generate a complete marker dependency tree for the workflow.
+- Output format: Graphviz/DOT
+- Visualization tool:
+  https://dreampuf.github.io/GraphvizOnline/
+[*logic_dependency_tree_hr] #0

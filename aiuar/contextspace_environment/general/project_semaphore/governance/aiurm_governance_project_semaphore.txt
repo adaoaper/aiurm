@@ -1,0 +1,57 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Environment — Semaphore Project (v0.1-potential)
+
+# Purpose
+Concurrency control and coordination signals across projects and agents.
+Manages locks, execution gates, and synchronization points for complex
+multi-project or multi-agent orchestration chains.
+
+---
+
+# Governance
+as_of                    = "2026-03-26"
+status                   = "POTENTIAL"
+language_policy_default  = "EN"
+
+aiuar_root               = "c:\aiurm\aiuar\"
+aiuar                    = *****contextspace_environment****general***project_semaphore**session_1
+
+[*aiurm_governance_project_semaphore] #0
+
+---
+
+# Data
+
+*data_semaphore_signal
+
+---
+
+# Logic
+
+*logic_semaphore_acquire
+*logic_semaphore_release
+*logic_semaphore_check
+
+---
+
+# Result
+
+R1. Acquire semaphore
+apply *logic_semaphore_acquire to *data_semaphore_signal
+[*result_semaphore_acquire] #0
+
+R2. Release semaphore
+apply *logic_semaphore_release to *data_semaphore_signal
+[*result_semaphore_release] #0
+
+R3. Check semaphore state
+apply *logic_semaphore_check to *data_semaphore_signal
+[*result_semaphore_check] #0
+
+---
+
+# End of AIURM/AIUAR DLR Workflow

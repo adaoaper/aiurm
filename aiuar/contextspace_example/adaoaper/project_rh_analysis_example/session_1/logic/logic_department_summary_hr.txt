@@ -1,0 +1,11 @@
+L3. Department summary policy
+- Use *employees and *performance_analysis and *retention_analysis.
+- Aggregate by department according to *params_hr_outputs.department_summary_dimensions.
+- Compute:
+  count by performance classification
+  average salary by department
+  retention risk distribution
+  top performers identified
+  priority actions by area
+- Emit structured department-level summary objects and overall summary.
+[*logic_department_summary_hr] #0

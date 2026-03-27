@@ -1,0 +1,15 @@
+L1. Code write policy
+- Receive *data_code_artifact from the calling business project.
+- *data_code_artifact must contain:
+    origin_contextspace   : contextspace of the calling project
+    origin_entity         : entity of the calling project
+    origin_project        : project name of the calling project
+    origin_session        : session of the calling project
+    timestamp             : YYYYMMDD_HHMMSS
+    artifact_type         : type of script (e.g. pipeline_executor, resolver, transformer)
+    artifact_name         : descriptive name of the script
+    content               : full script content
+- Store permanently — code artifacts are retained for reproducibility and audit.
+- Never overwrite an existing code artifact. Use timestamp to version.
+- Emit the result artifact with full content.
+[*logic_code_write] #0

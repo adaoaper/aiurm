@@ -1,0 +1,31 @@
+D3. Retention thresholds
+{
+  "retention_rules": {
+    "high_risk": {
+      "salary_below": 7000,
+      "rating_min": 8.5
+    },
+    "medium_risk": {
+      "tenure_months_above": 48,
+      "exclude_management_positions": true
+    },
+    "burnout_risk": {
+      "overtime_hours_above": 60,
+      "absences_above": 2
+    }
+  },
+  "recommended_actions": {
+    "High Risk": "Urgent salary review",
+    "Medium Risk": "Career development plan",
+    "Burnout Risk": "Workload redistribution",
+    "Low Risk": "Continue monitoring"
+  },
+  "management_positions": [
+    "Manager",
+    "Director",
+    "Head",
+    "VP",
+    "C-Level"
+  ]
+}
+[*params_retention_hr] #0

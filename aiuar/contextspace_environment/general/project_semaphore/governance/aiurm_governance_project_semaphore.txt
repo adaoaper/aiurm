@@ -17,7 +17,7 @@ as_of                    = "2026-03-26"
 status                   = "POTENTIAL"
 language_policy_default  = "EN"
 
-aiuar_root               = "c:\aiuar\"
+aiuar_root               = ...\aiuar\
 aiuar                    = *****contextspace_environment****general***project_semaphore**session_1
 
 [*aiurm_governance_project_semaphore] #0

@@ -19,7 +19,7 @@ output_format        = "JSON"
 audit_level          = "MINIMAL"
 language_policy_default = "EN"
 
-aiuar_root           = "c:\aiuar\"
+aiuar_root           = ...\aiuar\
 aiuar                = *****contextspace_environment****general***project_code**session_1
 
 [*aiurm_governance_project_code] #0

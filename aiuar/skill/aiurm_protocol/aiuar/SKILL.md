@@ -47,7 +47,7 @@ aiuar_root/
 
 | Level | Identifier | Convention name | Example | Status |
 |---|---|---|---|---|
-| aiuar_root |  | Physical anchor — declared in governance | `c:\aiurm\aiuar\` | Implemented |
+| aiuar_root |  | Physical anchor — declared in governance | `...\aiuar\` | Implemented |
 | 5 | `*****` | contextspace | `*****contextspace_environment`    | Implemented |
 | 4 | `****`  | entity       | `****entity`                       | Implemented |
 | 3 | `***`   | project      | `***project_1`                     | Implemented |

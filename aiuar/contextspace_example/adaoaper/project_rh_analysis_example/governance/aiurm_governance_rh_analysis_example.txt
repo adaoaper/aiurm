@@ -30,7 +30,7 @@ schema_mode              = "restrict"
 
 aiurm_markers_location   = "IN_JSON_BODY"
 
-aiuar_root               = "c:\aiuar\"
+aiuar_root               = ...\aiuar\
 aiuar                    = *****contextspace_example****adaoaper***project_rh_analysis_example**session_1
 aiuar_data_source        = aiuar
 aiuar_logic_source       = aiuar

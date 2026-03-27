@@ -105,7 +105,7 @@ Rules:
 | Field | Description |
 |---|---|
 | `as_of` | Reference date of the governance definition |
-| `aiuar_root` | Physical anchor — path, file, url, or substrate equivalent |
+| `aiuar_root` | Physical anchor — resolved by the executor from the active working directory. Convention: `...\aiuar\` |
 | `aiuar` | Full AIUAR address of the active session in asterisk notation |
 | `aiuar_data_source` | Session address for data resolution. Default: `aiuar` |
 | `aiuar_logic_source` | Session address for logic resolution. Default: `aiuar` |
@@ -118,7 +118,7 @@ aiuar = *****contextspace****entity***project**session
 
 Example:
 ```
-aiuar_root    = "c:\aiurm\aiuar\"
+aiuar_root    = ...\aiuar\
 aiuar = *****contextspace_environment****general***project_audit**session_1
 ```
 

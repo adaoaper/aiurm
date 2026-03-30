@@ -1,0 +1,16 @@
+D1. Exception event schema
+origin_contextspace          : contextspace of the calling project
+origin_entity                : entity of the calling project
+origin_project               : project name of the calling project
+origin_session               : session of the calling project
+timestamp                    : YYYYMMDD_HHMMSS
+step_marker                  : result marker of the failed step (primary identifier)
+step_title                   : full step title including label (e.g. "R1. Performance analysis")
+exception_type               : UNRESOLVABLE_MARKER | EXECUTION_FAILURE | VALIDATION_ERROR | custom
+marker                       : the marker that failed (if applicable)
+expected_in_governance_section : Data | Logic | null
+governance_declared          : true | false
+artifact_found               : true | false
+action                       : ABORTED | SKIPPED | RETRIED
+executor_insight             : optional diagnostic message from the executor
+[*data_exception_event] #0

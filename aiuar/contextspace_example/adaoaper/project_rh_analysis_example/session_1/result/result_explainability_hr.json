@@ -1,0 +1,87 @@
+{
+  "aiurm_marker": "[*result_explainability_hr]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_explainability_hr",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R11. Explainability results",
+  "logic_applied": "*logic_explainability_hr",
+  "data_sources": ["*result_performance_analysis", "*result_retention_analysis", "*result_aggressive_promotions", "*result_scenario_comparison"],
+  "explanations": {
+    "performance_analysis": {
+      "per_employee": [
+        {
+          "employee_id": "E001",
+          "employee_name": "Ana Silva",
+          "explanation": "Rated 'Very Good' because average_rating=8.77 falls in [8.5, 9.0). Classified 'Normal Engagement' because absences=2 exceeds the High Engagement ceiling (max=1) but stays within Normal (max=3) with overtime=45 above the minimum (20). Classified 'Ready for Promotion' because certifications=3 meets min_certifications(3) and tenure=36 meets min_tenure_months(24).",
+          "source_pointers": ["*data_employees.E001", "*data_performance_rules.performance_rules", "*data_performance_rules.engagement_rules", "*data_performance_rules.growth_potential_rules"]
+        },
+        {
+          "employee_id": "E002",
+          "employee_name": "Carlos Santos",
+          "explanation": "Rated 'Excellent' because average_rating=9.27 >= excellent_min(9.0). Only employee with 'High Engagement' — absences=1 within high ceiling (1) and overtime=60 meets high minimum (40). Classified 'Development Track' because certifications=2 is below ready_for_promotion.min_certifications(3), but meets development_track criteria (certs>=2, tenure>=12).",
+          "source_pointers": ["*data_employees.E002", "*data_performance_rules"]
+        },
+        {
+          "employee_id": "E003",
+          "employee_name": "Maria Costa",
+          "explanation": "Rated 'Needs Improvement' because average_rating=7.77 < good_min(8.0). Classified 'Low Engagement' because absences=5 exceeds the normal engagement ceiling (max_absences=3). Classified 'Entry Level' because certifications=1 is below even the development_track minimum (min_certifications=2). Youngest in tenure (12 months).",
+          "source_pointers": ["*data_employees.E003", "*data_performance_rules"]
+        },
+        {
+          "employee_id": "E004",
+          "employee_name": "John Smith",
+          "explanation": "Rated 'Very Good' — same average_rating(8.77) as E001 Ana Silva, identically classified. 'Normal Engagement' because absences=3 is exactly at the normal ceiling (max=3) while overtime=80 far exceeds the minimum (20). 'Ready for Promotion' with the highest certifications in the team (4), and tenure exactly at the minimum threshold (24 months).",
+          "source_pointers": ["*data_employees.E004", "*data_performance_rules"]
+        },
+        {
+          "employee_id": "E005",
+          "employee_name": "Paula Johnson",
+          "explanation": "Rated 'Excellent' (avg=9.03 >= 9.0). 'Normal Engagement' despite zero absences — overtime=35 falls short of the high engagement minimum (40), so drops to normal (35 >= 20). 'Development Track' because certifications=2 < ready_for_promotion min(3), and tenure=60 satisfies development_track (tenure >= 12).",
+          "source_pointers": ["*data_employees.E005", "*data_performance_rules"]
+        }
+      ]
+    },
+    "retention_analysis": {
+      "per_employee": [
+        {
+          "employee_id": "E001", "employee_name": "Ana Silva",
+          "explanation": "Low Risk. salary=8500 disqualifies High Risk (threshold <7000). tenure=36 < medium_risk threshold (>48). overtime=45 < burnout threshold (>60). No rule triggered."
+        },
+        {
+          "employee_id": "E002", "employee_name": "Carlos Santos",
+          "explanation": "Low Risk. salary=12000 far above High Risk salary ceiling. tenure=48 exactly at medium_risk boundary — rule requires strictly greater than 48, so not triggered. overtime=60 exactly at burnout boundary — rule requires strictly greater than 60, so not triggered. Boundary cases both resolve to Low Risk."
+        },
+        {
+          "employee_id": "E003", "employee_name": "Maria Costa",
+          "explanation": "Low Risk despite lowest salary (4500 < 7000). High Risk requires BOTH salary below threshold AND rating >= 8.5. avg_rating=7.77 < 8.5 — second condition fails. Medium and Burnout rules also not met. Note: Maria presents a latent risk not captured by current rules — low pay combined with poor performance and low engagement."
+        },
+        {
+          "employee_id": "E004", "employee_name": "John Smith",
+          "explanation": "Burnout Risk. overtime=80 > 60 (burnout threshold) AND absences=3 > 2 (burnout threshold) — both conditions satisfied. This is the only Burnout Risk in the team. Despite being Ready for Promotion with 4 certifications, the workload pattern is unsustainable."
+        },
+        {
+          "employee_id": "E005", "employee_name": "Paula Johnson",
+          "explanation": "Medium Risk. tenure=60 > 48 (strictly) AND position='Coordinator' is not in management_positions list [Manager, Director, Head, VP, C-Level]. Rule triggered at second evaluation. This represents career stagnation risk — long tenure without managerial advancement."
+        }
+      ]
+    },
+    "aggressive_promotions": {
+      "per_employee": [
+        {"employee_id": "E001", "employee_name": "Ana Silva", "explanation": "Included. All three thresholds met: rating 8.77>=8.5, tenure 36>=18, certifications 3>=2."},
+        {"employee_id": "E002", "employee_name": "Carlos Santos", "explanation": "Included. rating 9.27>=8.5, tenure 48>=18, certifications 2>=2 (exact minimum met)."},
+        {"employee_id": "E004", "employee_name": "John Smith", "explanation": "Included. See dedicated explanation below."},
+        {"employee_id": "E005", "employee_name": "Paula Johnson", "explanation": "Included. rating 9.03>=8.5, tenure 60>=18, certifications 2>=2 (exact minimum met)."},
+        {"employee_id": "E003", "employee_name": "Maria Costa", "explanation": "Excluded. rating=7.77 < 8.5. All three conditions required — first condition already fails."}
+      ],
+      "john_smith_inclusion_explanation": {
+        "employee_id": "E004",
+        "employee_name": "John Smith",
+        "question": "Why was John Smith included in aggressive promotions despite Burnout Risk?",
+        "explanation": "The aggressive promotion logic (*logic_aggressive_promotions_hr) applies criteria from *data_promotion_scenarios.aggressive_criteria only — it does not cross-reference retention risk. John Smith satisfies all three thresholds: average_rating=8.77 >= 8.5, tenure_months=24 >= 18, certifications=4 >= 2. Burnout Risk is a retention concern from *result_retention_analysis, not a disqualifier in the promotion logic. The Selective Aggressive recommendation in *result_scenario_comparison does note that John Smith's promotion should be deferred until burnout risk is resolved, as an orchestrated judgment call combining both results."
+      }
+    },
+    "scenario_comparison": {
+      "explanation": "Conservative produced 0 promotions because its thresholds (rating>=9.0, tenure>=36, certs>=3) are simultaneously met by zero employees — the closest candidates are E001 (fails rating) and E002/E005 (fail certifications). Aggressive produced 4 promotions by lowering all three thresholds. The final recommendation of 'Selective Aggressive' reflects a judgment that Conservative is suboptimal for talent health, but pure Aggressive at 80% risks organizational credibility. The tiebreaker favors employees with growth_potential='Ready for Promotion' from *result_performance_analysis, which independently identifies E001 and E004 as the strongest candidates for immediate promotion.",
+      "source_pointers": ["*result_conservative_promotions", "*result_aggressive_promotions", "*result_performance_analysis"]
+    }
+  }
+}

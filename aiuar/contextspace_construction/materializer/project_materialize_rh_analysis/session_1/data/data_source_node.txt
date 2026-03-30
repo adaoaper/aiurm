@@ -1,0 +1,7 @@
+node_contextspace = *****contextspace_example
+node_entity       = adaoaper
+node_project      = project_rh_analysis_example
+node_session      = session_1
+node_d            = data
+node_l            = logic
+node_r            = none

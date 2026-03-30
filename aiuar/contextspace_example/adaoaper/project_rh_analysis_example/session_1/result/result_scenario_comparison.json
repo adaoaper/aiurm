@@ -1,0 +1,71 @@
+{
+  "aiurm_marker": "[*result_scenario_comparison]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_scenario_comparison",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R8. Scenario comparison",
+  "logic_applied": "*logic_scenario_comparison_hr",
+  "data_sources": ["*result_conservative_promotions", "*result_aggressive_promotions", "*data_output_configuration"],
+  "scenario_comparison": {
+    "number_of_promotions_each_scenario": {
+      "conservative": 0,
+      "aggressive": 4,
+      "delta": 4
+    },
+    "estimated_financial_impact": {
+      "assumption": "10% salary increase per promotion, annualized",
+      "conservative": {
+        "annual_cost_increase": 0,
+        "promoted_employees": []
+      },
+      "aggressive": {
+        "annual_cost_increase": 44640,
+        "breakdown": [
+          {"employee": "E001 Ana Silva", "current_salary": 8500, "increase_10pct_annual": 10200},
+          {"employee": "E002 Carlos Santos", "current_salary": 12000, "increase_10pct_annual": 14400},
+          {"employee": "E004 John Smith", "current_salary": 7200, "increase_10pct_annual": 8640},
+          {"employee": "E005 Paula Johnson", "current_salary": 9500, "increase_10pct_annual": 11400}
+        ]
+      }
+    },
+    "risks_and_benefits": {
+      "conservative": {
+        "benefits": [
+          "Zero financial impact",
+          "Maintains high promotion standard — only exceptional performers promoted",
+          "Low organizational disruption"
+        ],
+        "risks": [
+          "Zero promotions creates talent stagnation risk for high performers",
+          "Ana Silva and John Smith (Ready for Promotion) may seek external advancement",
+          "Paula Johnson Medium Risk retention concern unaddressed by lack of promotion path",
+          "Carlos Santos despite Excellent performance and High Engagement receives no recognition"
+        ]
+      },
+      "aggressive": {
+        "benefits": [
+          "Recognizes 4 out of 5 employees — broad talent acknowledgment",
+          "Directly addresses retention risk for Paula Johnson",
+          "Accelerates career paths for John Smith and Ana Silva (Ready for Promotion)",
+          "Motivates Carlos Santos despite not yet meeting certifications threshold under conservative"
+        ],
+        "risks": [
+          "80% promotion rate may dilute promotion prestige",
+          "Annual cost increase of 44,640 currency units",
+          "John Smith promotion while Burnout Risk is active may compound overload perception",
+          "Promoting 4 simultaneously may create compression issues with existing senior staff"
+        ]
+      }
+    },
+    "final_recommendation": {
+      "recommendation": "Selective Aggressive",
+      "rationale": "Neither scenario is optimal as-is. Conservative produces zero promotions — untenable for talent retention given two Ready-for-Promotion employees and one Medium Risk. Pure Aggressive promotes 80% which dilutes value. Recommended approach: promote E001 Ana Silva and E004 John Smith (both Ready for Promotion, strongest justification) immediately. Defer E002 Carlos Santos until certification milestone is reached (actionable within 90 days). Address E005 Paula Johnson through career development plan rather than promotion — her retention risk is path-related, not performance-related.",
+      "immediate_promotions": ["E001 Ana Silva", "E004 John Smith (after burnout risk resolution)"],
+      "conditional_promotions": ["E002 Carlos Santos (upon reaching certifications=3)"],
+      "alternative_retention_action": ["E005 Paula Johnson (career development plan, not promotion at this stage)"],
+      "estimated_selective_annual_cost": 18840,
+      "talent_acceleration_score": "High",
+      "organizational_risk_score": "Low",
+      "budget_efficiency": "Focused investment on highest-readiness candidates"
+    }
+  }
+}

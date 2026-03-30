@@ -1,0 +1,15 @@
+{
+  "origin_contextspace": "contextspace_example",
+  "origin_entity": "adaoaper",
+  "origin_project": "project_rh_analysis_example",
+  "origin_session": "session_1",
+  "execution_id": "20260329_f3a9b1",
+  "timestamp": "20260329_120005",
+  "step": "R5. Executive dashboard",
+  "result_marker": "*result_executive_dashboard",
+  "status": "COMPLETED",
+  "logic_applied": "*logic_executive_dashboard_hr",
+  "data_consumed": ["*result_performance_analysis", "*result_retention_analysis", "*result_department_summary", "*data_output_configuration"],
+  "output_artifact": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_executive_dashboard",
+  "records_produced": 1
+}

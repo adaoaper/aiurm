@@ -1,0 +1,15 @@
+{
+  "origin_contextspace": "contextspace_example",
+  "origin_entity": "adaoaper",
+  "origin_project": "project_rh_analysis_example",
+  "origin_session": "session_1",
+  "execution_id": "20260329_f3a9b1",
+  "timestamp": "20260329_120014",
+  "step": "R14. Dependency tree results",
+  "result_marker": "*result_dependency_tree_hr",
+  "status": "COMPLETED",
+  "logic_applied": "*logic_dependency_tree_hr",
+  "data_consumed": ["*aiurm_governance_rh_analysis_example", "*result_performance_analysis", "*result_retention_analysis", "*result_department_summary", "*result_hr_action_plan", "*result_executive_dashboard", "*result_conservative_promotions", "*result_aggressive_promotions", "*result_scenario_comparison", "*result_ready_for_promotion_filter_hr", "*result_hr_filters_hr", "*result_explainability_hr", "*result_transformation_trace_hr", "*result_json_performance_hr"],
+  "output_artifact": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_dependency_tree_hr",
+  "records_produced": 1
+}

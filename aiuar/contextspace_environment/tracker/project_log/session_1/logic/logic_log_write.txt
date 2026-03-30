@@ -1,0 +1,17 @@
+L1. Log write policy
+- Receive *data_log_event from the calling business project.
+- *data_log_event must contain:
+    origin_contextspace : contextspace of the calling project
+    origin_entity       : entity of the calling project
+    origin_project      : project name of the calling project
+    origin_session      : session of the calling project
+    execution_id        : execution_id from governance of the calling project
+    timestamp           : YYYYMMDD_HHMMSS
+    step_marker         : result marker of the executed step (primary identifier)
+    step_title          : full step title including label (e.g. "R1. Performance analysis")
+    status              : completed | exception | pending | skipped
+    exception_ref       : result_exception marker if status = exception (or null)
+    ai_observation      : optional AI insight about the step execution
+- Append-only — never overwrite or delete an existing log record.
+- Emit the result artifact with full event content.
+[*logic_log_write] #0

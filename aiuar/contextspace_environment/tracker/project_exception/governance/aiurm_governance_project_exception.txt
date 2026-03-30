@@ -1,0 +1,50 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Environment — Exception Project (v0.1)
+
+# Purpose
+Receives failed step records from business projects.
+Quarantines unresolvable markers and execution failures for inspection and resume.
+Each exception record identifies the failed step, root cause, and available recovery actions.
+
+---
+
+# Governance
+as_of                = "2026-03-25"
+execution_mode       = ONE_STEP
+output_result_format        = JSON
+audit_level          = MINIMAL
+language_policy_default = EN
+
+substrate_type           = FILESYSTEM
+aiuar_root           = ...\aiuar\
+aiuar                = *****contextspace_environment****tracker***project_exception**session_1
+
+[*aiurm_governance_project_exception] #0
+
+---
+
+# Data
+
+*data_exception_event
+
+---
+
+# Logic
+
+*logic_exception_write
+
+---
+
+# Result
+
+R1. Write exception record
+apply *logic_exception_write to *data_exception_event
+[*result_exception__{origin_contextspace}__{origin_project}__{origin_session}__{timestamp}] #0
+
+---
+
+# End of pipeline definition

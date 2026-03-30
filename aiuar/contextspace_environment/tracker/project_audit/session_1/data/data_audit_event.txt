@@ -1,0 +1,14 @@
+D1. Audit event schema
+origin_contextspace : contextspace of the calling project
+origin_entity       : entity of the calling project
+origin_project      : project name of the calling project
+origin_session      : session of the calling project
+timestamp           : YYYYMMDD_HHMMSS
+step_marker         : result marker of the executed step (primary identifier)
+step_title          : full step title including label (e.g. "R1. Performance analysis")
+logic_applied       : list of logic markers used in the apply block
+data_consumed       : list of data markers used in the apply block
+result_produced     : result marker assigned by the apply block
+key_fields          : principal fields of the logic applied (summary, at AI discretion)
+ai_observation      : optional AI insight about what was produced or why
+[*data_audit_event] #0

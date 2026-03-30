@@ -16,30 +16,32 @@ as_of                    = "2026-03-25"
 policy_version           = "HRPOL_ONBOARDING_V1"
 seed                     = 42
 
-execution_mode           = "ONE_STEP"
-response_contract        = "STRUCTURED_OUTPUT_REQUIRED"
-output_format            = "JSON"
-runtime                  = "python"
-execution_trigger        = "python_runtime"
-
-audit_level              = "FULL"
-audit_policy             = "LOG_EACH_RESULT_STEP"
-
-language_policy_default  = "EN"
-schema_mode              = "restrict"
-
-aiurm_markers_location   = "IN_JSON_BODY"
-
+substrate_type           = FILESYSTEM
 aiuar_root               = ...\aiuar\
 aiuar                    = *****contextspace_example****adaoaper***project_rh_analysis_example**session_1
 aiuar_data_source        = aiuar
 aiuar_logic_source       = aiuar
 aiuar_result_output      = aiuar
 
-project_audit     = *****contextspace_environment****general***project_audit**session_1
-project_code      = *****contextspace_environment****general***project_code**session_1
-project_log       = *****contextspace_environment****general***project_log**session_1
-project_exception = *****contextspace_environment****general***project_exception**session_1
+execution_mode           = ONE_STEP
+execution_id             = {YYYYMMDD}_{random_6}
+response_contract        = STRUCTURED_OUTPUT_REQUIRED
+output_result_format     = JSON
+runtime                  = python
+execution_trigger        = python_runtime
+
+audit_level              = FULL
+audit_policy             = LOG_EACH_RESULT_STEP
+
+language_policy_default  = EN
+schema_mode              = restrict
+
+aiurm_markers_location   = IN_JSON_BODY
+
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
 
 [*aiurm_governance_rh_analysis_example] #0
 
@@ -134,4 +136,4 @@ apply *logic_dependency_tree_hr to *aiurm_governance_rh_analysis_example and *re
 
 ---
 
-# End of AIURM/AIUAR DLR Workflow
+# End of pipeline definition

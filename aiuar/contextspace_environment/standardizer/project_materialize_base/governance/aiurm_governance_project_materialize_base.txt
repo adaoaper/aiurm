@@ -1,0 +1,47 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Project Materialization Base (v0.1)
+
+# Purpose
+Provide reusable logic for materializing any ***project AIUAR address
+into a portable self-contained JSON file.
+
+---
+
+# Governance
+as_of                  = 2026-03-28
+substrate_type           = FILESYSTEM
+aiuar_root             = ...\aiuar\
+aiuar                  = *****contextspace_environment****standardizer***project_materialize_base**session_1
+aiuar_data_source      = aiuar
+aiuar_logic_source     = aiuar
+aiuar_result_output    = aiuar
+
+[*aiurm_governance_project_materialize_base] #0
+
+---
+
+# Data
+
+*data_source
+
+---
+
+# Logic
+
+*logic_project_materialization
+
+---
+
+# Result
+
+R1. Materialize project
+apply *logic_project_materialization to *data_source
+[*result_materialized] #3
+
+---
+
+# End of pipeline definition

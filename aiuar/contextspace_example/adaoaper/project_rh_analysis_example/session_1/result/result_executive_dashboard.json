@@ -1,0 +1,107 @@
+{
+  "aiurm_marker": "[*result_executive_dashboard]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_executive_dashboard",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R5. Executive dashboard",
+  "logic_applied": "*logic_executive_dashboard_hr",
+  "data_sources": ["*result_performance_analysis", "*result_retention_analysis", "*result_department_summary", "*data_output_configuration"],
+  "executive_dashboard": {
+    "key_performance_indicators": {
+      "total_headcount": 5,
+      "excellent_performers": {
+        "count": 2,
+        "percentage": 40.0,
+        "employees": ["E002 Carlos Santos", "E005 Paula Johnson"]
+      },
+      "very_good_performers": {
+        "count": 2,
+        "percentage": 40.0,
+        "employees": ["E001 Ana Silva", "E004 John Smith"]
+      },
+      "needs_improvement": {
+        "count": 1,
+        "percentage": 20.0,
+        "employees": ["E003 Maria Costa"]
+      },
+      "ready_for_promotion": {
+        "count": 2,
+        "percentage": 40.0,
+        "employees": ["E001 Ana Silva", "E004 John Smith"]
+      },
+      "high_engagement": {
+        "count": 1,
+        "percentage": 20.0,
+        "employees": ["E002 Carlos Santos"]
+      },
+      "average_salary_overall": 8340.0,
+      "retention_at_risk": {
+        "count": 2,
+        "percentage": 40.0,
+        "breakdown": {"Medium Risk": 1, "Burnout Risk": 1}
+      }
+    },
+    "critical_alerts": [
+      {
+        "severity": "HIGH",
+        "employee": "E004 John Smith",
+        "department": "IT",
+        "alert": "Burnout Risk — overtime=80h, absences=3. Immediate workload intervention required.",
+        "recommended_immediate_action": "Redistribute tasks within IT team within 30 days"
+      },
+      {
+        "severity": "MEDIUM",
+        "employee": "E005 Paula Johnson",
+        "department": "Marketing",
+        "alert": "Medium Retention Risk — tenure=60 months as Coordinator with no career progression path. Risk of voluntary departure.",
+        "recommended_immediate_action": "Initiate career development conversation within 30 days"
+      },
+      {
+        "severity": "MEDIUM",
+        "employee": "E003 Maria Costa",
+        "department": "HR",
+        "alert": "Performance gap — Needs Improvement classification, Low Engagement. HR department has single headcount.",
+        "recommended_immediate_action": "Launch structured PIP within 30 days"
+      }
+    ],
+    "top_5_priorities": [
+      {
+        "rank": 1,
+        "priority": "Eliminate Burnout Risk in IT",
+        "action": "Workload redistribution for John Smith",
+        "rationale": "Prevents loss of a Ready-for-Promotion, high-performing IT asset"
+      },
+      {
+        "rank": 2,
+        "priority": "Retain Paula Johnson",
+        "action": "Career development plan for Marketing",
+        "rationale": "60-month tenure employee at Medium Risk — high replacement cost if lost"
+      },
+      {
+        "rank": 3,
+        "priority": "Address HR performance gap",
+        "action": "PIP + coaching for Maria Costa",
+        "rationale": "Single-person HR team at Needs Improvement level creates operational risk"
+      },
+      {
+        "rank": 4,
+        "priority": "Execute promotion pipeline for IT",
+        "action": "Formal promotion review for Ana Silva (immediate) and John Smith (after burnout resolution)",
+        "rationale": "Both are Ready for Promotion — failing to act increases turnover risk"
+      },
+      {
+        "rank": 5,
+        "priority": "Unlock Carlos Santos to promotion readiness",
+        "action": "Sponsor 1 additional certification for Carlos Santos",
+        "rationale": "Excellent performer (9.27) with High Engagement blocked only by certifications=2 vs min=3"
+      }
+    ],
+    "required_budget": {
+      "30_day_horizon": 1500,
+      "90_day_horizon": 5000,
+      "12_month_horizon": 23840,
+      "total_estimated": 30340,
+      "currency": "local currency units",
+      "note": "Promotion salary increases are the primary long-term cost driver"
+    }
+  }
+}

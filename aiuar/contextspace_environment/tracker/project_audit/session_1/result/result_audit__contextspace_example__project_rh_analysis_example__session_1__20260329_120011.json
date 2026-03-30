@@ -1,0 +1,15 @@
+{
+  "origin_contextspace": "contextspace_example",
+  "origin_entity": "adaoaper",
+  "origin_project": "project_rh_analysis_example",
+  "origin_session": "session_1",
+  "execution_id": "20260329_f3a9b1",
+  "timestamp": "20260329_120011",
+  "step": "R11. Explainability results",
+  "result_marker": "*result_explainability_hr",
+  "status": "COMPLETED",
+  "logic_applied": "*logic_explainability_hr",
+  "data_consumed": ["*result_performance_analysis", "*result_retention_analysis", "*result_aggressive_promotions", "*result_scenario_comparison"],
+  "output_artifact": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_explainability_hr",
+  "records_produced": 1
+}

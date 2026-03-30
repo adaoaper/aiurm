@@ -1,0 +1,50 @@
+{
+  "aiurm_marker": "[*result_ready_for_promotion_filter_hr]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_ready_for_promotion_filter_hr",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R9. Ready-for-promotion filtered view",
+  "logic_applied": "*logic_ready_for_promotion_filter_hr",
+  "data_sources": ["*data_employees", "*result_performance_analysis"],
+  "filter_criteria": "growth_potential = 'Ready for Promotion'",
+  "filtered_employees": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Ana Silva",
+      "department": "IT",
+      "position": "Senior Analyst",
+      "average_rating": 8.77,
+      "performance_classification": "Very Good",
+      "tenure_months": 36,
+      "certifications": 3,
+      "salary": 8500.0,
+      "justification": {
+        "growth_potential_source": "*result_performance_analysis",
+        "certifications_check": "3 >= ready_for_promotion.min_certifications(3) ✓",
+        "tenure_check": "36 >= ready_for_promotion.min_tenure_months(24) ✓",
+        "pointer": "Both conditions met → growth_potential = 'Ready for Promotion'"
+      }
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "John Smith",
+      "department": "IT",
+      "position": "Developer",
+      "average_rating": 8.77,
+      "performance_classification": "Very Good",
+      "tenure_months": 24,
+      "certifications": 4,
+      "salary": 7200.0,
+      "justification": {
+        "growth_potential_source": "*result_performance_analysis",
+        "certifications_check": "4 >= ready_for_promotion.min_certifications(3) ✓",
+        "tenure_check": "24 >= ready_for_promotion.min_tenure_months(24) ✓",
+        "pointer": "Both conditions met → growth_potential = 'Ready for Promotion'"
+      }
+    }
+  ],
+  "summary": {
+    "total_filtered": 2,
+    "departments_represented": ["IT"],
+    "note": "Both Ready-for-Promotion employees are in IT. Ana Silva has higher tenure; John Smith has more certifications. Both share identical average_rating (8.77) and performance classification (Very Good)."
+  }
+}

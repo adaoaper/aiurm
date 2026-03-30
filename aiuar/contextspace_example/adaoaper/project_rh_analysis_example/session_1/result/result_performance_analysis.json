@@ -1,0 +1,85 @@
+{
+  "aiurm_marker": "[*result_performance_analysis]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_performance_analysis",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R1. Performance analysis",
+  "logic_applied": "*logic_performance_analysis_hr",
+  "data_sources": ["*data_employees", "*data_performance_rules"],
+  "employees": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Ana Silva",
+      "department": "IT",
+      "average_rating": 8.77,
+      "performance_classification": "Very Good",
+      "engagement_classification": "Normal Engagement",
+      "growth_potential": "Ready for Promotion",
+      "reasoning_pointers": {
+        "average_rating": "(8.5 + 9.0 + 8.8) / 3 = 8.77",
+        "performance": "8.77 >= very_good_min(8.5) and < excellent_min(9.0) → Very Good",
+        "engagement": "absences=2 > high_engagement.max_absences(1); absences=2 <= normal_engagement.max_absences(3) and overtime=45 >= normal_engagement.min_overtime_hours(20) → Normal Engagement",
+        "growth_potential": "certifications=3 >= ready_for_promotion.min_certifications(3) and tenure=36 >= ready_for_promotion.min_tenure_months(24) → Ready for Promotion"
+      }
+    },
+    {
+      "employee_id": "E002",
+      "employee_name": "Carlos Santos",
+      "department": "Sales",
+      "average_rating": 9.27,
+      "performance_classification": "Excellent",
+      "engagement_classification": "High Engagement",
+      "growth_potential": "Development Track",
+      "reasoning_pointers": {
+        "average_rating": "(9.2 + 9.1 + 9.5) / 3 = 9.27",
+        "performance": "9.27 >= excellent_min(9.0) → Excellent",
+        "engagement": "absences=1 <= high_engagement.max_absences(1) and overtime=60 >= high_engagement.min_overtime_hours(40) → High Engagement",
+        "growth_potential": "certifications=2 < ready_for_promotion.min_certifications(3); certifications=2 >= development_track.min_certifications(2) and tenure=48 >= development_track.min_tenure_months(12) → Development Track"
+      }
+    },
+    {
+      "employee_id": "E003",
+      "employee_name": "Maria Costa",
+      "department": "HR",
+      "average_rating": 7.77,
+      "performance_classification": "Needs Improvement",
+      "engagement_classification": "Low Engagement",
+      "growth_potential": "Entry Level",
+      "reasoning_pointers": {
+        "average_rating": "(7.5 + 8.0 + 7.8) / 3 = 7.77",
+        "performance": "7.77 < good_min(8.0) → Needs Improvement",
+        "engagement": "absences=5 > normal_engagement.max_absences(3) → Low Engagement",
+        "growth_potential": "certifications=1 < development_track.min_certifications(2) → Entry Level"
+      }
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "John Smith",
+      "department": "IT",
+      "average_rating": 8.77,
+      "performance_classification": "Very Good",
+      "engagement_classification": "Normal Engagement",
+      "growth_potential": "Ready for Promotion",
+      "reasoning_pointers": {
+        "average_rating": "(8.8 + 8.5 + 9.0) / 3 = 8.77",
+        "performance": "8.77 >= very_good_min(8.5) and < excellent_min(9.0) → Very Good",
+        "engagement": "absences=3 > high_engagement.max_absences(1); absences=3 <= normal_engagement.max_absences(3) and overtime=80 >= normal_engagement.min_overtime_hours(20) → Normal Engagement",
+        "growth_potential": "certifications=4 >= ready_for_promotion.min_certifications(3) and tenure=24 >= ready_for_promotion.min_tenure_months(24) → Ready for Promotion"
+      }
+    },
+    {
+      "employee_id": "E005",
+      "employee_name": "Paula Johnson",
+      "department": "Marketing",
+      "average_rating": 9.03,
+      "performance_classification": "Excellent",
+      "engagement_classification": "Normal Engagement",
+      "growth_potential": "Development Track",
+      "reasoning_pointers": {
+        "average_rating": "(9.0 + 8.9 + 9.2) / 3 = 9.03",
+        "performance": "9.03 >= excellent_min(9.0) → Excellent",
+        "engagement": "absences=0 <= high_engagement.max_absences(1) but overtime=35 < high_engagement.min_overtime_hours(40); absences=0 <= normal_engagement.max_absences(3) and overtime=35 >= normal_engagement.min_overtime_hours(20) → Normal Engagement",
+        "growth_potential": "certifications=2 < ready_for_promotion.min_certifications(3); certifications=2 >= development_track.min_certifications(2) and tenure=60 >= development_track.min_tenure_months(12) → Development Track"
+      }
+    }
+  ]
+}

@@ -45,6 +45,10 @@ The changelog is NOT an execution log. Session execution events are tracked by `
 The changelog tracks evolution of the project's definitional layer across sessions,
 written to `project_changelog` resolved by convention from the active contextspace environment.
 
+**Critical rule**: The changelog must NEVER be used to infer the current state of artifacts during pipeline execution.
+The executor must always read the actual artifact files to determine current state.
+Changelog records reflect past mutations — not the authoritative current version.
+
 ---
 
 ## STORAGE

@@ -1,0 +1,15 @@
+{
+  "origin_contextspace": "contextspace_example",
+  "origin_entity": "adaoaper",
+  "origin_project": "project_rh_analysis_example",
+  "origin_session": "session_1",
+  "execution_id": "20260329_f3a9b1",
+  "timestamp": "20260329_120001",
+  "step": "R1. Performance analysis",
+  "result_marker": "*result_performance_analysis",
+  "status": "COMPLETED",
+  "logic_applied": "*logic_performance_analysis_hr",
+  "data_consumed": ["*data_employees", "*data_performance_rules"],
+  "output_artifact": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_performance_analysis",
+  "records_produced": 5
+}

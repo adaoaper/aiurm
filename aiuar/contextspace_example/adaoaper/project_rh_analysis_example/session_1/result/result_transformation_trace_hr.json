@@ -1,0 +1,130 @@
+{
+  "aiurm_marker": "[*result_transformation_trace_hr]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_transformation_trace_hr",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R12. Transformation trace results",
+  "logic_applied": "*logic_transformation_trace_hr",
+  "data_sources": ["*data_employees", "*result_performance_analysis", "*result_conservative_promotions", "*result_aggressive_promotions"],
+  "transformation_traces": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Ana Silva",
+      "trace": {
+        "source": "*data_employees.E001",
+        "step_1_derived_fields": {
+          "average_rating": "(8.5 + 9.0 + 8.8) / 3 = 8.77",
+          "transformation": "Raw performance_ratings[] → computed average_rating"
+        },
+        "step_2_classification_path": {
+          "performance_classification": "8.77 in [8.5, 9.0) → Very Good",
+          "engagement_classification": "absences=2 > 1, absences=2 <= 3, overtime=45 >= 20 → Normal Engagement",
+          "growth_potential": "certs=3 >= 3, tenure=36 >= 24 → Ready for Promotion",
+          "result_artifact": "*result_performance_analysis"
+        },
+        "step_3_promotion_inclusion_logic": {
+          "conservative": "EXCLUDED — average_rating=8.77 < 9.0",
+          "aggressive": "INCLUDED — 8.77>=8.5, tenure 36>=18, certs 3>=2",
+          "result_artifacts": ["*result_conservative_promotions", "*result_aggressive_promotions"]
+        }
+      }
+    },
+    {
+      "employee_id": "E002",
+      "employee_name": "Carlos Santos",
+      "trace": {
+        "source": "*data_employees.E002",
+        "step_1_derived_fields": {
+          "average_rating": "(9.2 + 9.1 + 9.5) / 3 = 9.27",
+          "transformation": "Raw performance_ratings[] → computed average_rating"
+        },
+        "step_2_classification_path": {
+          "performance_classification": "9.27 >= 9.0 → Excellent",
+          "engagement_classification": "absences=1 <= 1, overtime=60 >= 40 → High Engagement",
+          "growth_potential": "certs=2 < 3 (fails Ready for Promotion); certs=2 >= 2, tenure=48 >= 12 → Development Track",
+          "result_artifact": "*result_performance_analysis"
+        },
+        "step_3_promotion_inclusion_logic": {
+          "conservative": "EXCLUDED — certifications=2 < 3",
+          "aggressive": "INCLUDED — rating 9.27>=8.5, tenure 48>=18, certs 2>=2 (exact minimum)",
+          "result_artifacts": ["*result_conservative_promotions", "*result_aggressive_promotions"]
+        }
+      }
+    },
+    {
+      "employee_id": "E003",
+      "employee_name": "Maria Costa",
+      "trace": {
+        "source": "*data_employees.E003",
+        "step_1_derived_fields": {
+          "average_rating": "(7.5 + 8.0 + 7.8) / 3 = 7.77",
+          "transformation": "Raw performance_ratings[] → computed average_rating"
+        },
+        "step_2_classification_path": {
+          "performance_classification": "7.77 < 8.0 → Needs Improvement",
+          "engagement_classification": "absences=5 > 3 → Low Engagement",
+          "growth_potential": "certs=1 < 2 → Entry Level",
+          "result_artifact": "*result_performance_analysis"
+        },
+        "step_3_promotion_inclusion_logic": {
+          "conservative": "EXCLUDED — fails all 3 criteria",
+          "aggressive": "EXCLUDED — average_rating=7.77 < 8.5 (first condition fails)",
+          "result_artifacts": ["*result_conservative_promotions", "*result_aggressive_promotions"]
+        }
+      }
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "John Smith",
+      "trace": {
+        "source": "*data_employees.E004",
+        "step_1_derived_fields": {
+          "average_rating": "(8.8 + 8.5 + 9.0) / 3 = 8.77",
+          "transformation": "Raw performance_ratings[] → computed average_rating"
+        },
+        "step_2_classification_path": {
+          "performance_classification": "8.77 in [8.5, 9.0) → Very Good",
+          "engagement_classification": "absences=3 > 1; absences=3 <= 3, overtime=80 >= 20 → Normal Engagement",
+          "growth_potential": "certs=4 >= 3, tenure=24 >= 24 → Ready for Promotion",
+          "result_artifact": "*result_performance_analysis"
+        },
+        "step_3_promotion_inclusion_logic": {
+          "conservative": "EXCLUDED — average_rating=8.77 < 9.0 and tenure=24 < 36",
+          "aggressive": "INCLUDED — rating 8.77>=8.5, tenure 24>=18, certs 4>=2",
+          "result_artifacts": ["*result_conservative_promotions", "*result_aggressive_promotions"]
+        }
+      }
+    },
+    {
+      "employee_id": "E005",
+      "employee_name": "Paula Johnson",
+      "trace": {
+        "source": "*data_employees.E005",
+        "step_1_derived_fields": {
+          "average_rating": "(9.0 + 8.9 + 9.2) / 3 = 9.03",
+          "transformation": "Raw performance_ratings[] → computed average_rating"
+        },
+        "step_2_classification_path": {
+          "performance_classification": "9.03 >= 9.0 → Excellent",
+          "engagement_classification": "absences=0 <= 1 but overtime=35 < 40; absences=0 <= 3, overtime=35 >= 20 → Normal Engagement",
+          "growth_potential": "certs=2 < 3; certs=2 >= 2, tenure=60 >= 12 → Development Track",
+          "result_artifact": "*result_performance_analysis"
+        },
+        "step_3_promotion_inclusion_logic": {
+          "conservative": "EXCLUDED — certifications=2 < 3",
+          "aggressive": "INCLUDED — rating 9.03>=8.5, tenure 60>=18, certs 2>=2",
+          "result_artifacts": ["*result_conservative_promotions", "*result_aggressive_promotions"]
+        }
+      }
+    }
+  ],
+  "tree_style_trace_summary": {
+    "description": "End-to-end transformation path from *data_employees to *result_aggressive_promotions",
+    "tree": [
+      "*data_employees (5 raw records)",
+      "  ↓ apply *logic_performance_analysis_hr + *data_performance_rules",
+      "*result_performance_analysis (5 classified records: 2 Excellent, 2 Very Good, 1 Needs Improvement)",
+      "  ↓ apply *logic_aggressive_promotions_hr + *data_promotion_scenarios.aggressive_criteria",
+      "*result_aggressive_promotions (4 promoted: E001, E002, E004, E005 | 1 excluded: E003)"
+    ]
+  }
+}

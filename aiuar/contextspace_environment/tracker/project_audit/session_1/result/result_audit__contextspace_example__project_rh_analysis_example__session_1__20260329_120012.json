@@ -1,0 +1,15 @@
+{
+  "origin_contextspace": "contextspace_example",
+  "origin_entity": "adaoaper",
+  "origin_project": "project_rh_analysis_example",
+  "origin_session": "session_1",
+  "execution_id": "20260329_f3a9b1",
+  "timestamp": "20260329_120012",
+  "step": "R12. Transformation trace results",
+  "result_marker": "*result_transformation_trace_hr",
+  "status": "COMPLETED",
+  "logic_applied": "*logic_transformation_trace_hr",
+  "data_consumed": ["*data_employees", "*result_performance_analysis", "*result_conservative_promotions", "*result_aggressive_promotions"],
+  "output_artifact": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_transformation_trace_hr",
+  "records_produced": 5
+}

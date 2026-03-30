@@ -1,0 +1,2 @@
+- output file name = {node_contextspace}.md — appended to aiuar_result_output address
+- output file extension must be .md

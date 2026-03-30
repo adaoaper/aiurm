@@ -92,11 +92,12 @@ The AI only needs to know the address. How the structure is stored is irrelevant
 
 AIUAR resolves across:
 
-| Substrate       | Representation                              |
-|-----------------|---------------------------------------------|
-| Filesystem      | folders and files on disk                   |
-| JSON file       | nested keys in a single document            |
-| Key-value store | hierarchical keys (NoSQL, Redis)            |
+| Substrate             | `substrate_type`    | Representation                              |
+|-----------------------|---------------------|---------------------------------------------|
+| Filesystem            | `FILESYSTEM`        | folders and files on disk                   |
+| JSON file             | `JSON_FILE`         | nested keys in a single `.json` document    |
+| Markdown file         | `MARKDOWN_FILE`     | headings and content blocks in a `.md` file |
+| Any structured format | `{FORMAT}_FILE`     | any single-file format following this pattern |
 
 The address notation is the same across all substrates.
 Resolution depends on the executor's capability to navigate the declared substrate.
@@ -104,8 +105,29 @@ If the executor cannot resolve the substrate, execution must abort with an excep
 
 ### Substrate inference
 
-The executor infers the substrate type from the physical form of the node where
-`aiurm_governance_{project}` is located. No declaration is required.
+The executor resolves the substrate type from the `substrate_type` field declared in governance.
+This field is mandatory — execution without `substrate_type` is a protocol violation.
+
+### File-based substrate resolution (JSON_FILE, MARKDOWN_FILE)
+
+When `substrate_type` is `JSON_FILE` or `MARKDOWN_FILE`, all artifacts — governance, data, logic,
+and result — are resolved from a single file. The executor must NOT access the filesystem for
+individual artifact files.
+
+Resolution rules:
+- The substrate file is declared explicitly in the execute command using `in {filename}`
+- All artifact content is read from within that single file
+- The AIUAR hierarchy is represented as nested keys (JSON) or heading levels (Markdown)
+- Writing results back to the substrate file follows the same single-file discipline
+
+### Cross-substrate resolution
+
+The active contextspace substrate is immutable. References to other contextspaces resolve using the substrate declared in the target governance — this is cross-substrate resolution.
+
+To resolve a cross-contextspace reference:
+1. Locate the target governance via the AIUAR address
+2. Read its `substrate_type`
+3. Resolve the target artifacts using that substrate
 
 ### Substrate discipline
 
@@ -221,11 +243,25 @@ Cross-contextspace reference — full address, all levels explicit:
 
 `execute` targets the governance file `aiurm_governance_{project}` of a project and runs its pipeline linearly — loading governance fields, resolving Data and Logic markers, and executing Result steps in order.
 
-Three valid forms:
+Valid forms:
 
 - Filesystem path: `execute path/to/governance/aiurm_governance_{project}`
 - AIUAR short (development): `execute ***{project}*governance`
 - AIUAR full (production): `execute *****{contextspace}****{entity}***{project}*governance`
+- File substrate: `execute in {filename} ***{project}*aiurm_governance_{project}`
+
+### File substrate execute
+
+Used when the project lives in a `JSON_FILE` or `MARKDOWN_FILE` substrate.
+
+```
+execute in contextspace_example.md ***project_rh_analysis_example*aiurm_governance_rh_analysis_example
+```
+
+- `in {filename}` — declares the substrate file (relative to `aiuar_root` or working directory)
+- `***{project}*{governance_marker}` — locates the project within the file
+- The governance marker is mandatory — a single file may contain multiple projects
+- Once the executor enters the file, ALL artifact resolution happens within that file only
 
 ---
 

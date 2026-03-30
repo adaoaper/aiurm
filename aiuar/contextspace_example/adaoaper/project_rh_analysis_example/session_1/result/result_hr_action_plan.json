@@ -1,0 +1,96 @@
+{
+  "aiurm_marker": "[*result_hr_action_plan]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_hr_action_plan",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R4. HR action plan",
+  "logic_applied": "*logic_hr_action_plan",
+  "data_sources": ["*result_performance_analysis", "*result_retention_analysis", "*data_output_configuration"],
+  "action_plan": {
+    "immediate_actions": {
+      "horizon_days": 30,
+      "actions": [
+        {
+          "priority": 1,
+          "action": "Workload redistribution for John Smith",
+          "target_employee": "E004",
+          "rationale": "Burnout Risk detected: overtime=80h (threshold >60h) and absences=3 (threshold >2). Immediate workload rebalancing required to prevent talent loss.",
+          "action_owner": "IT Department Head + HR Manager",
+          "estimated_budget": 0
+        },
+        {
+          "priority": 2,
+          "action": "Launch performance improvement plan for Maria Costa",
+          "target_employee": "E003",
+          "rationale": "Needs Improvement classification (avg_rating=7.77), Low Engagement, and Entry Level growth potential. Structured PIP with coaching recommended.",
+          "action_owner": "HR Department Head + HR Manager",
+          "estimated_budget": 1500
+        }
+      ]
+    },
+    "medium_term_actions": {
+      "horizon_days": 90,
+      "actions": [
+        {
+          "priority": 1,
+          "action": "Career development plan for Paula Johnson",
+          "target_employee": "E005",
+          "rationale": "Medium Risk retention: tenure=60 months as Coordinator with no promotion path. Career stagnation risk. Development plan to address career progression.",
+          "action_owner": "Marketing Department Head + HR Manager",
+          "estimated_budget": 3000
+        },
+        {
+          "priority": 2,
+          "action": "Accelerate development track for Carlos Santos",
+          "target_employee": "E002",
+          "rationale": "Excellent performance (avg=9.27), High Engagement, but only Development Track (certifications=2, needs 3 for Ready for Promotion). Support certification acquisition.",
+          "action_owner": "Sales Department Head + Learning & Development",
+          "estimated_budget": 2000
+        },
+        {
+          "priority": 3,
+          "action": "Review John Smith's workload balance progress",
+          "target_employee": "E004",
+          "rationale": "Follow-up on immediate workload redistribution. Monitor overtime and absence trends to confirm burnout risk reduction.",
+          "action_owner": "IT Department Head",
+          "estimated_budget": 0
+        }
+      ]
+    },
+    "long_term_strategies": {
+      "horizon_months": 12,
+      "actions": [
+        {
+          "priority": 1,
+          "action": "Promotion review for Ana Silva",
+          "target_employee": "E001",
+          "rationale": "Ready for Promotion: certifications=3, tenure=36 months, avg_rating=8.77 (Very Good). Strong candidate for promotion to Senior or Lead role.",
+          "action_owner": "IT Department Head + HR Manager",
+          "estimated_budget": 10200
+        },
+        {
+          "priority": 2,
+          "action": "Promotion review for John Smith (post-workload stabilization)",
+          "target_employee": "E004",
+          "rationale": "Ready for Promotion: certifications=4 (highest), tenure=24 months, avg_rating=8.77. Promotion contingent on burnout risk resolution.",
+          "action_owner": "IT Department Head + HR Manager",
+          "estimated_budget": 8640
+        },
+        {
+          "priority": 3,
+          "action": "Department-wide HR team capability review",
+          "target_employee": null,
+          "rationale": "HR department (1 employee, Needs Improvement) shows potential structural risk. Review team sizing and role definitions.",
+          "action_owner": "CHRO + HR Manager",
+          "estimated_budget": 5000
+        }
+      ]
+    },
+    "estimated_total_budget": {
+      "immediate": 1500,
+      "medium_term": 5000,
+      "long_term": 23840,
+      "total": 30340,
+      "currency": "local currency units"
+    }
+  }
+}

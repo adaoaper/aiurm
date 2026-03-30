@@ -1,0 +1,68 @@
+{
+  "aiurm_marker": "[*result_aggressive_promotions]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_aggressive_promotions",
+  "execution_id": "20260329_f3a9b1",
+  "step": "R7. Aggressive promotion scenario",
+  "logic_applied": "*logic_aggressive_promotions_hr",
+  "data_sources": ["*data_employees", "*data_promotion_scenarios"],
+  "criteria_applied": {
+    "scenario": "Aggressive",
+    "rating_min": 8.5,
+    "tenure_months_min": 18,
+    "certifications_min": 2
+  },
+  "promoted_employees": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Ana Silva",
+      "department": "IT",
+      "average_rating": 8.77,
+      "tenure_months": 36,
+      "certifications": 3,
+      "inclusion_reasoning": "average_rating=8.77 >= rating_min(8.5); tenure=36 >= tenure_months_min(18); certifications=3 >= certifications_min(2) — all conditions satisfied"
+    },
+    {
+      "employee_id": "E002",
+      "employee_name": "Carlos Santos",
+      "department": "Sales",
+      "average_rating": 9.27,
+      "tenure_months": 48,
+      "certifications": 2,
+      "inclusion_reasoning": "average_rating=9.27 >= rating_min(8.5); tenure=48 >= tenure_months_min(18); certifications=2 >= certifications_min(2) — all conditions satisfied"
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "John Smith",
+      "department": "IT",
+      "average_rating": 8.77,
+      "tenure_months": 24,
+      "certifications": 4,
+      "inclusion_reasoning": "average_rating=8.77 >= rating_min(8.5); tenure=24 >= tenure_months_min(18); certifications=4 >= certifications_min(2) — all conditions satisfied"
+    },
+    {
+      "employee_id": "E005",
+      "employee_name": "Paula Johnson",
+      "department": "Marketing",
+      "average_rating": 9.03,
+      "tenure_months": 60,
+      "certifications": 2,
+      "inclusion_reasoning": "average_rating=9.03 >= rating_min(8.5); tenure=60 >= tenure_months_min(18); certifications=2 >= certifications_min(2) — all conditions satisfied"
+    }
+  ],
+  "excluded_employees": [
+    {
+      "employee_id": "E003",
+      "employee_name": "Maria Costa",
+      "average_rating": 7.77,
+      "tenure_months": 12,
+      "certifications": 1,
+      "exclusion_reason": "average_rating=7.77 < rating_min(8.5); tenure=12 < tenure_months_min(18); certifications=1 < certifications_min(2) — all conditions fail"
+    }
+  ],
+  "summary": {
+    "total_evaluated": 5,
+    "total_promoted": 4,
+    "promotion_rate_percentage": 80.0,
+    "insight": "4 of 5 employees qualify. Only E003 Maria Costa is excluded, failing all three criteria. The aggressive scenario significantly broadens the promotion pool compared to conservative (0 vs 4), primarily by lowering rating_min from 9.0 to 8.5 and tenure_months_min from 36 to 18."
+  }
+}

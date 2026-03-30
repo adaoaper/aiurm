@@ -100,16 +100,29 @@ Rules:
 ---
 ```
 
+### Field value conventions
+
+| Value type | Format | Examples |
+|---|---|---|
+| Numeric | no quotes | `seed = 42` |
+| Path | no quotes | `aiuar_root = ...\aiuar\` |
+| AIUAR address | no quotes | `aiuar = *****contextspace****entity***project**session` |
+| Keyword / enum | no quotes | `execution_mode = ONE_STEP`, `output_result_format = JSON` |
+| Explicit string | quotes | `as_of = "2026-03-25"`, `policy_version = "HRPOL_V1"` |
+| String with spaces | quotes | `description = "HR analysis pipeline"` |
+
 ### Mandatory AIUAR fields
 
 | Field | Description |
 |---|---|
 | `as_of` | Reference date of the governance definition |
+| `substrate_type` | Physical substrate where this governance lives. e.g. `FILESYSTEM`, `JSON_FILE`, `MARKDOWN_FILE` |
 | `aiuar_root` | Physical anchor — resolved by the executor from the active working directory. Convention: `...\aiuar\` |
 | `aiuar` | Full AIUAR address of the active session in asterisk notation |
 | `aiuar_data_source` | Session address for data resolution. Default: `aiuar` |
 | `aiuar_logic_source` | Session address for logic resolution. Default: `aiuar` |
 | `aiuar_result_output` | Session address for result output. Default: `aiuar`. Can use `**session_{n}+1` to auto-increment session per execution run. |
+| `execution_id` | Random identifier generated per execution (e.g. `20260327_a3f7b2`). Forces fresh execution — an unknown `execution_id` in logs means the executor must run, not skip |
 
 `aiuar` encodes the complete address in a single field using AIUAR notation:
 ```
@@ -118,8 +131,9 @@ aiuar = *****contextspace****entity***project**session
 
 Example:
 ```
-aiuar_root    = ...\aiuar\
-aiuar = *****contextspace_environment****general***project_audit**session_1
+aiuar_root     = ...\aiuar\
+substrate_type = FILESYSTEM
+aiuar          = *****contextspace_environment****tracker***project_audit**session_1
 ```
 
 ### Optional fields (common)
@@ -127,10 +141,10 @@ aiuar = *****contextspace_environment****general***project_audit**session_1
 | Field | Description |
 |---|---|
 | `seed` | Reproducibility seed |
-| `policy_version` | Policy set identifier |
+| `policy_version` | Policy set identifier | e.g. `"HRPOL_V1"` |
 | `execution_mode` | e.g. `ONE_STEP` |
 | `response_contract` | e.g. `STRUCTURED_OUTPUT_REQUIRED` |
-| `output_format` | e.g. `JSON`, `TEXT` |
+| `output_result_format` | e.g. `JSON`, `TEXT` |
 | `runtime` | e.g. `python`, `native` |
 | `execution_trigger` | e.g. `python_runtime`, `manual` |
 | `python_execution_policy` | e.g. `REGENERATE_EXECUTOR_FROM_CURRENT_SESSION` |
@@ -139,6 +153,23 @@ aiuar = *****contextspace_environment****general***project_audit**session_1
 | `language_policy_default` | e.g. `EN`, `PT` |
 | `schema_mode` | e.g. `restrict`, `permissive` |
 | `aiurm_markers_location` | e.g. `IN_JSON_BODY`, `INLINE` |
+
+### Result artifact format rule
+
+`output_result_format = JSON` + `aiurm_markers_location = IN_JSON_BODY` together form a mandatory contract. When both are declared, every result artifact MUST include as its first two fields:
+
+```json
+{
+  "aiurm_marker": "[*result_x]",
+  "aiuar_address": "*****contextspace****entity***project**session*result_x",
+  ...
+}
+```
+
+| Field | Value | Purpose |
+|---|---|---|
+| `aiurm_marker` | `"[*result_x]"` | Artifact identity — marker as defined in AIURM SKILL |
+| `aiuar_address` | full AIUAR address | Artifact location — enables cross-session reference |
 | `aiurm_custom_marker` | Marker format declaration |
 | `aiurm_automatic_marker` | Auto-marker format declaration |
 | `synthetic_data_expansion_policy` | Instructions for data expansion during execution |
@@ -147,7 +178,8 @@ aiuar = *****contextspace_environment****general***project_audit**session_1
 ### Operational concerns
 
 Audit, log, exception, and code artifacts are not stored inside the session.
-They are written to environment projects addressed in governance:
+To register an event, the executor must execute the corresponding environment project.
+The environment projects are addressed in governance:
 
 | Concern   | Governance field    | Handled by        |
 |-----------|---------------------|-------------------|
@@ -167,21 +199,51 @@ operational concerns directly without external delegation.
 
 | Field | Value format | Description |
 |---|---|---|
-| `project_audit` | `*****{contextspace}****{entity}***{project}**{session}` | Session address for execution audit records (apply provenance) |
-| `project_log` | `*****{contextspace}****{entity}***{project}**{session}` | Session address for execution log (step status + ai_observation) |
-| `project_exception` | `*****{contextspace}****{entity}***{project}**{session}` | Session address for exception records |
-| `project_code` | `*****{contextspace}****{entity}***{project}**{session}` | Session address for generated code artifacts |
+| `project_audit` | `*****{contextspace}****{entity}***{project}*aiurm_governance_{project}` | Audit project — resolved via governance indirection |
+| `project_log` | `*****{contextspace}****{entity}***{project}*aiurm_governance_{project}` | Log project — resolved via governance indirection |
+| `project_exception` | `*****{contextspace}****{entity}***{project}*aiurm_governance_{project}` | Exception project — resolved via governance indirection |
+| `project_code` | `*****{contextspace}****{entity}***{project}*aiurm_governance_{project}` | Code project — resolved via governance indirection |
+
+### Governance indirection rule
+
+When an environment field value ends with `*aiurm_governance_{project}`, the executor must:
+
+1. Locate the governance file of the referenced project
+2. Read its `aiuar` field to determine the active session
+3. Use that session as the write target
+
+This is late binding — the active session is resolved at runtime from the target project's governance, not hardcoded in the caller's governance. If the target project migrates to a new session, no caller governance needs to change.
 
 Example:
 ```
-project_audit     = *****contextspace_environment****general***project_audit**session_1
-project_log       = *****contextspace_environment****general***project_log**session_1
-project_exception = *****contextspace_environment****general***project_exception**session_1
-project_code      = *****contextspace_environment****general***project_code**session_1
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
 ```
 
 Note: `project_changelog` is NOT declared in governance — it is resolved automatically
 by the changelog SKILL from the active contextspace environment convention.
+
+---
+
+## EXECUTOR OBLIGATION — ENVIRONMENT WRITES IN AIURM PIPELINE EXECUTIONS
+
+This section defines mandatory executor behavior after all Result steps complete.
+It is not a field description — it is a pipeline obligation.
+
+After all Result steps complete, the executor MUST:
+
+1. `*aiurm_governance_{project}.project_audit` is set → execute it and write one audit record per completed result step
+2. `*aiurm_governance_{project}.project_log` is set → execute it and write one log record per result step (status + observation)
+3. `*aiurm_governance_{project}.project_exception` is set → execute it for any failed or aborted steps
+4. `*aiurm_governance_{project}.project_code` is set → execute it for any code artifacts generated during execution
+
+**This is not optional.** Omitting environment writes when the fields are declared is a protocol violation.
+
+If a field is absent or empty, the executor handles the concern directly without external delegation.
+
+---
 
 ### Governance marker rule
 
@@ -269,7 +331,7 @@ Rules:
 - Every Result step has a title, an Apply block, and a result marker assignment.
 - Result steps are numbered for human reference only.
 - Execution follows the logical order of Result blocks, not necessarily their numeric labels.
-- File ends with `# End of AIURM/AIUAR DLR Workflow`.
+- File ends with `# End of pipeline definition`.
 - Every Logic marker referenced in any Result Apply block is declared in the Logic section.
 - Every Data marker referenced in any Result Apply block is declared in the Data section.
 - Every referenced Data and Logic marker has a corresponding artifact in the contextspace.

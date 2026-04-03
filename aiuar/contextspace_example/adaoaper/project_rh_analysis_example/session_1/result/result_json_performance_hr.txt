@@ -1,0 +1,82 @@
+{
+  "aiurm_marker": "[*result_json_performance_hr]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_json_performance_hr",
+  "execution_id": "20260403_b4e8c2",
+  "timestamp": "20260403_150000",
+  "step": "R13. JSON export results",
+  "logic_applied": "*logic_json_export_performance_hr",
+  "data_sources": ["*result_performance_analysis"],
+  "export_note": "Valid JSON export of *result_performance_analysis. Marker references preserved in 'source_marker' field.",
+  "source_marker": "[*result_performance_analysis]",
+  "source_aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_performance_analysis",
+  "performance_analysis_export": {
+    "execution_id": "20260403_b4e8c2",
+    "timestamp": "20260403_150000",
+    "employees": [
+      {
+        "employee_id": "E001",
+        "employee_name": "Ana Silva",
+        "department": "IT",
+        "average_rating": 8.77,
+        "performance_classification": "Very Good",
+        "engagement_classification": "Normal Engagement",
+        "growth_potential": "Ready for Promotion"
+      },
+      {
+        "employee_id": "E002",
+        "employee_name": "Carlos Santos",
+        "department": "Sales",
+        "average_rating": 9.27,
+        "performance_classification": "Excellent",
+        "engagement_classification": "High Engagement",
+        "growth_potential": "Development Track"
+      },
+      {
+        "employee_id": "E003",
+        "employee_name": "Maria Costa",
+        "department": "HR",
+        "average_rating": 7.77,
+        "performance_classification": "Needs Improvement",
+        "engagement_classification": "Low Engagement",
+        "growth_potential": "Entry Level"
+      },
+      {
+        "employee_id": "E004",
+        "employee_name": "John Smith",
+        "department": "IT",
+        "average_rating": 8.77,
+        "performance_classification": "Very Good",
+        "engagement_classification": "Normal Engagement",
+        "growth_potential": "Ready for Promotion"
+      },
+      {
+        "employee_id": "E005",
+        "employee_name": "Paula Johnson",
+        "department": "Marketing",
+        "average_rating": 9.03,
+        "performance_classification": "Excellent",
+        "engagement_classification": "Normal Engagement",
+        "growth_potential": "Development Track"
+      }
+    ],
+    "summary": {
+      "total_employees": 5,
+      "performance_distribution": {
+        "Excellent": 2,
+        "Very Good": 2,
+        "Good": 0,
+        "Needs Improvement": 1
+      },
+      "engagement_distribution": {
+        "High Engagement": 1,
+        "Normal Engagement": 3,
+        "Low Engagement": 1
+      },
+      "growth_potential_distribution": {
+        "Ready for Promotion": 2,
+        "Development Track": 2,
+        "Entry Level": 1
+      }
+    }
+  }
+}

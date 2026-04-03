@@ -23,7 +23,6 @@ aiuar_data_source        = aiuar
 aiuar_logic_source       = aiuar
 aiuar_result_output      = aiuar
 
-execution_mode           = ONE_STEP
 execution_id             = {YYYYMMDD}_{random_6}
 response_contract        = STRUCTURED_OUTPUT_REQUIRED
 output_result_format     = JSON

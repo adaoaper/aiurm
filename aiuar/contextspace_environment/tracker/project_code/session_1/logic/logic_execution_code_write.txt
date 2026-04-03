@@ -1,0 +1,9 @@
+L1. Execution code node write policy
+- When the AI generates any artifact during governance execution — script, temporary file, test, intermediate output, or any other execution support material — it must place it inside a node named:
+  result_code__{origin_contextspace}__{origin_project}__{execution_id}/
+  inside the active project_code session result path.
+- The node is created only when the AI has artifacts to store. If nothing was generated, no node is created.
+- The internal structure and naming of the node contents are entirely free.
+- The AI MUST NOT create execution artifacts at aiuar_root or outside this node.
+- Code generation is instrumental only. The AI MAY generate code when needed to resolve governance, and SHOULD avoid unnecessary code generation when governance can be resolved without it.
+[*logic_execution_code_write] #0

@@ -1,0 +1,12 @@
+D1. Execution bundle schema
+origin_contextspace : contextspace of the calling project
+origin_entity       : entity of the calling project
+origin_project      : project name of the calling project
+origin_session      : session of the calling project
+execution_id        : execution identifier of the calling project
+timestamp           : YYYYMMDD_HHMMSS
+bundle_name         : descriptive name of the execution bundle
+bundle_root_path    : root folder path of the bundle
+bundle_manifest     : manifest or summary of included artifacts
+content             : optional bundle-level description or serialized manifest content
+[*data_execution_bundle] #0

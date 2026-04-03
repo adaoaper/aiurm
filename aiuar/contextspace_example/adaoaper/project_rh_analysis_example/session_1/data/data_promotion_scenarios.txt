@@ -11,4 +11,4 @@ D4. Promotion scenario criteria
     "certifications_min": 2
   }
 }
-[*params_promotion_scenarios_hr] #0
+[*data_promotion_scenarios] #0

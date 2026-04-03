@@ -1,0 +1,6 @@
+D1. Execution code node schema
+origin_contextspace : contextspace of the calling project
+origin_entity       : entity of the calling project
+origin_project      : project name of the calling project
+execution_id        : execution identifier of the calling project
+[*data_execution_code] #0

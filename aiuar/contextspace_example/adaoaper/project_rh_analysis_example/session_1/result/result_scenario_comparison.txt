@@ -1,0 +1,86 @@
+{
+  "aiurm_marker": "[*result_scenario_comparison]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_scenario_comparison",
+  "execution_id": "20260403_b4e8c2",
+  "timestamp": "20260403_150000",
+  "step": "R8. Scenario comparison",
+  "logic_applied": "*logic_scenario_comparison_hr",
+  "data_sources": ["*result_conservative_promotions", "*result_aggressive_promotions", "*data_output_configuration"],
+  "scenario_comparison": {
+    "number_of_promotions_each_scenario": {
+      "conservative": {
+        "count": 0,
+        "promoted_employees": [],
+        "criteria": "rating >= 9.0, tenure >= 36 months, certifications >= 3"
+      },
+      "aggressive": {
+        "count": 4,
+        "promoted_employees": ["E001 Ana Silva", "E002 Carlos Santos", "E004 John Smith", "E005 Paula Johnson"],
+        "criteria": "rating >= 8.5, tenure >= 18 months, certifications >= 2"
+      }
+    },
+    "estimated_financial_impact": {
+      "conservative": {
+        "salary_increase_monthly": 0,
+        "salary_increase_annual": 0,
+        "promotion_bonus_estimate": 0,
+        "total_annual_cost": 0
+      },
+      "aggressive": {
+        "promotion_details": [
+          {"employee": "E001 Ana Silva", "current_salary": 8500, "increase_pct": 12, "increase_monthly": 1020, "increase_annual": 12240},
+          {"employee": "E002 Carlos Santos", "current_salary": 12000, "increase_pct": 10, "increase_monthly": 1200, "increase_annual": 14400},
+          {"employee": "E004 John Smith", "current_salary": 7200, "increase_pct": 12, "increase_monthly": 864, "increase_annual": 10368},
+          {"employee": "E005 Paula Johnson", "current_salary": 9500, "increase_pct": 10, "increase_monthly": 950, "increase_annual": 11400}
+        ],
+        "salary_increase_monthly_total": 4034,
+        "salary_increase_annual_total": 48408,
+        "promotion_bonus_estimate": "~8000-12000 (one-time)",
+        "total_annual_cost_estimate": "~56000-60000"
+      }
+    },
+    "risks_and_benefits": {
+      "conservative": {
+        "benefits": [
+          "Zero financial outlay",
+          "Maintains high bar — only truly exceptional candidates advance",
+          "No organizational disruption"
+        ],
+        "risks": [
+          "Zero promotions may signal organizational stagnation",
+          "E002 (Excellent, blocked by certs) and E005 (Excellent, blocked by certs) may seek external promotion",
+          "Retains E004 (Burnout Risk) without recognition — increases flight risk",
+          "Certification-only barrier may not reflect actual contribution quality"
+        ]
+      },
+      "aggressive": {
+        "benefits": [
+          "Rewards 80% of team — strong engagement signal",
+          "Resolves Medium Risk for E005 (career development plan becomes promotion)",
+          "Accelerates talent recognition for E001 and E004 (Ready for Promotion)",
+          "Only E003 excluded — aligned with performance data"
+        ],
+        "risks": [
+          "High financial commitment (~56-60K annual additional cost)",
+          "Promoting 80% of staff simultaneously may dilute promotion significance",
+          "E002 promoted without meeting certification bar (conservative view)",
+          "E004 promoted despite Burnout Risk — workload must be resolved first"
+        ]
+      }
+    },
+    "final_recommendation": {
+      "recommended_approach": "Phased Aggressive — 3 promotions now, 1 deferred",
+      "rationale": "A pure conservative scenario produces zero promotions despite a high-performing team, creating unacceptable retention and engagement risk. A pure aggressive scenario promotes 4 simultaneously, which is financially heavy and may signal inflation. The recommended approach promotes Ana Silva (E001), Paula Johnson (E005), and John Smith (E004) immediately — all have clear justification. Carlos Santos (E002) promotion should be deferred pending certification acquisition (90-day horizon), preserving the certification standard while offering a clear, time-bound commitment.",
+      "phased_plan": {
+        "immediate_promotions": ["E001 Ana Silva", "E004 John Smith", "E005 Paula Johnson"],
+        "deferred_promotions": [{"employee": "E002 Carlos Santos", "condition": "Complete 1 additional certification within 90 days"}],
+        "not_recommended": ["E003 Maria Costa"],
+        "estimated_annual_cost_phased": "~34000-37000 (immediate) + ~14000-15000 (deferred if unlocked)"
+      },
+      "talent_acceleration_score": "High — recognizes 3 top performers immediately",
+      "organizational_risk_score": "Low — phased approach maintains budget predictability",
+      "budget_impact_score": "Moderate — significant but staged over time",
+      "promotion_strictness_score": "Balanced — relaxes rating floor but maintains certification standard for Sales/Marketing positions"
+    }
+  }
+}

@@ -107,7 +107,7 @@ Rules:
 | Numeric | no quotes | `seed = 42` |
 | Path | no quotes | `aiuar_root = ...\aiuar\` |
 | AIUAR address | no quotes | `aiuar = *****contextspace****entity***project**session` |
-| Keyword / enum | no quotes | `execution_mode = ONE_STEP`, `output_result_format = JSON` |
+| Keyword / enum | no quotes | `output_result_format = JSON` |
 | Explicit string | quotes | `as_of = "2026-03-25"`, `policy_version = "HRPOL_V1"` |
 | String with spaces | quotes | `description = "HR analysis pipeline"` |
 
@@ -142,7 +142,6 @@ aiuar          = *****contextspace_environment****tracker***project_audit**sessi
 |---|---|
 | `seed` | Reproducibility seed |
 | `policy_version` | Policy set identifier | e.g. `"HRPOL_V1"` |
-| `execution_mode` | e.g. `ONE_STEP` |
 | `response_contract` | e.g. `STRUCTURED_OUTPUT_REQUIRED` |
 | `output_result_format` | e.g. `JSON`, `TEXT` |
 | `runtime` | e.g. `python`, `native` |
@@ -229,19 +228,49 @@ by the changelog SKILL from the active contextspace environment convention.
 
 ## EXECUTOR OBLIGATION — ENVIRONMENT WRITES IN AIURM PIPELINE EXECUTIONS
 
-This section defines mandatory executor behavior after all Result steps complete.
+This section defines mandatory executor behavior for environment writes triggered by pipeline execution.
 It is not a field description — it is a pipeline obligation.
 
-After all Result steps complete, the executor MUST:
+When an environment field is declared in governance, the executor MUST write to the resolved target according to the rules below.
 
-1. `*aiurm_governance_{project}.project_audit` is set → execute it and write one audit record per completed result step
-2. `*aiurm_governance_{project}.project_log` is set → execute it and write one log record per result step (status + observation)
-3. `*aiurm_governance_{project}.project_exception` is set → execute it for any failed or aborted steps
-4. `*aiurm_governance_{project}.project_code` is set → execute it for any code artifacts generated during execution
+1. `*aiurm_governance_{project}.project_audit`
+   The executor MUST execute it and write audit records for completed Result steps.
 
-**This is not optional.** Omitting environment writes when the fields are declared is a protocol violation.
+2. `*aiurm_governance_{project}.project_log`
+   The executor MUST execute it and write one log record per Result step, including `completed`, `failed`, `aborted`, or `skipped` status.
 
-If a field is absent or empty, the executor handles the concern directly without external delegation.
+3. `*aiurm_governance_{project}.project_exception`
+   The executor MUST execute it for any failed, aborted, validation-failed, or unresolvable-marker step.
+
+4. `*aiurm_governance_{project}.project_code`
+   The executor MUST execute it for every generated or modified code artifact produced in the scope of execution, including executors, resolvers, transformers, helper scripts, and test files.
+
+### Mandatory timing rule
+
+Environment writes do NOT depend on successful completion of all Result steps.
+
+- `project_audit` applies after successful completion of the relevant Result steps.
+- `project_log` applies whenever step status is materialized.
+- `project_exception` applies immediately when an exception condition is detected.
+- `project_code` applies immediately when a code artifact is generated or modified.
+
+### Mandatory project_code rule
+
+When `project_code` is declared, it designates the location where the AI must place any artifacts it generates during governance execution — scripts, temporary files, tests, intermediate outputs, or any other execution support material.
+
+The AI MUST create a node named:
+
+```
+result_code__{contextspace}__{project}__{execution_id}/
+```
+
+inside the active `project_code` session result path, whenever it needs to write such artifacts.
+
+Rules:
+- The folder or node is created only when the AI has artifacts to store — if nothing was generated, no node is created.
+- The internal structure and naming of the node's contents are entirely free — the protocol does not prescribe them.
+- The AI MUST NOT create execution artifacts at `aiuar_root` or outside this node.
+- Code generation is instrumental only. The AI MAY generate code when needed for coherent governance resolution, and SHOULD avoid unnecessary code generation when governance can be resolved without it.
 
 ---
 

@@ -26,4 +26,4 @@ D2. Performance thresholds
     }
   }
 }
-[*params_performance_hr] #0
+[*data_performance_rules] #0

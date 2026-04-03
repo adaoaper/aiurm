@@ -28,4 +28,4 @@ D3. Retention thresholds
     "C-Level"
   ]
 }
-[*params_retention_hr] #0
+[*data_retention_rules] #0

@@ -1,0 +1,95 @@
+{
+  "aiurm_marker": "[*result_retention_analysis]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_retention_analysis",
+  "execution_id": "20260403_b4e8c2",
+  "timestamp": "20260403_150000",
+  "step": "R2. Retention analysis",
+  "logic_applied": "*logic_retention_analysis_hr",
+  "data_sources": ["*data_employees", "*data_retention_rules"],
+  "employees": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Ana Silva",
+      "department": "IT",
+      "average_rating": 8.77,
+      "retention_risk": "Low Risk",
+      "recommended_action": "Continue monitoring",
+      "reasoning_pointers": {
+        "high_risk_check": "salary=8500 >= high_risk.salary_below(7000) — condition NOT met",
+        "medium_risk_check": "tenure_months=36 not > medium_risk.tenure_months_above(48) — condition NOT met",
+        "burnout_risk_check": "overtime_hours=45 not > burnout_risk.overtime_hours_above(60) — condition NOT met",
+        "conclusion": "No risk criteria met → Low Risk"
+      }
+    },
+    {
+      "employee_id": "E002",
+      "employee_name": "Carlos Santos",
+      "department": "Sales",
+      "average_rating": 9.27,
+      "retention_risk": "Low Risk",
+      "recommended_action": "Continue monitoring",
+      "reasoning_pointers": {
+        "high_risk_check": "salary=12000 >= high_risk.salary_below(7000) — condition NOT met",
+        "medium_risk_check": "tenure_months=48 not > medium_risk.tenure_months_above(48) — equal, not strictly greater",
+        "burnout_risk_check": "overtime_hours=60 not > burnout_risk.overtime_hours_above(60) — equal, not strictly greater",
+        "conclusion": "No risk criteria met → Low Risk (boundary values excluded by strict inequality)"
+      }
+    },
+    {
+      "employee_id": "E003",
+      "employee_name": "Maria Costa",
+      "department": "HR",
+      "average_rating": 7.77,
+      "retention_risk": "Low Risk",
+      "recommended_action": "Continue monitoring",
+      "reasoning_pointers": {
+        "high_risk_check": "salary=4500 < high_risk.salary_below(7000) ✓ BUT average_rating=7.77 < high_risk.rating_min(8.5) ✗ — both conditions required, fails on rating",
+        "medium_risk_check": "tenure_months=12 not > medium_risk.tenure_months_above(48) — condition NOT met",
+        "burnout_risk_check": "overtime_hours=20 not > burnout_risk.overtime_hours_above(60) — condition NOT met",
+        "conclusion": "No risk criteria fully met → Low Risk (high-risk salary condition met but rating threshold not reached)"
+      }
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "John Smith",
+      "department": "IT",
+      "average_rating": 8.77,
+      "retention_risk": "Burnout Risk",
+      "recommended_action": "Workload redistribution",
+      "reasoning_pointers": {
+        "high_risk_check": "salary=7200 >= high_risk.salary_below(7000) — condition NOT met",
+        "medium_risk_check": "tenure_months=24 not > medium_risk.tenure_months_above(48) — condition NOT met",
+        "burnout_risk_check": "overtime_hours=80 > burnout_risk.overtime_hours_above(60) ✓ AND absences=3 > burnout_risk.absences_above(2) ✓ — both conditions met",
+        "conclusion": "Burnout Risk: extremely high overtime (80h) combined with elevated absences (3)"
+      }
+    },
+    {
+      "employee_id": "E005",
+      "employee_name": "Paula Johnson",
+      "department": "Marketing",
+      "average_rating": 9.03,
+      "retention_risk": "Medium Risk",
+      "recommended_action": "Career development plan",
+      "reasoning_pointers": {
+        "high_risk_check": "salary=9500 >= high_risk.salary_below(7000) — condition NOT met",
+        "medium_risk_check": "tenure_months=60 > medium_risk.tenure_months_above(48) ✓ AND position='Coordinator' not in management_positions ✓ — both conditions met",
+        "conclusion": "Medium Risk: long-tenured non-management employee (60 months) may experience career stagnation"
+      }
+    }
+  ],
+  "summary": {
+    "total_employees": 5,
+    "retention_risk_distribution": {
+      "High Risk": 0,
+      "Medium Risk": 1,
+      "Burnout Risk": 1,
+      "Low Risk": 3
+    },
+    "recommended_actions": {
+      "Urgent salary review": 0,
+      "Career development plan": 1,
+      "Workload redistribution": 1,
+      "Continue monitoring": 3
+    }
+  }
+}

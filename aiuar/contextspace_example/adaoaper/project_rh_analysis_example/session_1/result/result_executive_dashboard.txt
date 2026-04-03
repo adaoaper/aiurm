@@ -1,0 +1,94 @@
+{
+  "aiurm_marker": "[*result_executive_dashboard]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_rh_analysis_example**session_1*result_executive_dashboard",
+  "execution_id": "20260403_b4e8c2",
+  "timestamp": "20260403_150000",
+  "step": "R5. Executive dashboard",
+  "logic_applied": "*logic_executive_dashboard_hr",
+  "data_sources": ["*result_performance_analysis", "*result_retention_analysis", "*result_department_summary", "*data_output_configuration"],
+  "executive_dashboard": {
+    "key_performance_indicators": {
+      "total_employees": 5,
+      "departments": 4,
+      "pct_excellent_performance": "40% (2 of 5)",
+      "pct_very_good_performance": "40% (2 of 5)",
+      "pct_needs_improvement": "20% (1 of 5)",
+      "pct_high_engagement": "20% (1 of 5)",
+      "pct_low_engagement": "20% (1 of 5)",
+      "pct_ready_for_promotion": "40% (2 of 5)",
+      "pct_on_development_track": "40% (2 of 5)",
+      "pct_burnout_risk": "20% (1 of 5)",
+      "pct_medium_retention_risk": "20% (1 of 5)",
+      "pct_low_retention_risk": "60% (3 of 5)",
+      "average_salary_all": 8340.0,
+      "salary_range": {"min": 4500.0, "max": 12000.0}
+    },
+    "critical_alerts": [
+      {
+        "severity": "HIGH",
+        "employee_id": "E004",
+        "employee_name": "John Smith",
+        "department": "IT",
+        "alert": "Burnout Risk — overtime_hours=80h/period, absences=3. Immediate workload redistribution required.",
+        "business_impact": "Risk of losing a Very Good performer who is Ready for Promotion in IT department"
+      },
+      {
+        "severity": "MEDIUM",
+        "employee_id": "E003",
+        "employee_name": "Maria Costa",
+        "department": "HR",
+        "alert": "Needs Improvement — lowest performer (avg 7.77), Low Engagement, high absences (5).",
+        "business_impact": "Performance gap in HR department; only HR employee"
+      },
+      {
+        "severity": "MEDIUM",
+        "employee_id": "E005",
+        "employee_name": "Paula Johnson",
+        "department": "Marketing",
+        "alert": "Medium Retention Risk — Excellent performer with 60 months tenure in non-management role.",
+        "business_impact": "Risk of losing top performer; career stagnation signal"
+      }
+    ],
+    "top_5_priorities": [
+      {
+        "rank": 1,
+        "action": "Immediate workload redistribution for John Smith (IT)",
+        "urgency": "Immediate (0-30 days)",
+        "owner": "IT Manager + HR Business Partner"
+      },
+      {
+        "rank": 2,
+        "action": "Performance improvement plan for Maria Costa (HR)",
+        "urgency": "Immediate (0-30 days)",
+        "owner": "HR Director"
+      },
+      {
+        "rank": 3,
+        "action": "Career development plan activation for Paula Johnson (Marketing)",
+        "urgency": "Short-term (30-90 days)",
+        "owner": "Marketing Manager + HR Business Partner"
+      },
+      {
+        "rank": 4,
+        "action": "Promotion evaluation for Ana Silva and John Smith (IT — both Ready for Promotion)",
+        "urgency": "Short-term (30-90 days)",
+        "owner": "IT Director + HR Compensation Team"
+      },
+      {
+        "rank": 5,
+        "action": "Certification sponsorship for Carlos Santos to unlock promotion eligibility",
+        "urgency": "Short-term (30-90 days)",
+        "owner": "Sales Director + L&D Team"
+      }
+    ],
+    "required_budget": {
+      "immediate_interventions": "~1500",
+      "promotion_salary_adjustments": "~20000-25000 (annual, if 2 IT promotions)",
+      "career_development_programs": "~3000-5000",
+      "certification_sponsorship": "~2000",
+      "performance_coaching": "~1500",
+      "total_12_month_estimate": "~28000-35000",
+      "note": "Budget estimates assume 12% average salary uplift for promotions and standard market rates for development programs"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+L2B. Shard Orchestration / Early Compression
+- Use *params_htl_freedom_v2.execution_control to orchestrate shard creation over the raw analog set.
+- If sharding is enabled:
+  partition *results_generated_raw_htl_v2 according to raw_shard_size
+  respect max_parallel_shards as the concurrency ceiling
+  preserve seed lineage, transform lineage, and series identity in every shard
+- For each shard:
+  validate shard integrity
+  emit shard_id
+  emit shard_size
+  emit series composition
+  emit lineage completeness status
+- Perform early compression before merge when configured:
+  remove exact duplicates inside each shard
+  compress redundant local neighborhoods when clearly overrepresented
+  retain promoted representatives with lineage pointers to compressed members
+  preserve cross-series hybrids explicitly
+- Track:
+  raw_count_per_shard
+  compressed_count_per_shard
+  local_duplicate_count
+  local_redundancy_count
+  shard_attrition_summary
+  shard_series_distribution
+- Emit:
+  shard manifest
+  shard outputs
+  per-shard summaries
+  compression notes
+  merge readiness status
+[*logic_shard_controller_htl_v2] #0

@@ -1,0 +1,10 @@
+L1. Campaign Design Plan
+- Build a governed hit-to-lead campaign plan from target context, seed series, policy profiles, and scale parameters.
+- Define:
+  effective seed set
+  series-level goals
+  acceptable transform neighborhoods
+  core risk hypotheses
+  expected attrition by stage
+- Emit a compact campaign plan and expected series allocation.
+[*logic_campaign_plan_htl_v2] #0

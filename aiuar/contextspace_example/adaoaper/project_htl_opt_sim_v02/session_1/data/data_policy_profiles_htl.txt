@@ -1,0 +1,87 @@
+D10. Policy Profiles
+{
+  "policy_profiles": [
+    {
+      "policy_mode":"Conservative",
+      "weights":{
+        "potency":0.18,
+        "selectivity":0.16,
+        "admet":0.16,
+        "developability":0.14,
+        "synthesis":0.12,
+        "bb_availability":0.08,
+        "novelty":0.04,
+        "diversity":0.05,
+        "uncertainty_penalty":0.07
+      },
+      "notes":"bias toward lower risk and operational feasibility"
+    },
+    {
+      "policy_mode":"Balanced",
+      "weights":{
+        "potency":0.20,
+        "selectivity":0.16,
+        "admet":0.15,
+        "developability":0.12,
+        "synthesis":0.10,
+        "bb_availability":0.07,
+        "novelty":0.08,
+        "diversity":0.06,
+        "uncertainty_penalty":0.06
+      },
+      "notes":"default campaign mode"
+    },
+    {
+      "policy_mode":"Exploratory",
+      "weights":{
+        "potency":0.18,
+        "selectivity":0.14,
+        "admet":0.12,
+        "developability":0.08,
+        "synthesis":0.07,
+        "bb_availability":0.05,
+        "novelty":0.16,
+        "diversity":0.12,
+        "uncertainty_penalty":0.08
+      },
+      "notes":"allows higher novelty and scaffold movement"
+    },
+    {
+      "policy_mode":"DevelopabilityFirst",
+      "weights":{
+        "potency":0.16,
+        "selectivity":0.14,
+        "admet":0.17,
+        "developability":0.16,
+        "synthesis":0.12,
+        "bb_availability":0.10,
+        "novelty":0.05,
+        "diversity":0.04,
+        "uncertainty_penalty":0.06
+      },
+      "notes":"favors route realism, stability, and PK-risk reduction"
+    },
+    {
+      "policy_mode":"SelectivityFirst",
+      "weights":{
+        "potency":0.18,
+        "selectivity":0.22,
+        "admet":0.15,
+        "developability":0.10,
+        "synthesis":0.08,
+        "bb_availability":0.05,
+        "novelty":0.07,
+        "diversity":0.06,
+        "uncertainty_penalty":0.09
+      },
+      "notes":"penalizes off-target risk more aggressively"
+    }
+  ],
+  "portfolio_constraints": {
+    "max_final_nominees_from_single_series": 4,
+    "prefer_at_least_three_series_in_final_top_set": true,
+    "promote_route_diversity": true,
+    "promote_mechanistic_hypothesis_diversity": true
+  }
+}
+[*data_policy_profiles_htl] #0

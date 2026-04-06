@@ -1,0 +1,21 @@
+L2. Seed Expansion / Analog Enumeration
+- Treat representative seed hits as anchor exemplars rather than the full operational dataset.
+- Instantiate the effective seed population programmatically before analog generation.
+- Expand synthetic analog space during execution according to *params_htl_freedom_v2.campaign_scale and *params_htl_freedom_v2.generation_control.
+- Do not assume that the full candidate table is pre-supplied in input.
+- Expand the representative seed set into the effective seed population.
+- Enumerate analogs using *data_transform_library_htl under *params_htl_freedom_v2.generation_control.
+- Respect:
+  medicinal plausibility
+  series priors
+  transform sequencing limits
+  hybridization caps
+- Emit:
+  raw analog set — full per-candidate record list; every generated analog must appear as an
+    individual record in the result artifact; aggregate-only or summary-only output is a
+    contract violation; honor *data_params_htl_freedom_v2.campaign_scale.must_materialize_all_generated_raw_candidates
+    and *data_params_htl_freedom_v2.execution_control.allow_summary_only_outputs = false
+  seed lineage — retained per record (parent_seed_id)
+  transformation lineage — retained per record (n_transforms, transform_depth)
+  per-series generation counts — as summary fields alongside the full candidate list
+[*logic_seed_expand_enum_htl_v2] #0

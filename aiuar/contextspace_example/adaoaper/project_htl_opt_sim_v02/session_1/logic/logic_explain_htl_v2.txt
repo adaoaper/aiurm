@@ -1,0 +1,12 @@
+L17. Explainability (Global + Local)
+- For promoted candidates and series leaders, explain:
+  why promoted
+  strongest component drivers
+  main liabilities
+  transform lineage
+  route realism
+  policy sensitivity
+- Emit:
+  local explanation objects
+  cross-series explanation summary
+[*logic_explain_htl_v2] #0

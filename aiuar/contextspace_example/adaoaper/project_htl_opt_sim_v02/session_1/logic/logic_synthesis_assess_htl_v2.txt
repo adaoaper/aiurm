@@ -1,0 +1,11 @@
+L10. Synthetic Accessibility Assessment
+- Use synthesis rules to estimate:
+  sa_score
+  route burden
+  late-stage diversification compatibility
+  stereochemical complexity burden
+- Penalize:
+  excessive complexity
+  protecting-group dependence
+  fragile route logic
+[*logic_synthesis_assess_htl_v2] #0

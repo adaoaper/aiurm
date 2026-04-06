@@ -1,0 +1,9 @@
+L8. Quick Selectivity Controller
+- Run quick off-target panel triage on the broader surviving set.
+- Derive:
+  quick_panel_margin
+  quick_panel_cleanliness
+  promotion_reason_to_full_panel
+  selectivity_depth_label
+- Penalize broad off-target tendencies.
+[*logic_selectivity_quick_htl_v2] #0

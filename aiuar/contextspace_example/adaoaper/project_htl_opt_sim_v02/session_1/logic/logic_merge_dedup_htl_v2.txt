@@ -1,0 +1,12 @@
+L3. Merge, Deduplication & Canonicalization
+- Merge shard outputs.
+- Canonicalize analog representations.
+- Remove duplicates / near duplicates.
+- Track:
+  kept_count by series
+  duplicate_count by series pair
+  transform redundancy
+  hybrid contribution
+  shard-level attrition
+  promoted_vs_compressed lineage
+[*logic_merge_dedup_htl_v2] #0

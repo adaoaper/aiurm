@@ -1,0 +1,18 @@
+D11. Reference Competitive Space / Novelty Priors
+{
+  "known_ligand_space_summary": {
+    "known_chemotypes":["flat_quinazoline_like","azaindole_like","imidazopyridine_like","bicyclic_amide_like"],
+    "novelty_thresholds":{
+      "tanimoto_vs_known":{"max":0.70},
+      "tanimoto_soft_warn":0.62,
+      "scaffold_overlap_allowed":true,
+      "scaffold_overlap_penalty_if_common_series":0.08
+    },
+    "ip_crowding_zones":[
+      "flat_quinazoline_cluster_dense",
+      "simple_aniline_cluster_dense",
+      "basic_tail_hERG_prone_cluster_watch"
+    ]
+  }
+}
+[*data_novelty_priors_htl] #0

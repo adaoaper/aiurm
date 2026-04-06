@@ -1,0 +1,19 @@
+L19. Stress Matrix / Robustness
+- Build scenario matrix over:
+  resamples
+  policy modes
+  property windows
+  assay noise variants
+  selectivity margin thresholds
+- Measure:
+  rank stability
+  top-k recurrence
+  candidate survival frequency
+  series stability
+  Kendall tau / Spearman
+  allocation fragility
+- Emit:
+  stable_core_candidates
+  volatile_candidates
+  robustness_summary
+[*logic_stress_htl_v2] #0

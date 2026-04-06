@@ -5,5 +5,3 @@ node_session      = session_1
 node_d            = data
 node_l            = logic
 node_r            = none
-
-[data_source_node] #0

@@ -1,0 +1,293 @@
+{
+  "aiurm_marker": "[*results_explainability_htl_v2]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_htl_opt_sim_v02**session_1*results_explainability_htl_v2",
+  "execution_id": "20260403_ik1nzs",
+  "step_title": "R20. Explainability (global + local)",
+  "governance_marker": "[*aiurm_governance_htl_opt_sim_v02]",
+  "generated_at": "2026-04-03T17:32:59",
+  "campaign_plan_reference": "20260403_ik1nzs",
+  "local_explanations": [
+    {
+      "candidate_id": "CAND_HTL_B02_0061",
+      "why_promoted": [
+        "consensus rank 1",
+        "repaired potency 7.52",
+        "full-panel margin 1.01"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Balanced"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T23",
+        "T26"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0498,
+      "confidence_score": 0.685
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0058",
+      "why_promoted": [
+        "consensus rank 2",
+        "repaired potency 7.47",
+        "full-panel margin 1.0"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Balanced"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T20",
+        "T30"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0474,
+      "confidence_score": 0.685
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0007",
+      "why_promoted": [
+        "consensus rank 3",
+        "repaired potency 7.4",
+        "full-panel margin 1.06"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T20",
+        "T17"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0759,
+      "confidence_score": 0.72
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0025",
+      "why_promoted": [
+        "consensus rank 4",
+        "repaired potency 7.49",
+        "full-panel margin 0.97"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate"
+      ],
+      "transform_lineage": [
+        "T27"
+      ],
+      "route_realism": "convergent_with_rework",
+      "policy_sensitivity": 0.0738,
+      "confidence_score": 0.708
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0111",
+      "why_promoted": [
+        "consensus rank 5",
+        "repaired potency 7.43",
+        "full-panel margin 1.02"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T07",
+        "T05"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0598,
+      "confidence_score": 0.722
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0042",
+      "why_promoted": [
+        "consensus rank 6",
+        "repaired potency 7.41",
+        "full-panel margin 0.95"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T15",
+        "T26"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0722,
+      "confidence_score": 0.682
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0250",
+      "why_promoted": [
+        "consensus rank 7",
+        "repaired potency 7.48",
+        "full-panel margin 0.99"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T13",
+        "T07"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0733,
+      "confidence_score": 0.755
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0398",
+      "why_promoted": [
+        "consensus rank 8",
+        "repaired potency 7.53",
+        "full-panel margin 1.01"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T22",
+        "T15"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0998,
+      "confidence_score": 0.627
+    },
+    {
+      "candidate_id": "CAND_HTL_A02_0054",
+      "why_promoted": [
+        "consensus rank 9",
+        "repaired potency 7.25",
+        "full-panel margin 0.91"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T07",
+        "T27"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.066,
+      "confidence_score": 0.632
+    },
+    {
+      "candidate_id": "CAND_HTL_D02_0021",
+      "why_promoted": [
+        "consensus rank 10",
+        "repaired potency 7.17",
+        "full-panel margin 0.92"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T29",
+        "T25"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0613,
+      "confidence_score": 0.667
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0585",
+      "why_promoted": [
+        "consensus rank 11",
+        "repaired potency 7.3",
+        "full-panel margin 0.95"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate-high"
+      ],
+      "transform_lineage": [
+        "T29",
+        "T13"
+      ],
+      "route_realism": "late_stage_diversification",
+      "policy_sensitivity": 0.0828,
+      "confidence_score": 0.67
+    },
+    {
+      "candidate_id": "CAND_HTL_A02_0092",
+      "why_promoted": [
+        "consensus rank 12",
+        "repaired potency 7.24",
+        "full-panel margin 0.9"
+      ],
+      "strongest_component_drivers": [
+        "DevelopabilityFirst",
+        "Conservative"
+      ],
+      "main_liabilities": [
+        "manageable_liability",
+        "moderate"
+      ],
+      "transform_lineage": [
+        "T23"
+      ],
+      "route_realism": "convergent_with_rework",
+      "policy_sensitivity": 0.0676,
+      "confidence_score": 0.708
+    }
+  ],
+  "cross_series_explanation_summary": {
+    "top12_series_distribution": {
+      "Series_B_quinazoline_core": 9,
+      "Series_A_azaindole_tail": 2,
+      "Series_D_bicyclic_amide": 1
+    },
+    "dominant_rationale": "balanced potency-selectivity-developability profile with route realism control"
+  }
+}

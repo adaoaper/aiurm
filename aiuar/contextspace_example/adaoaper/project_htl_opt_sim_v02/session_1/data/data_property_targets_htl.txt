@@ -1,0 +1,25 @@
+D5. Property Targets / Medicinal Chemistry Windows
+{
+  "property_targets": {
+    "mw":{"min":290,"max":470},
+    "cLogP":{"min":1.8,"max":4.6},
+    "tpsa":{"min":55,"max":105},
+    "hbd":{"max":3},
+    "hba":{"max":10},
+    "rot_bonds":{"max":8},
+    "formal_charge_abs":{"max":1},
+    "aromatic_ring_count":{"max":4},
+    "fsp3":{"min":0.18}
+  },
+  "soft_preferences": {
+    "solubility":"moderate_or_better",
+    "permeability":"moderate_or_better",
+    "microsomal_stability":"moderate_or_better",
+    "cellular_shift_vs_biochem":"not_excessive"
+  },
+  "series_specific_exceptions": {
+    "Series_C_imidazopyridine_linker":{"tpsa":{"max":110},"if_potency_gain_substantial":true},
+    "Series_D_bicyclic_amide":{"mw":{"max":455},"if_route_feasibility_high":true}
+  }
+}
+[*data_property_targets_htl] #0

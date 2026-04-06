@@ -1,0 +1,11 @@
+L11B. Route Uncertainty Analysis
+- For each promoted retrosynthesis candidate:
+  compare best route vs second-best route
+  estimate route fragility
+  detect dependence on a single weak disconnection
+  detect heavy reliance on limited/custom inventory
+- Emit:
+  route_uncertainty_score
+  route_fragility_label
+  alternate_route_note
+[*logic_route_uncertainty_htl_v2] #0

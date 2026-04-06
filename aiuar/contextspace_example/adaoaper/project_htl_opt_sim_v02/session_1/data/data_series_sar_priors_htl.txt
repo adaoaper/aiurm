@@ -1,0 +1,39 @@
+D3. Series SAR Priors
+{
+  "series_priors": [
+    {
+      "series_id":"Series_A_azaindole_tail",
+      "anchor_hypothesis":"azaindole_core can support hinge-like interaction while tail modulates solvent exit and selectivity",
+      "potency_uplift_rules":["small_polar_tail_reorientation","amide_to_reversed_amide_in_specific_subspace"],
+      "risk_rules":["strong_basicity_in_exit_channel may increase hERG risk","excessive tail flexibility may hurt affinity confidence"],
+      "preferred_growth_vectors":["solvent_exit","hydrophobe_wall_edge"]
+    },
+    {
+      "series_id":"Series_B_quinazoline_core",
+      "anchor_hypothesis":"quinazoline_core drives potency but easily drifts into lipophilicity and CYP liabilities",
+      "potency_uplift_rules":["heteroaryl_balance","moderate_aniline_substitution"],
+      "risk_rules":["aniline_like motifs require alert scrutiny","over-aryl expansion may damage solubility and selectivity"],
+      "preferred_growth_vectors":["hinge_adjacent_substituent","solvent_exposed_morpholine_zone"]
+    },
+    {
+      "series_id":"Series_C_imidazopyridine_linker",
+      "anchor_hypothesis":"imidazopyridine series offers novelty and balanced polarity but may need potency optimization",
+      "potency_uplift_rules":["directed hydrophobe growth","constrained linker insertion"],
+      "risk_rules":["excessive polar burden may hurt permeability","basic tails need hERG review"],
+      "preferred_growth_vectors":["hydrophobe_patch","core_linker_orientation"]
+    },
+    {
+      "series_id":"Series_D_bicyclic_amide",
+      "anchor_hypothesis":"bicyclic series improves developability and route feasibility but needs potency rescue",
+      "potency_uplift_rules":["heteroaryl appendage","compact lipophile patch"],
+      "risk_rules":["too much lipophile gain erodes developability advantage","urea analogs can lose permeability"],
+      "preferred_growth_vectors":["amide_vector","aryl_patch_orienter"]
+    }
+  ],
+  "cross_series_policy": {
+    "allow_scaffold_hopping_between_series": true,
+    "retain_parental_lineage": true,
+    "emit_series_transfer_note": true
+  }
+}
+[*data_series_sar_priors_htl] #0

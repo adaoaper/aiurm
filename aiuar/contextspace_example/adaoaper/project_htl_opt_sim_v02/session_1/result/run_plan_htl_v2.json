@@ -1,0 +1,57 @@
+{
+  "aiurm_marker": "[*run_plan_htl_v2]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_htl_opt_sim_v02**session_1*run_plan_htl_v2",
+  "execution_id": "20260403_ik1nzs",
+  "step_title": "R1. Build governed campaign plan",
+  "governance_marker": "[*aiurm_governance_htl_opt_sim_v02]",
+  "generated_at": "2026-04-03T17:32:59",
+  "seed_overview": {
+    "representative_seed_count": 12,
+    "campaign_seed_counts": {
+      "Series_A_azaindole_tail": 8,
+      "Series_B_quinazoline_core": 8,
+      "Series_C_imidazopyridine_linker": 8,
+      "Series_D_bicyclic_amide": 8
+    },
+    "effective_seed_total": 96
+  },
+  "series_goal_map": {
+    "Series_A_azaindole_tail": 0.27,
+    "Series_B_quinazoline_core": 0.25,
+    "Series_C_imidazopyridine_linker": 0.24,
+    "Series_D_bicyclic_amide": 0.24
+  },
+  "expected_stage_counts": {
+    "n_after_seed_expansion": 8400,
+    "n_after_merge_dedup": 5940,
+    "n_after_sar_repair": 4290,
+    "n_after_physchem": 2340,
+    "n_after_alerts": 1860,
+    "n_after_admet": 720,
+    "n_after_selectivity_quick": 288,
+    "n_after_selectivity_full": 108,
+    "n_after_synthesis": 72,
+    "n_after_bb_availability": 57,
+    "n_after_retrosynthesis": 40,
+    "n_after_novelty_diversity": 36,
+    "n_final_candidates": 36,
+    "n_borderline_review": 72
+  },
+  "risk_hypotheses": [
+    "basic exit vector analogs may increase hERG exposure",
+    "quinazoline-rich expansions may drift lipophilicity and CYP risk",
+    "novel scaffold hops increase uncertainty and route complexity"
+  ],
+  "acceptable_transform_neighborhoods": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10"
+  ]
+}

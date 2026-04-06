@@ -1,0 +1,443 @@
+{
+  "aiurm_marker": "[*results_stress_htl_v2]",
+  "aiuar_address": "*****contextspace_example****adaoaper***project_htl_opt_sim_v02**session_1*results_stress_htl_v2",
+  "execution_id": "20260403_ik1nzs",
+  "step_title": "R22. Stress matrix / robustness",
+  "governance_marker": "[*aiurm_governance_htl_opt_sim_v02]",
+  "generated_at": "2026-04-03T17:32:59",
+  "scenario_count": 30,
+  "stable_core_candidates": [
+    {
+      "candidate_id": "CAND_HTL_B02_0061",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0007",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0058",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0025",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0111",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0042",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0250",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_D02_0021",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_A02_0054",
+      "survival_frequency": 1.0
+    },
+    {
+      "candidate_id": "CAND_HTL_B02_0398",
+      "survival_frequency": 0.8
+    },
+    {
+      "candidate_id": "CAND_HTL_A02_0092",
+      "survival_frequency": 0.8
+    }
+  ],
+  "volatile_candidates": [],
+  "robustness_summary": {
+    "kendall_tau_proxy": 0.71,
+    "spearman_proxy": 0.83,
+    "allocation_fragility": "moderate"
+  },
+  "scenario_matrix": [
+    {
+      "policy_mode": "Conservative",
+      "property_window": "base",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Conservative",
+      "property_window": "base",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Conservative",
+      "property_window": "slightly_tighter",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Conservative",
+      "property_window": "slightly_tighter",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Conservative",
+      "property_window": "slightly_looser",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Conservative",
+      "property_window": "slightly_looser",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "base",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "base",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "slightly_tighter",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "slightly_tighter",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "slightly_looser",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Balanced",
+      "property_window": "slightly_looser",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "base",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "base",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "slightly_tighter",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "slightly_tighter",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "slightly_looser",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "Exploratory",
+      "property_window": "slightly_looser",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0085",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_A02_0092",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_A01_0213"
+      ]
+    },
+    {
+      "policy_mode": "DevelopabilityFirst",
+      "property_window": "base",
+      "assay_noise": "base",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_A02_0092"
+      ]
+    },
+    {
+      "policy_mode": "DevelopabilityFirst",
+      "property_window": "base",
+      "assay_noise": "higher_noise",
+      "top_candidate_ids": [
+        "CAND_HTL_B02_0007",
+        "CAND_HTL_B02_0061",
+        "CAND_HTL_B02_0058",
+        "CAND_HTL_B02_0025",
+        "CAND_HTL_B02_0042",
+        "CAND_HTL_B02_0111",
+        "CAND_HTL_B02_0398",
+        "CAND_HTL_A02_0054",
+        "CAND_HTL_D02_0021",
+        "CAND_HTL_B02_0250",
+        "CAND_HTL_B02_0585",
+        "CAND_HTL_A02_0092"
+      ]
+    }
+  ]
+}

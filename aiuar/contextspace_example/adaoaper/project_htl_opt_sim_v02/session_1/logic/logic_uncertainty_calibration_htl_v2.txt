@@ -1,0 +1,14 @@
+L13. Applicability Domain / Confidence Calibration
+- Use *data_applicability_uncertainty_htl and prior model outputs.
+- Compute:
+  descriptor_density_score
+  scaffold_support_score
+  rarity_penalty
+  assay_transfer_penalty
+  overall_confidence
+  uncertainty_penalty
+- Emit:
+  applicability_label
+  confidence_band_label = high | medium | low
+  OOD rescue note if applicable
+[*logic_uncertainty_calibration_htl_v2] #0

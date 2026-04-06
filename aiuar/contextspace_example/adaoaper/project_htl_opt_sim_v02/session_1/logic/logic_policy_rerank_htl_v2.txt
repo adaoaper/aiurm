@@ -1,0 +1,7 @@
+L16. Policy Reranking Matrix
+- Rerank the allocated candidate set using *data_policy_profiles_htl.
+- Emit:
+  rerank tables by policy mode
+  candidate rank shifts
+  policy sensitivity notes
+[*logic_policy_rerank_htl_v2] #0

@@ -7,7 +7,6 @@ L1. Audit write policy
     origin_session        : session of the calling project
     execution_id          : execution_id from governance of the calling project
     timestamp             : YYYYMMDD_HHMMSS
-    execution_mode        : governance execution_mode of the calling project
     steps                 : array of executed R blocks with status, markers resolved, and output marker
     summary               : total steps, completed, failed, exceptions
 - Write the audit record as-is — append-only, never overwrite an existing record.

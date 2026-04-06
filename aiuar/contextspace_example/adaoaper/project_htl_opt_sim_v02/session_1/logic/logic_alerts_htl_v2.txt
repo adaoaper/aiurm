@@ -1,0 +1,10 @@
+L6. Structural Alerts Pass
+- Apply *data_alerts_admet_htl.
+- Hard fail on explicit hard alerts.
+- Penalize multiple soft alerts and clustered liabilities.
+- Emit:
+  alert_status
+  soft_alert_count
+  alert_liability_summary
+  salvageability_note
+[*logic_alerts_htl_v2] #0

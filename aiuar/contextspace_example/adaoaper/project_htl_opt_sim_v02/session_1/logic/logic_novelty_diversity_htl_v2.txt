@@ -1,0 +1,10 @@
+L12. Novelty / Diversity Controller
+- Compare against seed space and known ligand space summary.
+- Compute:
+  novelty_score
+  IP_crowding_penalty
+  series_novelty_note
+  diversity_cluster_assignment
+  diversity_bonus
+- Avoid over-concentration in a single local neighborhood.
+[*logic_novelty_diversity_htl_v2] #0

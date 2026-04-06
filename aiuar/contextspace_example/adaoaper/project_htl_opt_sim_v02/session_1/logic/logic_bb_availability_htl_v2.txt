@@ -1,0 +1,11 @@
+L10B. Building-Block Availability Check
+- Use procurement data to estimate:
+  procurement class
+  lead-time class
+  custom synthesis dependence
+  inventory risk
+- Emit:
+  bb_availability_score
+  procurement_profile
+  procurement_warning
+[*logic_bb_availability_htl_v2] #0

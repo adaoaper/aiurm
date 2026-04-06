@@ -1,0 +1,16 @@
+L4. SAR Repair / Potency Improvement Pass
+- Use *data_series_sar_priors_htl and seed lineage to estimate potency improvement plausibility.
+- Compute:
+  potency_delta_proxy
+  anchor_retention_score
+  vector_fit_score
+  series_transfer_bonus_or_penalty
+- Penalize:
+  anchor disruption
+  ungrounded hybridization
+  transform chains with weak series support
+- Emit:
+  repaired_pIC50_proxy
+  sar_confidence
+  potency_repair_note
+[*logic_sar_repair_htl_v2] #0

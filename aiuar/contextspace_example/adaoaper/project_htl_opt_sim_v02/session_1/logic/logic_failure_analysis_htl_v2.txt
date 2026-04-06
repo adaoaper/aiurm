@@ -1,0 +1,11 @@
+L18. Borderline / Failure Analysis
+- Review:
+  top borderline compounds
+  near-miss compounds rejected at each stage
+  compounds that fail only one major criterion
+- For each reviewed near-miss:
+  primary rejection reason
+  secondary concerns
+  salvageability note
+  whether rejection is policy-dependent or universal
+[*logic_failure_analysis_htl_v2] #0

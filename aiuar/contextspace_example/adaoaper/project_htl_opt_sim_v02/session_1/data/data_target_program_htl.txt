@@ -1,0 +1,35 @@
+D1. Target Program Context
+{
+  "program_id": "PRG_HIT2LEAD_X01",
+  "target_name": "Protein_X",
+  "target_family": "enzyme_like_binding_pocket",
+  "therapeutic_area": "synthetic_demo_oncology_inflammation_overlap",
+  "assay_stack": {
+    "primary_biochem": "fluorescence_turnover_assay_v2",
+    "secondary_binding": "thermal_shift_proxy_v2",
+    "cellular_readout": "pathway_reporter_proxy_v3"
+  },
+  "pocket_hypothesis": {
+    "anchor_region": "hinge_like_polar_pair",
+    "hydrophobe_region": "lipophilic_wall_A",
+    "solvent_exit": "basic_tolerant_exit_channel",
+    "liability_region": "aromatic_pi_patch_near_tyr45"
+  },
+  "design_goals": [
+    "improve potency versus seed hits",
+    "increase target_vs_offtarget margin",
+    "reduce hERG and CYP3A4 liability",
+    "avoid excessive lipophilicity drift",
+    "improve synthetic tractability and procurement realism",
+    "preserve portfolio diversity across chemical series"
+  ],
+  "success_criteria": {
+    "target_pIC50_min_promote": 7.60,
+    "target_vs_offtarget_margin_min": 1.20,
+    "hERG_risk_target": "low_or_low-moderate",
+    "microsomal_stability_target": "moderate_or_better",
+    "solubility_target": "moderate_or_better",
+    "route_feasibility_target": "good_or_better"
+  }
+}
+[*data_target_program_htl] #0

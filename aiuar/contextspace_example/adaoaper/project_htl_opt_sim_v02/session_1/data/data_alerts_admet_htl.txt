@@ -1,0 +1,34 @@
+D6. Structural Alerts / ADMET Liability Policy
+{
+  "hard_alerts": [
+    "reactive_electrophile_high_risk",
+    "unstable_acyl_halide_like_pattern",
+    "nitroso_like_alert",
+    "polycationic_hERG_high_risk_pattern",
+    "strong_PAINS_like_pattern"
+  ],
+  "soft_alerts": [
+    "aniline_like_watch",
+    "benzylic_soft_spot_watch",
+    "high_flat_aromatic_density",
+    "excessive_methoxy_cluster",
+    "sulfonamide_permeability_watch",
+    "high_basicity_tertiary_amine_watch"
+  ],
+  "admet_model_stack": {
+    "solubility_model":"SoluNet_v2_proxy",
+    "permeability_model":"PermiNet_v3_proxy",
+    "microsomal_stability_model":"MSM_v2_proxy",
+    "cyp3a4_model":"CYP3A4Risk_v2_proxy",
+    "cyp2d6_model":"CYP2D6Risk_v2_proxy",
+    "herg_model":"hERGRisk_v3_proxy",
+    "efflux_model":"EffluxFlag_v2_proxy"
+  },
+  "liability_policy": {
+    "hard_fail_on_high_reactive_alert": true,
+    "hard_fail_on_hERG_high_plus_selectivity_weak": true,
+    "penalize_multiple_soft_alerts": true,
+    "allow_single_soft_alert_if_multi-signal_strong": true
+  }
+}
+[*data_alerts_admet_htl] #0

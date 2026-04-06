@@ -1,0 +1,27 @@
+D9. Applicability Domain / Uncertainty Policy
+{
+  "descriptor_density_policy": {
+    "in_domain_min_density": 0.62,
+    "near_boundary_min_density": 0.44
+  },
+  "scaffold_support_policy": {
+    "min_cluster_support_count_for_high_confidence": 18,
+    "rare_scaffold_penalty": 0.07,
+    "novel_but_sparse_penalty": 0.11
+  },
+  "confidence_policy": {
+    "downgrade_if_ood": true,
+    "allow_ood_survivors_if_multi-signal_strong": true,
+    "require_explicit_ood_flag": true,
+    "backend_disagreement_penalty": true,
+    "route_uncertainty_penalty": true
+  },
+  "assay_transfer_policy": {
+    "biochem_pIC50_sd": 0.22,
+    "cellular_pIC50_sd": 0.38,
+    "cross_assay_transfer_penalty": 0.10,
+    "penalize_sparse_projection": true,
+    "emit_translation_note": true
+  }
+}
+[*data_applicability_uncertainty_htl] #0

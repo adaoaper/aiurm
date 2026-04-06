@@ -1,0 +1,11 @@
+L15. Portfolio Allocation / Series Balance
+- Apply portfolio constraints after base ranking.
+- Prevent final nominees from being dominated by a single series unless superiority is overwhelming.
+- Reward:
+  at least three series in top set
+  route diversity
+  mechanistic hypothesis diversity
+- Emit:
+  allocated_rank
+  allocation_adjustment_notes
+[*logic_portfolio_allocation_htl_v2] #0

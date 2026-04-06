@@ -1,0 +1,150 @@
+P. Campaign Parameters
+{
+  "campaign_scale": {
+    "n_seed_total_effective": 96,
+    "n_generate_raw_total": 84000,
+    "target_analogs_per_seed_range": [700, 1050],
+    "min_generate_raw_total": 84000,
+    "require_exact_raw_generation_count": true,
+    "must_materialize_all_generated_raw_candidates": true
+    "series_balance_targets": {
+      "Series_A_azaindole_tail": 0.27,
+      "Series_B_quinazoline_core": 0.25,
+      "Series_C_imidazopyridine_linker": 0.24,
+      "Series_D_bicyclic_amide": 0.24
+    }
+  },
+
+  "generation_control": {
+    "expand_seed_neighbors_first": true,
+    "allow_scaffold_hopping": true,
+    "allow_cross_series_hybrids": true,
+    "max_transforms_per_analog": 2,
+    "max_hybrid_fraction_raw": 0.16,
+    "prefer_transform_families_with_series_support": true,
+    "retain_seed_and_transform_lineage": true
+  },
+
+  "execution_control": {
+    "enable_sharding": true,
+    "raw_shard_size": 3000,
+    "max_parallel_shards": 24,
+    "merge_strategy": "rank_then_cluster_then_merge",
+    "emit_series_summaries": true,
+    "emit_shard_summaries": true,
+    "emit_stage_attrition_histograms": true,
+    "emit_series_x_stage_tensor": true,
+    "persist_full_trace_for_all_intermediates": true,
+    "allow_trace_sampling": false,
+    "materialize_all_intermediate_results": true,
+    "allow_intermediate_omission": false,
+    "compress_intermediate_artifacts": false,
+    "allow_summary_only_outputs": false,
+    "allow_representative_replacement": false
+  },
+
+  "n_final_candidates": 360,
+  "n_borderline_review": 720,
+
+  "property_targets": {
+    "mw": {"min": 290, "max": 470},
+    "cLogP": {"min": 1.8, "max": 4.6},
+    "tpsa": {"min": 55, "max": 105},
+    "hbd": {"max": 3},
+    "hba": {"max": 10},
+    "rot_bonds": {"max": 8},
+    "formal_charge_abs": {"max": 1},
+    "aromatic_ring_count": {"max": 4},
+    "fsp3": {"min": 0.18}
+  },
+
+  "affinity_estimation": {
+    "mode": "tiered",
+    "prescreen_model": "PotencyRepairNet_v2_proxy",
+    "main_model": "AffinitySARFusion_v3_proxy",
+    "use_series_context": true,
+    "use_target_hypothesis_features": true
+  },
+
+  "selectivity_estimation": {
+    "mode": "tiered_panel",
+    "quick_panel_max": 7200,
+    "full_panel_max": 1260,
+    "emit_target_vs_offtarget_margin": true,
+    "use_hERG_gate": true,
+    "hard_fail_if_hERG_high_and_margin_low": true
+  },
+
+  "synthesis_policy": {
+    "max_preferred_steps": 5,
+    "max_acceptable_steps": 7,
+    "reward_late_stage_diversification": true,
+    "penalize_protecting_group_dependence": true
+  },
+
+  "uncertainty": {
+    "enable_confidence_calibration": true,
+    "penalize_low_confidence": true,
+    "low_confidence_threshold": 0.56,
+    "ood_penalty_enabled": true,
+    "backend_disagreement_penalty": true,
+    "assay_transfer_penalty": true,
+    "route_uncertainty_penalty": true
+  },
+
+  "policy_mode_default": "Balanced",
+  "policy_modes_to_rerank": [
+    "Conservative",
+    "Balanced",
+    "Exploratory",
+    "DevelopabilityFirst",
+    "SelectivityFirst"
+  ],
+
+  "stress": {
+    "n_resamples": 18,
+    "policy_modes": [
+      "Conservative",
+      "Balanced",
+      "Exploratory",
+      "DevelopabilityFirst",
+      "SelectivityFirst"
+    ],
+    "property_window_variants": [
+      "base",
+      "slightly_tighter",
+      "slightly_looser"
+    ],
+    "assay_noise_variants": [
+      "base",
+      "higher_noise"
+    ],
+    "selectivity_margin_variants": [1.00, 1.20, 1.40],
+    "max_candidates_in_full_stress": 720,
+    "max_candidates_in_light_stress": 1920,
+    "kendall_tau_required": 0.60,
+    "spearman_required": 0.75,
+    "emit_candidate_scenario_survival_tensor": true,
+    "emit_series_scenario_stability_tensor": true
+  },
+
+  "export": {
+    "emit_full_intermediate_candidates": true,
+    "emit_full_discard_log": true,
+    "emit_discard_log_sampled": false,
+    "emit_cluster_summaries": true,
+    "emit_series_summaries": true,
+    "emit_borderline_cases": true,
+    "emit_per_candidate_trace": true,
+    "emit_per_shard_summary": true,
+    "emit_scenario_matrix_summary": true,
+    "emit_stage_attrition_histograms": true,
+    "emit_series_x_stage_tensor": true,
+    "emit_policy_shift_tables": true,
+    "emit_route_alternative_notes": true
+  },
+
+  "decision_notes": true,
+  "strict_pointer_trace": true
+}
+[*data_params_htl_freedom_v2] #0

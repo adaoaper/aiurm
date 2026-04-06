@@ -1,0 +1,37 @@
+D7. Selectivity / Off-Target Panel
+{
+  "panel_quick": [
+    {"offtarget_id":"OT_K1","family":"kinase_like","priority":"high"},
+    {"offtarget_id":"OT_K2","family":"kinase_like","priority":"high"},
+    {"offtarget_id":"OT_GPCR1","family":"gpcr_like","priority":"medium"},
+    {"offtarget_id":"OT_GPCR2","family":"gpcr_like","priority":"medium"},
+    {"offtarget_id":"OT_ION1","family":"ion_channel_like","priority":"high"},
+    {"offtarget_id":"OT_CYP3A4","family":"metabolic","priority":"high"},
+    {"offtarget_id":"OT_CYP2D6","family":"metabolic","priority":"medium"},
+    {"offtarget_id":"OT_TRANSPORT1","family":"transporter","priority":"medium"}
+  ],
+  "panel_full": [
+    {"offtarget_id":"OT_K1","family":"kinase_like","priority":"high"},
+    {"offtarget_id":"OT_K2","family":"kinase_like","priority":"high"},
+    {"offtarget_id":"OT_K3","family":"kinase_like","priority":"medium"},
+    {"offtarget_id":"OT_GPCR1","family":"gpcr_like","priority":"medium"},
+    {"offtarget_id":"OT_GPCR2","family":"gpcr_like","priority":"medium"},
+    {"offtarget_id":"OT_GPCR3","family":"gpcr_like","priority":"low"},
+    {"offtarget_id":"OT_ION1","family":"ion_channel_like","priority":"high"},
+    {"offtarget_id":"OT_ION2","family":"ion_channel_like","priority":"medium"},
+    {"offtarget_id":"OT_NUC1","family":"nuclear_receptor_like","priority":"low"},
+    {"offtarget_id":"OT_TRANSPORT1","family":"transporter","priority":"medium"},
+    {"offtarget_id":"OT_TRANSPORT2","family":"transporter","priority":"low"},
+    {"offtarget_id":"OT_CYP3A4","family":"metabolic","priority":"high"},
+    {"offtarget_id":"OT_CYP2D6","family":"metabolic","priority":"medium"},
+    {"offtarget_id":"OT_CYP2C9","family":"metabolic","priority":"medium"}
+  ],
+  "selectivity_policy": {
+    "target_vs_offtarget_margin_min": 1.20,
+    "emit_target_vs_offtarget_margin": true,
+    "reward_clean_quick_panel": true,
+    "penalize_broad_liability_signature": true,
+    "hard_fail_if_hERG_high_and_margin_low": true
+  }
+}
+[*data_selectivity_panel_htl] #0

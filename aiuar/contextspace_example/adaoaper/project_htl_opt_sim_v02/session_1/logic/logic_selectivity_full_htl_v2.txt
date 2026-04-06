@@ -1,0 +1,9 @@
+L9. Full Selectivity Assessment
+- Run fuller selectivity panel on promoted subset.
+- Derive:
+  target_vs_offtarget_margin
+  weighted_selectivity_score
+  off-target_flags
+  hERG hard-stop review if configured
+- Penalize compounds with strong target potency but weak margin.
+[*logic_selectivity_full_htl_v2] #0

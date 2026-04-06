@@ -1,0 +1,15 @@
+L5. PhysChem / Drug-Likeness Screen
+- Apply *data_property_targets_htl and *params_htl_freedom_v2.property_targets.
+- Evaluate:
+  MW
+  cLogP
+  TPSA
+  HBD/HBA
+  rotors
+  aromatic density
+  Fsp3
+- Emit:
+  physchem_pass
+  property_deviation_summary
+  repairability_note
+[*logic_physchem_screen_htl_v2] #0

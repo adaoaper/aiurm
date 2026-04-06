@@ -1,0 +1,194 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Small-Molecule Hit-to-Lead Optimization Campaign Simulation (v0.2)
+
+# Purpose
+End-to-end hit-to-lead optimization campaign with cognitive governance:
+seed hit set -> analog expansion -> SAR-aware triage -> physicochemical repair -> structural alerts ->
+ADMET / DMPK screen -> selectivity tiering -> synthesis feasibility -> building-block availability ->
+retrosynthesis -> novelty / diversity -> uncertainty calibration -> policy reranking -> robustness ->
+explainability.
+
+---
+
+# Governance
+as_of                            = "2026-04-03"
+seed                             = 42
+model_version                    = "HitToLead_application_profile_v0_2"
+target_label                     = "Protein_X_pocket_A"
+policy_version                   = "SM_HTL_OPT_v0_2"
+execution_profile                = APPLICATION_SCALE_REALITY_STRESS
+audit_level                      = FULL
+parameter_profile                = PLAUSIBLE_APPLICATION_SCALE
+response_contract                = STRUCTURED_OUTPUT_REQUIRED
+synthetic_data_expansion_policy  = "AI must generate and expand the effective campaign dataset during execution from compact seed anchors, transformation rules, policy profiles, and scale parameters."
+python_execution_policy          = "Use Python whenever it materially improves determinism, arithmetic accuracy, ranking consistency, tabular transformation, aggregation, filtering, simulation, or structured JSON generation."
+
+execution_id                     = {YYYYMMDD}_{random_6}
+output_result_format             = JSON
+output_json_indent               = 2
+runtime                          = python
+execution_trigger                = python_runtime
+schema_mode                      = strict
+aiurm_markers_location           = IN_JSON_BODY
+
+output_materialization_contract  = FULL_PER_CANDIDATE_RECORDS_REQUIRED
+output_materialization_scope     = all_result_stage_artifacts
+summary_only_violation_action    = ABORT_AND_EXCEPTION
+
+substrate_type                   = FILESYSTEM
+aiuar_root                       = ...\aiuar\
+aiuar                            = *****contextspace_example****adaoaper***project_htl_opt_sim_v02**session_1
+aiuar_data_source                = aiuar
+aiuar_logic_source               = aiuar
+aiuar_result_output              = aiuar
+
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+
+[*aiurm_governance_htl_opt_sim_v02] #0
+
+---
+
+# Data
+
+*data_target_program_htl
+*data_seed_hits_htl
+*data_series_sar_priors_htl
+*data_transform_library_htl
+*data_property_targets_htl
+*data_alerts_admet_htl
+*data_selectivity_panel_htl
+*data_synthesis_procurement_htl
+*data_applicability_uncertainty_htl
+*data_policy_profiles_htl
+*data_novelty_priors_htl
+*data_params_htl_freedom_v2
+
+---
+
+# Logic
+
+*logic_campaign_plan_htl_v2
+*logic_seed_expand_enum_htl_v2
+*logic_shard_controller_htl_v2
+*logic_merge_dedup_htl_v2
+*logic_sar_repair_htl_v2
+*logic_physchem_screen_htl_v2
+*logic_alerts_htl_v2
+*logic_admet_screen_htl_v2
+*logic_selectivity_quick_htl_v2
+*logic_selectivity_full_htl_v2
+*logic_synthesis_assess_htl_v2
+*logic_bb_availability_htl_v2
+*logic_retrosynthesis_pass_htl_v2
+*logic_route_uncertainty_htl_v2
+*logic_novelty_diversity_htl_v2
+*logic_uncertainty_calibration_htl_v2
+*logic_multiobjective_rank_htl_v2
+*logic_portfolio_allocation_htl_v2
+*logic_policy_rerank_htl_v2
+*logic_explain_htl_v2
+*logic_failure_analysis_htl_v2
+*logic_stress_htl_v2
+
+---
+
+# Result
+
+R1. Build governed campaign plan
+apply *logic_campaign_plan_htl_v2 to *data_target_program_htl and *data_seed_hits_htl and *data_series_sar_priors_htl and *data_policy_profiles_htl and *data_params_htl_freedom_v2
+[*run_plan_htl_v2] #3
+
+R2. Seed expansion / analog enumeration
+apply *logic_seed_expand_enum_htl_v2 to *data_seed_hits_htl and *data_series_sar_priors_htl and *data_transform_library_htl and *run_plan_htl_v2 and *data_params_htl_freedom_v2
+[*results_generated_raw_htl_v2]
+
+R3. Shard orchestration / early compression
+apply *logic_shard_controller_htl_v2 to *results_generated_raw_htl_v2 and *data_params_htl_freedom_v2
+[*results_shard_controller_htl_v2]
+
+R4. Merge, canonicalize, deduplicate
+apply *logic_merge_dedup_htl_v2 to *results_shard_controller_htl_v2 and *data_params_htl_freedom_v2
+[*results_generated_merged_htl_v2]
+
+R5. SAR repair / potency improvement pass
+apply *logic_sar_repair_htl_v2 to *results_generated_merged_htl_v2 and *data_series_sar_priors_htl and *data_target_program_htl
+[*results_sar_repaired_htl_v2]
+
+R6. PhysChem / drug-likeness screen
+apply *logic_physchem_screen_htl_v2 to *results_sar_repaired_htl_v2 and *data_property_targets_htl and *data_params_htl_freedom_v2
+[*results_physchem_pass_htl_v2]
+
+R7. Structural alerts pass
+apply *logic_alerts_htl_v2 to *results_physchem_pass_htl_v2 and *data_alerts_admet_htl
+[*results_alerts_pass_htl_v2]
+
+R8. ADMET / DMPK screen
+apply *logic_admet_screen_htl_v2 to *results_alerts_pass_htl_v2 and *data_alerts_admet_htl and *data_applicability_uncertainty_htl
+[*results_admet_pass_htl_v2]
+
+R9. Quick selectivity controller
+apply *logic_selectivity_quick_htl_v2 to *results_admet_pass_htl_v2 and *data_selectivity_panel_htl and *data_params_htl_freedom_v2
+[*results_selectivity_quick_htl_v2]
+
+R10. Full selectivity assessment
+apply *logic_selectivity_full_htl_v2 to *results_selectivity_quick_htl_v2 and *data_selectivity_panel_htl and *data_params_htl_freedom_v2
+[*results_selectivity_full_htl_v2]
+
+R11. Synthetic accessibility assessment
+apply *logic_synthesis_assess_htl_v2 to *results_selectivity_full_htl_v2 and *data_synthesis_procurement_htl
+[*results_synthesis_feasible_htl_v2]
+
+R12. Building-block availability
+apply *logic_bb_availability_htl_v2 to *results_synthesis_feasible_htl_v2 and *data_synthesis_procurement_htl
+[*results_bb_availability_htl_v2]
+
+R13. Retrosynthesis feasibility pass
+apply *logic_retrosynthesis_pass_htl_v2 to *results_bb_availability_htl_v2 and *data_synthesis_procurement_htl and *data_params_htl_freedom_v2
+[*results_retro_feasible_htl_v2]
+
+R14. Route uncertainty analysis
+apply *logic_route_uncertainty_htl_v2 to *results_retro_feasible_htl_v2 and *data_synthesis_procurement_htl
+[*results_route_uncertainty_htl_v2]
+
+R15. Novelty and diversity control
+apply *logic_novelty_diversity_htl_v2 to *results_route_uncertainty_htl_v2 and *data_novelty_priors_htl and *data_seed_hits_htl
+[*results_novel_diverse_htl_v2]
+
+R16. Applicability / uncertainty calibration
+apply *logic_uncertainty_calibration_htl_v2 to *results_novel_diverse_htl_v2 and *data_applicability_uncertainty_htl and *data_params_htl_freedom_v2
+[*results_confidence_calibrated_htl_v2]
+
+R17. Multiobjective ranking (default policy)
+apply *logic_multiobjective_rank_htl_v2 to *results_confidence_calibrated_htl_v2 and *data_policy_profiles_htl and *data_params_htl_freedom_v2
+[*results_ranked_default_policy_htl_v2] #3
+
+R18. Portfolio allocation / series balance
+apply *logic_portfolio_allocation_htl_v2 to *results_ranked_default_policy_htl_v2 and *data_policy_profiles_htl
+[*results_portfolio_allocated_htl_v2] #3
+
+R19. Policy reranking matrix
+apply *logic_policy_rerank_htl_v2 to *results_portfolio_allocated_htl_v2 and *data_policy_profiles_htl and *data_params_htl_freedom_v2
+[*results_policy_rerank_htl_v2] #3
+
+R20. Explainability (global + local)
+apply *logic_explain_htl_v2 to *run_plan_htl_v2 and *results_policy_rerank_htl_v2 and *results_selectivity_full_htl_v2 and *results_synthesis_feasible_htl_v2 and *results_retro_feasible_htl_v2 and *results_confidence_calibrated_htl_v2
+[*results_explainability_htl_v2] #3
+
+R21. Borderline / failure analysis
+apply *logic_failure_analysis_htl_v2 to *results_generated_merged_htl_v2 and *results_sar_repaired_htl_v2 and *results_physchem_pass_htl_v2 and *results_alerts_pass_htl_v2 and *results_admet_pass_htl_v2 and *results_selectivity_quick_htl_v2 and *results_selectivity_full_htl_v2 and *results_synthesis_feasible_htl_v2 and *results_retro_feasible_htl_v2 and *results_policy_rerank_htl_v2 and *data_params_htl_freedom_v2
+[*results_failure_analysis_htl_v2] #3
+
+R22. Stress matrix / robustness
+apply *logic_stress_htl_v2 to *results_policy_rerank_htl_v2 and *data_params_htl_freedom_v2 and *data_target_program_htl and *data_series_sar_priors_htl and *data_policy_profiles_htl
+[*results_stress_htl_v2] #3
+
+---
+
+# End of pipeline definition

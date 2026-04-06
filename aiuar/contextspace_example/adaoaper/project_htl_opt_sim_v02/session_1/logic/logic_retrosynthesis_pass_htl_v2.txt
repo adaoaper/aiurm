@@ -1,0 +1,13 @@
+L11. Retrosynthesis Feasibility Pass
+- Use template families and synthesis rules to estimate:
+  plausible route count
+  shortest preferred route length
+  best route template family
+  route feasibility score
+  building-block accessibility proxy
+  dependence on limited or custom inventory
+- Penalize:
+  excessive steps
+  low-confidence disconnections
+  rare building-block reliance
+[*logic_retrosynthesis_pass_htl_v2] #0

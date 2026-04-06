@@ -1,0 +1,46 @@
+D4. Analog Transformation Library
+{
+  "transformation_families": [
+    {"transform_id":"T01","class":"bioisostere_swap","rule":"amide_to_reversed_amide","expected_effects":{"potency":"context_dependent","solubility":"neutral","permeability":"neutral"},"risk_notes":["binding_vector_change"]},
+    {"transform_id":"T02","class":"bioisostere_swap","rule":"amide_to_triazole_like_surrogate","expected_effects":{"microsomal_stability":"up","permeability":"slight_up","potency":"slight_down_or_neutral"},"risk_notes":["geometry_shift"]},
+    {"transform_id":"T03","class":"tail_modulation","rule":"morpholine_to_oxetane_piperidine_space","expected_effects":{"solubility":"context_dependent","hERG":"watch","permeability":"up"},"risk_notes":["basicity_shift"]},
+    {"transform_id":"T04","class":"tail_modulation","rule":"piperazine_cap_to_neutral_polar_cap","expected_effects":{"hERG":"down","permeability":"slight_down","solubility":"up"},"risk_notes":["potency_loss_possible"]},
+    {"transform_id":"T05","class":"aryl_edit","rule":"phenyl_to_pyridyl","expected_effects":{"cLogP":"down","solubility":"up","potency":"context_dependent"},"risk_notes":["basicity_and_orientation_change"]},
+    {"transform_id":"T06","class":"aryl_edit","rule":"phenyl_to_difluorophenyl","expected_effects":{"potency":"up_or_neutral","microsomal_stability":"up"},"risk_notes":["cLogP_up"]},
+    {"transform_id":"T07","class":"heteroatom_tuning","rule":"methoxy_to_difluoromethoxy","expected_effects":{"metabolic_liability":"down","cLogP":"up"},"risk_notes":["solubility_down"]},
+    {"transform_id":"T08","class":"heteroatom_tuning","rule":"ether_to_direct_link","expected_effects":{"microsomal_stability":"up","rot_bonds":"down"},"risk_notes":["potency_and_geometry_shift"]},
+    {"transform_id":"T09","class":"core_rigidity","rule":"flexible_tail_to_constrained_ring","expected_effects":{"entropy_penalty":"down","affinity_confidence":"up"},"risk_notes":["synthesis_complexity_up"]},
+    {"transform_id":"T10","class":"core_rigidity","rule":"linear_linker_to_cyclopropyl_or_oxetane_insert","expected_effects":{"potency":"up_or_neutral","permeability":"context_dependent"},"risk_notes":["route_complexity_watch"]},
+    {"transform_id":"T11","class":"polarity_repair","rule":"add_single_acceptor_at_solvent_edge","expected_effects":{"solubility":"up","cLogP":"down"},"risk_notes":["permeability_down_if_overdone"]},
+    {"transform_id":"T12","class":"polarity_repair","rule":"remove_redundant_acceptor_from_core_periphery","expected_effects":{"permeability":"up","tpsa":"down"},"risk_notes":["solubility_down"]},
+    {"transform_id":"T13","class":"liability_mitigation","rule":"aniline_like_to_heterobiaryl_surrogate","expected_effects":{"alert_risk":"down","novelty":"up"},"risk_notes":["potency_rebuild_needed"]},
+    {"transform_id":"T14","class":"liability_mitigation","rule":"benzylic_soft_spot_to_fluoro_or_cyclopropyl_block","expected_effects":{"microsomal_stability":"up"},"risk_notes":["cLogP_up_slight"]},
+    {"transform_id":"T15","class":"liability_mitigation","rule":"basic_tail_pKa_dampening","expected_effects":{"hERG":"down","permeability":"slight_down"},"risk_notes":["solubility_context_dependent"]},
+    {"transform_id":"T16","class":"selectivity_bias","rule":"grow_into_target_specific_lipophile_niche","expected_effects":{"target_affinity":"up","selectivity":"up_if_spatially_unique"},"risk_notes":["cLogP_up"]},
+    {"transform_id":"T17","class":"selectivity_bias","rule":"trim_offtarget_flat_aromatic_patch","expected_effects":{"offtarget_margin":"up","novelty":"up"},"risk_notes":["potency_loss_possible"]},
+    {"transform_id":"T18","class":"permeability_repair","rule":"urea_to_compact_heterocycle_surrogate","expected_effects":{"permeability":"up","tpsa":"down"},"risk_notes":["potency_loss_possible"]},
+    {"transform_id":"T19","class":"permeability_repair","rule":"reduce_rotor_count_by_ring_closure","expected_effects":{"permeability":"up","entropy_penalty":"down"},"risk_notes":["route_complexity_watch"]},
+    {"transform_id":"T20","class":"solubility_repair","rule":"append_small_solubilizing_handle","expected_effects":{"solubility":"up"},"risk_notes":["permeability_down_if_overpolar"]},
+    {"transform_id":"T21","class":"solubility_repair","rule":"replace_lipophilic_patch_with_heteroaryl_balance","expected_effects":{"solubility":"up","cLogP":"down"},"risk_notes":["potency_context_dependent"]},
+    {"transform_id":"T22","class":"novelty_diversification","rule":"scaffold_hop_with_anchor_preservation","expected_effects":{"novelty":"up","IP_space":"up"},"risk_notes":["uncertainty_up"]},
+    {"transform_id":"T23","class":"novelty_diversification","rule":"series_transfer_hybridization","expected_effects":{"novelty":"up","selectivity":"context_dependent"},"risk_notes":["synthesis_complexity_up","confidence_down"]},
+    {"transform_id":"T24","class":"route_simplification","rule":"reduce_stereochemical_or_protecting_group_burden","expected_effects":{"sa_score":"up","route_feasibility":"up"},"risk_notes":["potency_loss_possible"]},
+    {"transform_id":"T25","class":"route_simplification","rule":"replace_limited_building_block_with_catalog_common_equivalent","expected_effects":{"procurement_risk":"down"},"risk_notes":["binding_fit_shift"]},
+    {"transform_id":"T26","class":"microstate_control","rule":"neutralize_secondary_basic_center","expected_effects":{"hERG":"down","microstate_complexity":"down"},"risk_notes":["solubility_down"]},
+    {"transform_id":"T27","class":"microstate_control","rule":"single_center_basicity_focus","expected_effects":{"distribution_predictability":"up","PK_risk":"down"},"risk_notes":["cellular_activity_shift"]},
+    {"transform_id":"T28","class":"series_expansion","rule":"matched_molecular_pair_neighborhood_walk","expected_effects":{"SAR_signal_density":"up"},"risk_notes":["local_redundancy_if_uncontrolled"]},
+    {"transform_id":"T29","class":"series_expansion","rule":"compact_hydrophobe_scan","expected_effects":{"affinity":"up_or_neutral"},"risk_notes":["lipophilicity_watch"]},
+    {"transform_id":"T30","class":"series_expansion","rule":"solvent_exit_polarity_scan","expected_effects":{"solubility":"up_or_neutral","selectivity":"context_dependent"},"risk_notes":["permeability_watch"]},
+    {"transform_id":"T31","class":"series_expansion","rule":"heteroaryl_vector_scan","expected_effects":{"novelty":"up","selectivity":"up_or_neutral"},"risk_notes":["route_complexity_watch"]},
+    {"transform_id":"T32","class":"series_expansion","rule":"small_ring_occupancy_scan","expected_effects":{"entropy_penalty":"down","shape_complementarity":"up"},"risk_notes":["strain_watch"]}
+  ],
+  "enumeration_policy": {
+    "allow_single_step_transforms": true,
+    "allow_double_step_transforms": true,
+    "max_transforms_per_analog": 2,
+    "prefer_medicinally_plausible_sequences": true,
+    "forbid_explosive_combinatorics_without_series_support": true,
+    "retain_parent_seed_pointer": true
+  }
+}
+[*data_transform_library_htl] #0

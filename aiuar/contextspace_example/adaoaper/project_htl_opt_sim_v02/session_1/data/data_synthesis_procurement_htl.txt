@@ -1,0 +1,41 @@
+D8. Synthesis Rules / Retrosynthesis Templates / Procurement
+{
+  "synthesis_rules": {
+    "max_preferred_steps": 5,
+    "max_acceptable_steps": 7,
+    "stereochemical_burden_penalty": 0.08,
+    "protecting_group_dependency_penalty": 0.06,
+    "convergent_route_bonus": 0.05,
+    "late_stage_diversification_bonus": 0.05
+  },
+  "retro_template_families": [
+    "amide_coupling_standard",
+    "urea_formation_standard",
+    "snAr_heteroaryl_installation",
+    "buchwald_like_amination_proxy",
+    "reductive_amination_standard",
+    "suzuki_like_cross_coupling_proxy",
+    "heterocycle_closure_compact",
+    "alkylation_solvent_exit_handle"
+  ],
+  "building_block_inventory": {
+    "catalog_common": 245000,
+    "catalog_limited": 58000,
+    "custom_make_possible": true,
+    "preferred_procurement_profile": {
+      "max_custom_fraction_top_set": 0.25,
+      "prefer_common_or_limited_for_final_nominees": true
+    },
+    "lead_time_days": {
+      "common":[3,10],
+      "limited":[7,21],
+      "custom":[21,56]
+    },
+    "cost_bands": {
+      "common":"low",
+      "limited":"medium",
+      "custom":"high"
+    }
+  }
+}
+[*data_synthesis_procurement_htl] #0

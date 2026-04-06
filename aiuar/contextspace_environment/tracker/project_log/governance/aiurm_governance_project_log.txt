@@ -14,15 +14,14 @@ what failed, and what remains pending.
 ---
 
 # Governance
-as_of                = "2026-03-25"
-execution_mode       = ONE_STEP
-output_result_format        = JSON
-audit_level          = MINIMAL
+as_of                   = "2026-03-25"
+output_result_format    = JSON
+audit_level             = MINIMAL
 language_policy_default = EN
 
-substrate_type           = FILESYSTEM
-aiuar_root           = ...\aiuar\
-aiuar                = *****contextspace_environment****tracker***project_log**session_1
+substrate_type          = FILESYSTEM
+aiuar_root              = ...\aiuar\
+aiuar                   = *****contextspace_environment****tracker***project_log**session_1
 
 [*aiurm_governance_project_log] #0
 

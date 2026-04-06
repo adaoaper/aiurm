@@ -1,0 +1,15 @@
+L7. ADMET / DMPK Screen
+- Use *data_alerts_admet_htl.admet_model_stack and seed priors.
+- Estimate:
+  solubility_score
+  permeability_score
+  microsomal_stability_score
+  CYP risk scores
+  hERG risk score
+  efflux risk
+- Emit:
+  admet_score
+  developability_score
+  confidence_admet
+  major_liability_flag
+[*logic_admet_screen_htl_v2] #0

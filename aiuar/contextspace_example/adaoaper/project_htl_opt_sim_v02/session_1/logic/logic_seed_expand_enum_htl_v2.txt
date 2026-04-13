@@ -1,10 +1,10 @@
 L2. Seed Expansion / Analog Enumeration
 - Treat representative seed hits as anchor exemplars rather than the full operational dataset.
 - Instantiate the effective seed population programmatically before analog generation.
-- Expand synthetic analog space during execution according to *params_htl_freedom_v2.campaign_scale and *params_htl_freedom_v2.generation_control.
+- Expand synthetic analog space during execution according to *data_params_htl_freedom_v2.campaign_scale and *data_params_htl_freedom_v2.generation_control.
 - Do not assume that the full candidate table is pre-supplied in input.
 - Expand the representative seed set into the effective seed population.
-- Enumerate analogs using *data_transform_library_htl under *params_htl_freedom_v2.generation_control.
+- Enumerate analogs using *data_transform_library_htl under *data_params_htl_freedom_v2.generation_control.
 - Respect:
   medicinal plausibility
   series priors

@@ -1,6 +1,5 @@
 L4. HR action plan policy
-- Use *performance_analysis and *retention_analysis.
-- Build an action plan using *params_hr_outputs.action_plan_horizons.
+- Build an action plan using *data_output_configuration.action_plan_horizons.
 - Include:
   immediate priorities
   medium-term actions

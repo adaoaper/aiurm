@@ -1,11 +1,10 @@
 L11. Explainability policy
-- Use *performance_analysis and *retention_analysis and *aggressive_promotions and *scenario_comparison.
 - Explain reasoning for each result.
 - Specifically support:
-  per-result explanation in *performance_analysis
-  per-result explanation in *retention_analysis
-  per-result explanation in *aggressive_promotions
-  why John Smith was included in *aggressive_promotions
-  per-result explanation in *scenario_comparison
+  per-result explanation in *result_performance_analysis
+  per-result explanation in *result_retention_analysis
+  per-result explanation in *result_aggressive_promotions
+  why John Smith was included in *result_aggressive_promotions
+  per-result explanation in *result_scenario_comparison
 - Emit structured explanation objects with source pointers.
 [*logic_explainability_hr] #0

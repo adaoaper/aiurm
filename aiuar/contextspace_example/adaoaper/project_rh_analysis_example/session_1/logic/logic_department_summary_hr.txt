@@ -1,6 +1,5 @@
 L3. Department summary policy
-- Use *employees and *performance_analysis and *retention_analysis.
-- Aggregate by department according to *params_hr_outputs.department_summary_dimensions.
+- Aggregate by department according to *data_output_configuration.department_summary_dimensions.
 - Compute:
   count by performance classification
   average salary by department

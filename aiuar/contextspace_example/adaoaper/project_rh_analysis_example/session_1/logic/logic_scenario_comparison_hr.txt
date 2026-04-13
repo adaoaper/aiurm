@@ -1,6 +1,6 @@
 L8. Promotion scenario comparison policy
-- Compare *conservative_promotions and *aggressive_promotions.
-- Use *params_hr_outputs.scenario_comparison_dimensions.
+- Compare *result_conservative_promotions and *result_aggressive_promotions.
+- Use *data_output_configuration.scenario_comparison_dimensions.
 - Derive:
   number_of_promotions_each_scenario
   estimated_financial_impact

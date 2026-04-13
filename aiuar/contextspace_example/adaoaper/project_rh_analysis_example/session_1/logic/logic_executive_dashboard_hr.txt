@@ -1,6 +1,6 @@
 L5. Executive dashboard policy
-- Combine *performance_analysis and *retention_analysis and *department_summary.
-- Use *params_hr_outputs.executive_dashboard_dimensions.
+- Combine *result_performance_analysis and *result_retention_analysis and *result_department_summary.
+- Use *data_output_configuration.executive_dashboard_dimensions.
 - Derive:
   key performance indicators
   critical alerts

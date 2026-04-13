@@ -1,5 +1,4 @@
 L7. Aggressive promotion policy
-- Use *employees and *params_promotion_scenarios_hr.aggressive_criteria.
 - For each employee, compute average_rating.
 - Promote only when:
   average_rating >= rating_min

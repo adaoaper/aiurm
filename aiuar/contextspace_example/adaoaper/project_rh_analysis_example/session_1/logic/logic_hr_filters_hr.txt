@@ -1,8 +1,7 @@
 L10. Quick analytical filters policy
-- Use *performance_analysis and *retention_analysis and *department_summary.
 - Return:
-  employees classified as "Excellent" in *performance_analysis
-  employees classified as "High Risk" in *retention_analysis
-  IT-only department subset from *department_summary
+  employees classified as "Excellent" in *result_performance_analysis
+  employees classified as "High Risk" in *result_retention_analysis
+  IT-only department subset from *result_department_summary
 - Emit filtered analytical views for quick inspection.
 [*logic_hr_filters_hr] #0

@@ -1,5 +1,4 @@
 L9. Ready-for-promotion filter policy
-- Use *employees and *performance_analysis.
 - Return only employees whose growth_potential = "Ready for Promotion".
 - Allow compact and detailed filtered output.
 - Emit filtered employee subset with pointer-based justification.

@@ -1,12 +1,11 @@
 L2. Retention analysis policy
-- Use *employees and *params_retention_hr.
 - For each employee, compute average_rating from performance_ratings.
 - Classify retention risk using ordered rules:
   salary < high_risk.salary_below AND average_rating >= high_risk.rating_min -> "High Risk"
   tenure_months > medium_risk.tenure_months_above AND position not in management_positions -> "Medium Risk"
   overtime_hours > burnout_risk.overtime_hours_above AND absences > burnout_risk.absences_above -> "Burnout Risk"
   otherwise -> "Low Risk"
-- Map each retention risk to recommended action using *params_retention_hr.recommended_actions.
+- Map each retention risk to recommended action using *data_retention_rules.recommended_actions.
 - Emit per employee:
   employee_id
   employee_name

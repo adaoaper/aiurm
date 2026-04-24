@@ -1,0 +1,100 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Credit Risk Assessment (v0.1)
+Multi-Session Worker Pattern - One Proposal per Session
+
+# Purpose
+Demonstrate AIURM/AIUAR with a credit risk pipeline operating as a queue-driven worker:
+a middleware writes one normalized loan application per session; an LLM worker claims
+pending sessions (those without any *result_* marker) and resolves them sequentially.
+Logic and policy parameters are anchored in session_1 and resolved via cross-session reference.
+
+---
+
+# Governance
+as_of                    = "2026-04-19"
+policy_version           = "CREDIT_DEMO_V1"
+seed                     = 42
+
+substrate_type           = SQLITE_FILE
+aiuar_root               = ...\aiuar\
+aiuar                    = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_1
+aiuar_logic_source       = aiuar
+aiuar_data_source        = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_{claimed}
+aiuar_result_output      = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_{claimed}
+
+resolution_mode = INFERENCE 
+primary_resolver = MODEL 
+requires_llm_reasoning = true 
+primary_resolution_by_code = FORBIDDEN 
+instrumental_code_role = IO_ONLY 
+resolution_scope = ALL_APPLY_STEPS
+
+execution_id             = {YYYYMMDD}_{random_6}
+response_contract        = STRUCTURED_OUTPUT_REQUIRED
+output_result_format     = JSON
+runtime                  = python
+execution_trigger        = python_runtime
+pipeline_resolution      = INFERENCE
+
+audit_level              = FULL
+audit_policy             = LOG_EACH_RESULT_STEP
+
+language_policy_default  = EN
+schema_mode              = restrict
+
+aiurm_markers_location   = IN_JSON_BODY
+
+claim_target             = SESSION
+claim_strategy           = NO_RESULT_PRESENT
+claim_size               = 1
+
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+
+[*aiurm_governance_credit_risk_assessment] #0
+
+---
+
+# Data
+
+*data_credit_application
+**session_1*data_param_credit_policy
+
+---
+
+# Logic
+
+*logic_credit_risk_scoring
+*logic_loan_structuring
+*logic_decision_reasoning_nl
+*logic_parameters_audit
+
+---
+
+# Result
+
+R1. Credit risk scoring
+apply *logic_credit_risk_scoring to *data_credit_application and *data_param_credit_policy
+[*result_credit_risk_analysis] #3
+
+R2. Loan structuring
+apply *logic_loan_structuring to *result_credit_risk_analysis and *data_credit_application and *data_param_credit_policy
+[*result_loan_proposal] #3
+
+R3. Decision reasoning (natural language)
+apply *logic_decision_reasoning_nl to *result_credit_risk_analysis and *result_loan_proposal and *data_credit_application
+[*result_decision_reasoning_nl] #3
+
+R4. Parameters audit
+apply *logic_parameters_audit to *result_credit_risk_analysis and *data_param_credit_policy
+[*result_parameters_audit] #3
+
+---
+
+# End of pipeline definition

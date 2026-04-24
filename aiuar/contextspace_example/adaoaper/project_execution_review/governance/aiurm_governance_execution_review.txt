@@ -1,0 +1,114 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Execution Review (v0.2)
+Per-Session Worker Reviewer for Any Target Project Execution
+
+# Purpose
+Generic reviewer that claims one completed session from any target AIUAR project at a time
+and writes human-facing review artifacts directly INTO that same session, alongside the
+target's own results. Stateless worker pattern; idempotent by claim on the absence of the
+reviewer's final output marker (*result_preview_insights). Target project is chosen at
+deployment time via aiuar_review_target (project-level address); aiuar_data_source and
+aiuar_result_output are derived from it by field substitution. Completes the demo triad:
+generator (project_cra_integration) -> executor (project_credit_risk_assessment) ->
+reviewer (project_execution_review).
+
+---
+
+# Governance
+as_of                          = "2026-04-21"
+policy_version                 = "REVIEW_DEMO_V2"
+seed                           = 42
+
+substrate_type                 = FILESYSTEM
+aiuar_root                     = ...\aiuar\
+aiuar                          = *****contextspace_example****adaoaper***project_execution_review**session_1
+aiuar_logic_source             = aiuar
+
+aiuar_review_target            = *****contextspace_example****adaoaper***project_credit_risk_assessment
+review_scope                   = WORKER
+
+claim_target                   = SESSION
+claim_strategy                 = NO_RESULT_MARKER_PRESENT *result_preview_insights
+claim_size                     = 1
+
+aiuar_data_source              = {aiuar_review_target}**session_{claimed}
+aiuar_result_output            = {aiuar_review_target}**session_{claimed}
+
+execution_id                   = {YYYYMMDD}_{random_6}
+response_contract              = STRUCTURED_OUTPUT_REQUIRED
+output_result_format           = JSON
+runtime                        = python
+execution_trigger              = python_runtime
+
+resolution_mode                = INFERENCE
+primary_resolver               = MODEL
+requires_llm_reasoning         = true
+primary_resolution_by_code     = FORBIDDEN
+instrumental_code_role         = IO_ONLY
+resolution_scope               = ALL_APPLY_STEPS
+
+human_readability_mode         = ENABLED
+human_readability_scope        = ALL_APPLY_STEPS
+natural_language_output        = REQUIRED
+table_output                   = REQUIRED
+insight_output                 = REQUIRED
+table_format_default           = MARKDOWN
+table_max_rows                 = 50
+nl_style_default               = CONCISE_EXPLANATORY
+nl_language_default            = EN
+insight_depth_default          = ACTIONABLE
+
+audit_level                    = FULL
+audit_policy                   = LOG_EACH_RESULT_STEP
+
+language_policy_default        = EN
+schema_mode                    = restrict
+
+aiurm_markers_location         = IN_JSON_BODY
+
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+
+[*aiurm_governance_execution_review] #0
+
+---
+
+# Data
+
+*data_target_execution_bundle
+*data_preview_rendering_policy
+*data_preview_insight_catalog
+
+---
+
+# Logic
+
+*logic_render_tables
+*logic_render_summary_nl
+*logic_extract_insights
+
+---
+
+# Result
+
+R1. Render execution tables
+apply *logic_render_tables to *data_target_execution_bundle and *data_preview_rendering_policy
+[*result_preview_tables] #3
+
+R2. Render natural-language summary
+apply *logic_render_summary_nl to *result_preview_tables and *data_target_execution_bundle and *data_preview_rendering_policy
+[*result_preview_summary_nl] #3
+
+R3. Extract insights from execution
+apply *logic_extract_insights to *result_preview_tables and *result_preview_summary_nl and *data_target_execution_bundle and *data_preview_insight_catalog
+[*result_preview_insights] #3
+
+---
+
+# End of pipeline definition

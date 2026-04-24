@@ -1,0 +1,6 @@
+This file is a placeholder so session_1/result/ is tracked under FILESYSTEM substrate.
+session_1 is the anchor session for project_cra_integration. Result artifacts are
+NOT written here -- aiuar_result_output points to the consumer project
+(project_credit_risk_assessment) so each fire produces a new pending session there
+named session_cra_batch_{random_6}. This folder remains intentionally empty in normal
+operation.

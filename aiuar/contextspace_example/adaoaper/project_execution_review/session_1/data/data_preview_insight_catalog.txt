@@ -1,0 +1,70 @@
+{
+  "marker_purpose": "Catalog of insight categories the reviewer attempts to identify while analyzing a target execution.",
+  "marker_role": "Consumed by *logic_extract_insights. Each category declares applicable_scopes — the reviewer MUST filter categories whose applicable_scopes does not intersect the active review_scope. The catalog is domain-agnostic — the same categories apply to any target project.",
+  "insight_categories": [
+    {
+      "category": "CONCENTRATION",
+      "definition": "Outcomes, drivers, or attribute values clustering disproportionately in a subset of applications within the claimed session.",
+      "applicable_scopes": ["WORKER"],
+      "example": "Four of five applications share the same approval band within the batch."
+    },
+    {
+      "category": "POLICY_DRIFT",
+      "definition": "Gap between the policy thresholds or addons declared in the target's parameters audit and those actually exercised in decisions within the claimed session.",
+      "applicable_scopes": ["WORKER"],
+      "example": "cosigner_dti_threshold is declared but was not exercised despite two eligible applications in this batch."
+    },
+    {
+      "category": "ANOMALY",
+      "definition": "A single application that diverges from the distribution of its peers in the same claimed session on at least one decision-relevant dimension.",
+      "applicable_scopes": ["WORKER"],
+      "example": "One application approved Standard despite debt-to-income above 1.0."
+    },
+    {
+      "category": "COVERAGE_GAP",
+      "definition": "Declared policy bands, enum values, or approval classifications that do not appear in the claimed session.",
+      "applicable_scopes": ["WORKER"],
+      "example": "No Conditional-band approvals in this batch."
+    },
+    {
+      "category": "TREND",
+      "definition": "Directional change across multiple sessions in chronological order (average score, approval rate, rate band distribution, batch size).",
+      "applicable_scopes": ["MULTI_SESSION"],
+      "example": "Not applicable in WORKER mode — requires multiple sessions. Documented for future MULTI_SESSION scope value."
+    },
+    {
+      "category": "DATA_QUALITY",
+      "definition": "Plausibility breaks or contradictions in target results within the claimed session that suggest upstream input issues or logic misfires.",
+      "applicable_scopes": ["WORKER"],
+      "example": "Two applications share the same personal_id in this batch."
+    }
+  ],
+  "scope_filter_rule": "logic_extract_insights MUST intersect each category's applicable_scopes with the active review_scope. Categories with empty intersection are skipped silently and recorded in skipped_categories with reason = 'scope_mismatch'.",
+  "output_shape_per_insight": {
+    "category": "one of insight_categories.category",
+    "summary_nl": "one concise sentence stating what the reviewer observed",
+    "evidence": "pointers to specific table rows (table_id + row_ref) and/or target artifact markers",
+    "severity": "INFO | NOTICE | ACTION",
+    "suggested_action": "one concise sentence, or null when severity is INFO and no action is warranted"
+  },
+  "depth_policy": {
+    "insight_depth": "ACTIONABLE",
+    "min_insights": 1,
+    "max_insights": 8,
+    "skip_if_no_evidence": true,
+    "forbid_speculation_beyond_evidence": true,
+    "forbid_duplicate_across_categories": true
+  },
+  "severity_rubric": {
+    "INFO":    "Descriptive observation, no action needed.",
+    "NOTICE":  "Worth tracking, not blocking.",
+    "ACTION":  "Misalignment, anomaly, or gap warranting change in policy data, upstream generation, or business logic."
+  },
+  "scope_of_suggested_actions": [
+    "Propose adjustments to target's policy parameter markers (thresholds, addons).",
+    "Propose adjustments to upstream data generation (batch diversity, plausibility hints).",
+    "Propose adjustments to target business logic definitions.",
+    "Do NOT propose changes to protocol-level artifacts (governance fields, AIURM/AIUAR skill definitions)."
+  ]
+}
+[*data_preview_insight_catalog] #0

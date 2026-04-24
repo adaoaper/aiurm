@@ -1,5 +1,4 @@
 L13. Applicability Domain / Confidence Calibration
-- Use *data_applicability_uncertainty_htl and prior model outputs.
 - Compute:
   descriptor_density_score
   scaffold_support_score

@@ -108,17 +108,18 @@ If the executor cannot resolve the substrate, execution must abort with an excep
 The executor resolves the substrate type from the `substrate_type` field declared in governance.
 This field is mandatory — execution without `substrate_type` is a protocol violation.
 
-### File-based substrate resolution (JSON_FILE, MARKDOWN_FILE)
+### Declared file substrate resolution
 
-When `substrate_type` is `JSON_FILE` or `MARKDOWN_FILE`, all artifacts — governance, data, logic,
-and result — are resolved from a single file. The executor must NOT access the filesystem for
-individual artifact files.
+Applies to `JSON_FILE`, `MARKDOWN_FILE`, `SQLITE_FILE`, and any other declared file/database substrate.
+When `execute in {filename}` is used, all artifacts — governance, data, logic, and result — are resolved from the
+declared file substrate only. The executor must NOT access mirrored filesystem artifact files.
 
 Resolution rules:
 - The substrate file is declared explicitly in the execute command using `in {filename}`
-- All artifact content is read from within that single file
-- The AIUAR hierarchy is represented as nested keys (JSON) or heading levels (Markdown)
-- Writing results back to the substrate file follows the same single-file discipline
+- All artifact content is read from within that declared file substrate
+- The AIUAR hierarchy is represented using the native structure of the substrate: nested keys, heading levels,
+relational rows/tables, or equivalent structured nodes
+- Writing results back to the declared file substrate follows the same substrate discipline
 
 ### Cross-substrate resolution
 

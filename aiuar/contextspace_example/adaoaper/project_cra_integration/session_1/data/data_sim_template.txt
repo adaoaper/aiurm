@@ -1,0 +1,38 @@
+{
+  "marker_purpose": "Schema and plausibility template for a single synthetic credit application.",
+  "marker_role": "Reference shape consumed by *logic_synthesize_credit_batch to generate plausible records that the consumer (project_credit_risk_assessment) can score under its Base Credit Risk Policy.",
+  "schema": {
+    "application_id":           {"type": "string",  "format": "CR{6-digit zero-padded incremental}", "example": "CR000123"},
+    "applicant_name":           {"type": "string",  "synthetic_pool": ["Mary Johnson","John Smith","Anna Williams","Charles Brown","Patricia Davis","Richard Miller","Linda Garcia","Michael Rodriguez","Susan Wilson","James Anderson","Karen Thomas","David Martinez","Lisa Lopez","Robert Lee","Nancy White","William Harris","Betty Clark","Joseph Lewis","Sandra Walker","Thomas Hall","Helen Allen","Charles Young","Donna Hernandez","Christopher King","Carol Wright","Daniel Scott","Sharon Green","Matthew Adams","Michelle Baker","Anthony Nelson"]},
+    "personal_id":              {"type": "string",  "format": "###.###.###-##", "synthetic": true},
+    "age":                      {"type": "integer", "range": [21, 70]},
+    "monthly_income":           {"type": "float",   "range": [1500.00, 25000.00], "currency": "BRL"},
+    "employment_type":          {"type": "enum",    "values": ["Employee", "Self-Employed", "Business Owner"]},
+    "employment_duration":      {"type": "integer", "range": [3, 240], "unit": "months"},
+    "requested_amount":         {"type": "float",   "range": [5000.00, 200000.00], "correlation_hint": "0.5x to 15x monthly_income"},
+    "loan_purpose":             {"type": "enum",    "values": ["Home Purchase","Vehicle Purchase","Business Expansion","Debt Consolidation","Investment Property","Education","Medical","Personal"]},
+    "credit_score":             {"type": "integer", "range": [430, 820]},
+    "current_debts":            {"type": "float",   "range": [0.00, 20000.00]},
+    "assets_value":             {"type": "float",   "range": [10000.00, 800000.00]},
+    "bank_relationship":        {"type": "integer", "range": [3, 240], "unit": "months"},
+    "checking_account_balance": {"type": "float",   "range": [200.00, 100000.00]},
+    "savings_balance":          {"type": "float",   "range": [0.00, 300000.00]},
+    "credit_history":           {"type": "enum",    "values": ["Excellent","Good","Fair","Major Issues"]},
+    "guarantor":                {"type": "boolean"},
+    "collateral":               {"type": "enum",    "values": ["Real Estate","Vehicle","None"]},
+    "debt_to_income_ratio":     {"type": "float",   "range": [0.10, 1.40], "computed_hint": "current_debts / monthly_income (rounded to 2 decimals)"}
+  },
+  "plausibility_hints": [
+    "employment_duration must not exceed (age - 18) * 12.",
+    "Self-Employed and Business Owner usually have higher monthly_income variance and may have employment_duration shorter than tenure-equivalent Employees.",
+    "credit_score correlates with credit_history: Excellent -> 720+, Good -> 620-719, Fair -> 520-619, Major Issues -> below 520.",
+    "debt_to_income_ratio = current_debts / monthly_income (compute consistently).",
+    "guarantor=true commonly pairs with younger borrowers, weaker credit profiles, or first-time borrowers.",
+    "collateral=Real Estate usually pairs with Home Purchase or Investment Property loan_purpose.",
+    "collateral=Vehicle commonly pairs with Vehicle Purchase loan_purpose.",
+    "loan_purpose=Business Expansion is most common for Self-Employed or Business Owner.",
+    "loan_purpose=Debt Consolidation often pairs with high current_debts and elevated DTI.",
+    "requested_amount should be plausible given assets_value and monthly_income (no $200k requested by an applicant with $1500 income and zero assets)."
+  ]
+}
+[*data_sim_template] #0

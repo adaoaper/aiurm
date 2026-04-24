@@ -1,0 +1,52 @@
+Purpose: Generate a plausible batch of 1-6 synthetic credit applications by applying
+the schema and plausibility hints from *data_sim_template under the constraints
+declared in *data_sim_policy, and write it as a new pending session in the consumer
+project (project_credit_risk_assessment).
+
+INPUTS
+- *data_sim_template -> schema, value ranges, enum vocabularies, plausibility hints
+- *data_sim_policy   -> batch size distribution, diversity requirements, freshness
+                        rules, session naming pattern, metadata to propagate
+
+EXECUTION SEMANTICS (pipeline_resolution = INFERENCE)
+The LLM must:
+
+1. Sample batch_size from *data_sim_policy.batch_size_distribution.weights.
+
+2. For each application in the batch:
+   - Generate field values respecting the schema (types, ranges, enums) from *data_sim_template.
+   - Honor every plausibility_hint in *data_sim_template (no contradictory tuples).
+   - Vary the profile across applications in the same batch to satisfy
+     *data_sim_policy.diversity_requirements (when applicable to batch_size).
+   - Honor *data_sim_policy.freshness_requirements (uniqueness within the batch).
+
+3. Compose the batch as the applications array.
+
+4. Bind the {random_6} placeholder of governance.aiuar_result_output to a fresh
+   6-char alphanumeric identifier per *data_sim_policy.session_naming. The result
+   write must land at:
+
+     *****contextspace_example****adaoaper***project_credit_risk_assessment**session_cra_batch_{random_6}*data_credit_application
+
+   The session must not pre-exist in aiuar_session for this project; on collision
+   (extremely rare), regenerate the random_6 and retry up to 3 times.
+
+5. Include the execution metadata listed in
+   *data_sim_policy.execution_metadata_to_include_in_result.
+
+DIVERSITY ENFORCEMENT
+- If *data_sim_policy.diversity_requirements not met after first generation attempt,
+  regenerate the failing slot(s), up to *data_sim_policy.stop_conditions.max_attempts_to_satisfy_diversity.
+- If still not met, emit batch with relaxed shape and set diversity_relaxed=true
+  plus a brief reason in result metadata.
+
+RULES
+- Do not invent fields not declared in *data_sim_template.schema.
+- Synthetic personal_id and applicant_name must be plausibly formatted but not
+  match real persons; draw applicant_name from the synthetic_pool in the template.
+- Currency throughout: BRL.
+- Time semantics: UTC ISO-8601 for generated_at_utc.
+- The result marker is *data_credit_application (singular) by design: the consumer
+  treats this single marker's content as an array of 1..N applications. This is the
+  agreed naming convention (Caminho A) for cross-project producer->consumer handoff.
+[*logic_synthesize_credit_batch] #0

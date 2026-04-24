@@ -1,0 +1,62 @@
+Purpose: Produce a single, auditable credit risk score where HIGH SCORE = SAFER application.
+
+SCORING FRAMEWORK (0-100)
+
+A) CREDIT SCORE EVALUATION (30 points max)
+- 750+ = 30 points
+- 700-749 = 27 points
+- 650-699 = 23 points
+- 550-649 = 15 points
+- 450-549 = 8 points
+- Below 450 = 0 points
+
+B) INCOME STABILITY ASSESSMENT (25 points max)
+- Employee 36+ months = 25 points
+- Employee 12-35 months = 20 points
+- Self-Employed / Business Owner 24+ months = 18 points
+- Self-Employed / Business Owner 12-23 months = 12 points
+- Less than 12 months employment = 5 points
+
+C) DEBT-TO-INCOME RATIO EVALUATION (20 points max)
+- DTI <= 0.30 = 20 points
+- DTI 0.31-0.50 = 16 points
+- DTI 0.51-0.80 = 12 points
+- DTI 0.81-1.00 = 6 points
+- DTI > 1.00 = 2 points
+
+D) COLLATERAL AND GUARANTEES (15 points max)
+- Real Estate collateral = 15 points
+- Vehicle collateral + guarantor = 13 points
+- Vehicle collateral only = 10 points
+- Guarantor only = 7 points
+- No collateral / guarantor = 2 points
+
+E) BANKING RELATIONSHIP (10 points max)
+- 60+ months relationship = 10 points
+- 24-59 months = 8 points
+- 12-23 months = 6 points
+- Less than 12 months = 3 points
+
+APPROVAL CLASSIFICATION
+Use thresholds from the active policy parameter marker:
+- >= prime_min -> APPROVED - Prime Rate
+- >= standard_min -> APPROVED - Standard Rate
+- >= conditional_min -> CONDITIONAL - Higher Rate + Restrictions
+- >= manager_review_min -> REFER TO MANAGER - Manual Review
+- below manager_review_min -> DECLINED - High Risk
+
+MANDATORY OUTPUT FIELDS
+- application_id
+- total_score
+- score_breakdown
+- approval_status
+- primary_strengths
+- primary_risk_factors
+- required_conditions
+- trace_pointers
+
+RULES
+- No interpolation outside defined buckets.
+- Classification must use the active policy marker.
+- Output must preserve pointer traceability from score components to final status.
+[*logic_credit_risk_scoring] #0

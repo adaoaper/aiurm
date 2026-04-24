@@ -1,0 +1,8 @@
+if *aiurm_governance_project_materialize.materialization_format = SQLITE_FILE
+  *****contextspace_environment****standardizer***project_materialize_base**session_sqllite*logic_project_materialization
+else if *aiurm_governance_project_materialize.materialization_format = MARKDOWN_FILE
+  *****contextspace_environment****standardizer***project_materialize_base**session_markdown*logic_project_materialization
+else
+  *****contextspace_environment****standardizer***project_materialize_base**session_json*logic_project_materialization
+
+[*logic_project_materialization] #0

@@ -1,0 +1,38 @@
+{
+  "marker_purpose": "Resolver descriptor for the single claimed target session under review (WORKER mode).",
+  "marker_role": "The executor materializes this marker at runtime by picking exactly one session from the target project (aiuar_review_target) per claim_strategy, and collecting that session's Data (*data_*) and Result (*result_*) artifacts. WORKER mode: one session per run, no aggregation across sessions.",
+  "resolution_protocol": {
+    "source_field": "aiuar_review_target",
+    "scope_field": "review_scope",
+    "scope_values_supported": ["WORKER"],
+    "scope_semantics": {
+      "WORKER": "Enumerate every session under aiuar_review_target. Select exactly one session that satisfies BOTH conditions: (a) at least one *result_* artifact from the target is present (target has produced output to review), AND (b) the reviewer's final marker *result_preview_insights is absent (review not yet performed). If multiple candidates exist, pick the oldest by session mtime (FIFO). If no candidate exists, exit cleanly — no work to do."
+    },
+    "collect_patterns": ["data_*", "result_*"],
+    "on_unresolvable_target": "Abort this run and emit an exception via project_exception; do not proceed to R1.",
+    "on_no_claimable_session": "Exit cleanly with a zero-work result; do not emit an exception — steady-state outcome when all eligible sessions have been reviewed."
+  },
+  "materialized_shape": {
+    "review_target": "full AIUAR address resolved from aiuar_review_target (project-level, no session)",
+    "review_scope": "WORKER",
+    "claimed_session": {
+      "session_name": "session_xxx",
+      "session_address": "full AIUAR of the claimed session",
+      "data_artifacts": {
+        "data_marker_name": "full JSON content of the data artifact"
+      },
+      "result_artifacts": {
+        "result_marker_name": "full JSON content of the result artifact"
+      }
+    },
+    "reviewed_at_utc": "ISO-8601 UTC timestamp of the claim"
+  },
+  "notes": [
+    "This marker never persists to disk in its materialized form — it lives only during R1/R2/R3 execution of one review run.",
+    "The reviewer is strictly read-only relative to the target's existing artifacts. It only ADDS three new *result_preview_* artifacts into the same claimed session.",
+    "Target artifacts are treated as opaque JSON. The reviewer renders and analyzes what the target emitted; it does not re-interpret or re-score.",
+    "WORKER mode guarantees per-session idempotency: a session with *result_preview_insights already present is not re-claimable. To force re-review, delete the three *result_preview_* artifacts from that session.",
+    "Cross-session analysis (TREND, cross-batch concentration) is out of scope in WORKER mode. A future governance revision may introduce a MULTI_SESSION scope value for roll-up reviews."
+  ]
+}
+[*data_target_execution_bundle] #0

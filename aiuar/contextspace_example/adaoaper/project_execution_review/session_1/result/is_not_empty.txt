@@ -1,0 +1,7 @@
+This file is a placeholder so session_1/result/ is tracked under FILESYSTEM substrate.
+Result artifacts are written here by the executor on each run of project_execution_review:
+  - result_preview_tables
+  - result_preview_summary_nl
+  - result_preview_insights
+One set per execution. Previous runs are retained (timestamped by execution_id inside each
+artifact); no automatic cleanup is performed by the reviewer itself.

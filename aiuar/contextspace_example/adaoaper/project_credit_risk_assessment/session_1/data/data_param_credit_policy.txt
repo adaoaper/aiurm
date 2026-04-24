@@ -1,0 +1,28 @@
+{
+  "policy_name": "Base Credit Risk Policy",
+  "policy_version": "1.0",
+  "currency": "BRL",
+  "approval_thresholds": {
+    "prime_min": 80,
+    "standard_min": 65,
+    "conditional_min": 50,
+    "manager_review_min": 40
+  },
+  "pricing_thresholds": {
+    "prime_min": 80,
+    "standard_min": 65,
+    "conditional_min": 50,
+    "manager_review_min": 40
+  },
+  "interest_rate_addons": {
+    "prime": 0.5,
+    "standard": 2.0,
+    "conditional": 4.5,
+    "manager_review": 6.0
+  },
+  "high_value_loan_threshold": 100000.00,
+  "credit_insurance_threshold": 50000.00,
+  "cosigner_dti_threshold": 0.60,
+  "debt_consolidation_dti_threshold": 0.50
+}
+[*data_param_credit_policy] #0

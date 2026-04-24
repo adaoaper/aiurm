@@ -1,0 +1,38 @@
+{
+  "marker_purpose": "Generation policy for synthetic credit application batches.",
+  "marker_role": "Consumed by *logic_synthesize_credit_batch alongside *data_sim_template to control batch shape, diversity, freshness, naming, and metadata propagation.",
+  "batch_size_distribution": {
+    "weights": {"1": 0.30, "2": 0.20, "3": 0.20, "4": 0.15, "5": 0.10, "6": 0.05},
+    "note": "Mix of small batches (calm steady state) and occasional bigger batches (rush periods)."
+  },
+  "diversity_requirements": {
+    "min_distinct_credit_history_when_batch_size_geq_3": 2,
+    "min_distinct_employment_type_when_batch_size_geq_3": 2,
+    "min_distinct_loan_purpose_when_batch_size_geq_4": 3,
+    "score_band_coverage_when_batch_size_geq_4": "Include at least one application that maps to each of two distinct approval bands per the consumer's Base Credit Risk Policy thresholds (prime / standard / conditional / manager_review / declined)."
+  },
+  "freshness_requirements": {
+    "applicant_name_uniqueness": "No two applications in the same batch share the same applicant_name.",
+    "personal_id_uniqueness":    "No two applications in the same batch share the same personal_id.",
+    "application_id_format":     "CR + 6-digit zero-padded counter; counter starts at a random offset per batch to avoid global collision."
+  },
+  "session_naming": {
+    "format": "session_cra_batch_{random_6}",
+    "random_charset": "abcdefghijklmnopqrstuvwxyz0123456789",
+    "binding_point": "{random_6} placeholder of governance.aiuar_result_output"
+  },
+  "execution_metadata_to_include_in_result": [
+    "execution_id",
+    "session_name",
+    "generated_at_utc",
+    "policy_version",
+    "batch_size",
+    "applicant_count",
+    "diversity_relaxed"
+  ],
+  "stop_conditions": {
+    "max_attempts_to_satisfy_diversity": 3,
+    "on_diversity_failure": "Emit batch with relaxed diversity and set diversity_relaxed=true plus a brief reason string in result metadata."
+  }
+}
+[*data_sim_policy] #0

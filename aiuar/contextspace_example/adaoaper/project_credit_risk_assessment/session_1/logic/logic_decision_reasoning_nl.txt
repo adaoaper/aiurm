@@ -1,0 +1,19 @@
+Purpose: Re-express the credit decision for the application in concise natural language.
+
+MANDATORY OUTPUT FIELDS
+- application_id
+- approval_status
+- decision_summary_nl
+- key_drivers
+- key_risk_factors
+- conditions_summary_nl
+- trace_pointers
+
+RULES
+- Use recorded scoring, conditions, and status only.
+- No new decision criteria.
+- One concise paragraph per application (3-6 sentences).
+- Reference the score breakdown buckets that drove the outcome.
+- Keep direct trace pointers to original result fields.
+- Tone: neutral, professional, no marketing language, no advice to the applicant.
+[*logic_decision_reasoning_nl] #0

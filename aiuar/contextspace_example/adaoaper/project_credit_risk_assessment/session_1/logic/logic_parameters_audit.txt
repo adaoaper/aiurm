@@ -1,0 +1,18 @@
+Purpose: Audit which active parameters and thresholds were used to produce the credit
+risk outcome for this application. Snapshot the policy in force at decision time.
+
+MANDATORY OUTPUT FIELDS
+- application_id
+- policy_name
+- policy_version
+- threshold_snapshot
+- addon_snapshot
+- enforcement_notes
+- trace_pointers
+
+RULES
+- Copy the threshold and addon values exactly as resolved from the policy marker.
+- Record any threshold actually exercised in the scoring/structuring outcome.
+- Record any threshold not exercised but available as enforcement headroom.
+- Do not invent new fields beyond those declared in the policy marker.
+[*logic_parameters_audit] #0

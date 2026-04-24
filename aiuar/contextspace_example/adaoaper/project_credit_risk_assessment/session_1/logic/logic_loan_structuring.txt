@@ -1,0 +1,44 @@
+Purpose: Determine loan structure, rate band, term, controls, and mitigations
+using recorded credit risk results plus active policy parameters.
+
+INTEREST RATE DETERMINATION
+Use pricing thresholds from the active policy parameter marker:
+- Prime -> base rate + prime addon
+- Standard -> base rate + standard addon
+- Conditional -> base rate + conditional addon
+- Manager Review -> base rate + manager review addon
+
+LOAN-TO-VALUE RULES
+- Real Estate secured: up to 80% LTV
+- Vehicle secured: up to 70% LTV
+- Unsecured loans: maximum 10x monthly income
+- Business loans: maximum 60% of collateral value
+
+TERM ADJUSTMENTS
+- Credit score 750+ -> up to 10 years
+- Credit score 650-749 -> up to 7 years
+- Credit score 550-649 -> up to 5 years
+- Credit score 450-549 -> up to 3 years
+
+ADDITIONAL CONDITIONS
+- DTI > debt_consolidation_dti_threshold -> require debt consolidation component
+- Self-Employed / Business Owner -> require 2 years tax returns
+- First-time borrowers -> mandatory financial education
+- Requested amount > high_value_loan_threshold -> executive approval required
+
+RISK MITIGATION REQUIREMENTS
+- Requested amount > credit_insurance_threshold -> credit insurance required
+- DTI > cosigner_dti_threshold -> co-signer required
+- Income volatility concerns -> graduated payment structure allowed
+- Early payment incentives may be proposed for risk reduction
+
+MANDATORY OUTPUT FIELDS
+- application_id
+- approval_status
+- proposed_interest_rate_band
+- max_allowed_amount
+- suggested_term
+- required_conditions
+- mitigation_requirements
+- trace_pointers
+[*logic_loan_structuring] #0

@@ -1,0 +1,53 @@
+Purpose: Produce all tables declared in *data_preview_rendering_policy.table_policy.tables_to_emit
+using the result_* artifacts present in the single claimed session bundled by
+*data_target_execution_bundle.
+
+INPUTS
+- *data_target_execution_bundle -> claimed_session.{data_artifacts, result_artifacts}
+- *data_preview_rendering_policy -> table format, max rows, tables_to_emit list, rendering rules
+
+EXECUTION SEMANTICS
+For each entry in table_policy.tables_to_emit:
+
+1. Gather the declared source_artifacts from claimed_session.result_artifacts (and from
+   data_artifacts when needed for context).
+   - row_grain = per_application    -> one row per unique application_id across source_artifacts.
+   - row_grain = per_session        -> a single row with batch aggregates for the claimed session.
+   - row_grain = per_policy_field   -> one row per unique policy_field in the parameters audit.
+
+2. Compose columns according to the entry's purpose text (column names listed there are canonical).
+
+3. Honor table_policy.format (MARKDOWN): render each table as a Markdown pipe table with header
+   and separator rows.
+
+4. Honor table_policy.max_rows_per_table:
+   - If exceeded, include the first max_rows rows and append truncate_indicator_row.
+   - Truncation order: same order the rows were composed (no silent re-ranking).
+
+5. Honor rendering_rules:
+   - Human-readable column names (title case, spaces).
+   - Currency columns labeled with currency_label.
+   - Numeric rounding: scores integer; rates two decimals; amounts two decimals.
+   - Empty cells -> '-'.
+
+6. Cells must reflect source fields verbatim — no interpolation, no re-scoring. Aggregates
+   (counts and averages for session_overview; exercised_count for policy_exercise) are
+   explicitly allowed where the entry's purpose states them; nothing else.
+
+7. If a declared source_artifact is absent from claimed_session, emit the table with
+   empty_table_placeholder_row as its only body row and record it in trace_pointers.
+
+MANDATORY OUTPUT FIELDS
+- aiurm_marker
+- aiuar_address
+- review_target
+- claimed_session_address
+- tables                 (array of { table_id, markdown })
+- trace_pointers         (per table: { table_id, sources: [ { marker, grain_ref } ] })
+
+RULES
+- Do not invent table entries that are not in tables_to_emit.
+- Do not narrate, summarize, or interpret — tables only. Narrative belongs to R2.
+- Do not propose changes to target artifacts.
+- WORKER mode: operates on exactly one session (the claimed one). No cross-session behavior.
+[*logic_render_tables] #0

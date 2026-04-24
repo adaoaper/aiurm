@@ -1,0 +1,60 @@
+Purpose: Extract actionable insights from the claimed session by scanning the rendered tables,
+the narrative summary, and the raw result bundle against the declared insight catalog.
+Categories are filtered by applicable_scopes intersecting the active review_scope.
+
+INPUTS
+- *result_preview_tables         -> factual base (tables + trace_pointers)
+- *result_preview_summary_nl     -> narrative context (for coherence with the human narrative)
+- *data_target_execution_bundle  -> raw result artifacts of the claimed session
+- *data_preview_insight_catalog  -> declared categories, applicable_scopes, depth policy, severity rubric
+
+EXECUTION SEMANTICS
+1. Read the active review_scope from governance (WORKER in this deployment).
+
+2. For each category in *data_preview_insight_catalog.insight_categories:
+   - If applicable_scopes does NOT intersect the active review_scope, skip and record in
+     skipped_categories with reason = 'scope_mismatch'.
+   - Otherwise scan tables and raw bundle for evidence matching the category definition.
+   - If evidence exists, emit one insight per output_shape_per_insight.
+   - If depth_policy.skip_if_no_evidence is true and no evidence found, skip the category
+     and record in skipped_categories with reason = 'no_evidence'.
+
+3. Honor depth_policy:
+   - min_insights .. max_insights bound the total emitted count.
+   - insight_depth = ACTIONABLE -> non-INFO insights must include a concrete suggested_action.
+     INFO insights may have suggested_action = null.
+   - forbid_speculation_beyond_evidence = true -> cite concrete evidence for every claim.
+   - forbid_duplicate_across_categories = true -> pick the more specific category when a signal
+     qualifies for two; reference the alternative in evidence.
+
+4. Evidence must point to concrete artifacts:
+   - table row refs:  { table_id, row_ref }  — row_ref is application_id, session_name, or
+                      policy_field depending on the table's grain.
+   - target artifact markers: *result_credit_risk_analysis, *data_credit_application, etc.,
+                      resolved relative to the claimed session.
+   Paraphrased summaries are not valid evidence.
+
+5. Severity assignment follows severity_rubric.
+
+6. Suggested actions must stay within scope_of_suggested_actions. Protocol-level changes are
+   out of scope — propose only business-level actions (target policy parameters, upstream
+   data generation, target business logic).
+
+MANDATORY OUTPUT FIELDS
+- aiurm_marker
+- aiuar_address
+- review_target
+- claimed_session_address
+- insights               (array of { category, summary_nl, evidence, severity, suggested_action })
+- skipped_categories     (array of { category, reason })
+- coverage_note          (e.g., "single session reviewed in WORKER mode; batch_size = N applications")
+- reviewed_at_utc
+
+RULES
+- Insights must be domain-agnostic in expression — the same logic reviews any target.
+- An insight without evidence is forbidden.
+- Do not re-score, re-decide, or re-interpret the target's outcomes. The reviewer observes;
+  it does not override.
+- WORKER mode: all evidence scoped to the single claimed session. Do not reference other
+  sessions of the target project.
+[*logic_extract_insights] #0

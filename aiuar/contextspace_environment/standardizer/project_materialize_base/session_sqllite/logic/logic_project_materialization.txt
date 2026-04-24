@@ -1,0 +1,75 @@
+Materialize a ***project AIUAR address into a portable SQLite file.
+
+--- DDL ---
+
+CREATE TABLE IF NOT EXISTS aiuar (
+    aiuar_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    contextspace TEXT NOT NULL,
+    entity       TEXT NOT NULL,
+    project      TEXT NOT NULL,
+    governance   TEXT NOT NULL,
+    UNIQUE (contextspace, entity, project)
+);
+
+CREATE TABLE IF NOT EXISTS aiuar_session (
+    aiuar_session_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    aiuar_id         INTEGER NOT NULL REFERENCES aiuar(aiuar_id),
+    session          TEXT NOT NULL,
+    UNIQUE (aiuar_id, session)
+);
+
+CREATE TABLE IF NOT EXISTS aiuar_dlr (
+    aiuar_dlr_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    aiuar_session_id INTEGER NOT NULL REFERENCES aiuar_session(aiuar_session_id),
+    type             TEXT NOT NULL CHECK(type IN ('D','L','R')),
+    aiurm_marker     TEXT NOT NULL,
+    content          TEXT NOT NULL,
+);
+
+CREATE INDEX IF NOT EXISTS idx_aiuar_project     ON aiuar(contextspace, entity, project);
+CREATE INDEX IF NOT EXISTS idx_aiuar_session     ON aiuar_session(aiuar_id, session);
+CREATE INDEX IF NOT EXISTS idx_aiuar_dlr_session ON aiuar_dlr(aiuar_session_id, type);
+CREATE INDEX IF NOT EXISTS idx_aiuar_dlr_marker  ON aiuar_dlr(aiurm_marker);
+
+--- MAPPING RULES ---
+
+AIUAR hierarchy → SQLite tables:
+
+  *****contextspace  →  aiuar.contextspace
+  ****entity         →  aiuar.entity
+  ***project         →  aiuar.project
+  governance         →  aiuar.governance  (full text of aiurm_governance_{project}.txt, inline)
+  **session          →  aiuar_session.session  (FK: aiuar_session.aiuar_id → aiuar.aiuar_id)
+  *data_x            →  aiuar_dlr  (type='D', aiurm_marker='*data_x',    FK: aiuar_session_id)
+  *logic_x           →  aiuar_dlr  (type='L', aiurm_marker='*logic_x',   FK: aiuar_session_id)
+  *result_x          →  aiuar_dlr  (type='R', aiurm_marker='*result_x',  FK: aiuar_session_id)
+
+--- INSERT RULES ---
+
+1. For each project being materialized:
+   INSERT INTO aiuar (contextspace, entity, project, governance)
+   VALUES ({contextspace}, {entity}, {project}, {governance_text}, {YYYYMMDD_HHMMSS})
+   ON CONFLICT (contextspace, entity, project) DO UPDATE SET governance=excluded.governance;
+
+2. For each session under the project:
+   INSERT INTO aiuar_session (aiuar_id, session)
+   VALUES ({aiuar_id}, {session_name}, {YYYYMMDD_HHMMSS})
+   ON CONFLICT (aiuar_id, session) DO NOTHING;
+
+3. For each DLR artifact under a session:
+   INSERT INTO aiuar_dlr (aiuar_session_id, type, aiurm_marker, content)
+   VALUES ({aiuar_session_id}, {D|L|R}, {marker}, {content_verbatim}, {YYYYMMDD_HHMMSS});
+   - content is preserved verbatim — no parsing or decomposition
+   - node_d = "none" → skip all D-type inserts for that session
+   - node_l = "none" → skip all L-type inserts for that session
+   - node_r = "none" → insert sentinel record only (see SENTINEL RECORD below)
+
+--- OUTPUT RULES ---
+
+- output file name = {contextspace}.db — written to aiuar_result_output
+- replace substrate_type = FILESYSTEM with substrate_type = SQLITE_FILE in the governance text before INSERT
+- always add execution_id = {YYYYMMDD}_{6-char random alphanumeric} to the governance text before INSERT
+- a single .db file may contain multiple projects and entities across the same contextspace
+- DDL is always executed with IF NOT EXISTS — safe to run against an existing file
+
+[*logic_project_materialization] #0

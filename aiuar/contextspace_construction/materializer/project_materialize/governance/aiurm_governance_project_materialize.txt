@@ -1,0 +1,53 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+Project Materializer (v0.1)
+Generic — any node, any format
+
+# Purpose
+Materialize any AIUAR address tree into a portable substrate file.
+Scope and format are declared in governance and resolved at execution time.
+
+---
+
+# Governance
+as_of                  = "2026-04-13"
+substrate_type         = FILESYSTEM
+aiuar_root             = ...\aiuar\
+aiuar                  = *****contextspace_construction****materializer***project_materialize**session_1
+aiuar_data_source      = aiuar
+aiuar_logic_source     = aiuar
+aiuar_result_output    = aiuar_root
+
+materialization_node   = *****contextspace_example
+materialization_format = SQLITE_FILE
+
+execution_id           = {YYYYMMDD}_{random_6}
+
+[*aiurm_governance_project_materialize] #0
+
+---
+
+# Data
+
+*data_source_node
+
+---
+
+# Logic
+
+*logic_project_materialization
+
+---
+
+# Result
+
+R1. Materialize node
+apply *logic_project_materialization to *data_source_node
+[*result_materialized] #3
+
+---
+
+# End of pipeline definition

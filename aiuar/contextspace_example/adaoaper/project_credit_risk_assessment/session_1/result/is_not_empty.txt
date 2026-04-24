@@ -1,0 +1,4 @@
+This file is a placeholder so session_1/result/ is tracked under FILESYSTEM substrate.
+session_1 is the anchor session. Result artifacts are NOT written here under the
+multi-session worker pattern - they land in the worker-claimed proposal sessions
+(**session_{claimed}). This folder remains intentionally empty in normal operation.

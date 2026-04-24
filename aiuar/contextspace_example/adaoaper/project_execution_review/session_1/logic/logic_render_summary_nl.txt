@@ -1,0 +1,44 @@
+Purpose: Produce a concise natural-language summary that narrates what the rendered tables show
+for the claimed session. Every statement must map back to a row or aggregate visible in
+*result_preview_tables.
+
+INPUTS
+- *result_preview_tables         -> primary narration source (already rendered tables)
+- *data_target_execution_bundle  -> raw result artifacts of the claimed session (fact-checking only)
+- *data_preview_rendering_policy -> nl_policy (style, language, paragraph range, constraints)
+
+EXECUTION SEMANTICS
+1. Read every rendered table in *result_preview_tables.tables.
+
+2. Compose between nl_policy.paragraph_count_range[0] and [1] paragraphs, each within
+   nl_policy.sentences_per_paragraph_range, covering:
+   - applications_overview  -> approval band distribution within the batch, rate spread, notable drivers.
+   - session_overview       -> batch composition and aggregates for this single session.
+   - policy_exercise        -> which thresholds were actively used in this batch, which remained dormant.
+
+3. Every factual statement must correspond to visible table evidence — row references or
+   aggregates displayed in *result_preview_tables. No claim without a row or aggregate to cite.
+
+4. Honor nl_policy:
+   - style = CONCISE_EXPLANATORY      -> short sentences; observation then brief cause.
+   - language = EN                     -> English output.
+   - forbid_marketing_language         -> no promotional tone.
+   - forbid_advice_to_applicants       -> no suggestions directed at applicants.
+   - forbid_new_decision_criteria      -> no thresholds, bands, or rules not already in target artifacts.
+   - forbid_cross_session_comparison   -> narrative covers this single claimed session only.
+
+MANDATORY OUTPUT FIELDS
+- aiurm_marker
+- aiuar_address
+- review_target
+- claimed_session_address
+- summary_nl              (composed paragraphs as a single string with paragraph breaks)
+- paragraph_count
+- fact_pointers           (array of { statement, supporting_table_id, supporting_row_ref_or_aggregate })
+
+RULES
+- Reference the tables by table_id where useful; do not re-render table content in prose.
+- Do not interpret beyond what the tables show. Interpretation and insight belong to R3.
+- If a table is empty (placeholder row only), state that explicitly in the narrative.
+- WORKER mode: no mention of other sessions — this run reviews exactly one session.
+[*logic_render_summary_nl] #0

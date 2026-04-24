@@ -1,0 +1,83 @@
+# AIURM Protocol
+AIURM/AIUAR Context Space Workflow Specification
+DLR Methodology
+
+# Workflow
+CRA Integration Simulator (v0.1)
+Producer-Side Synthetic Batch Generator
+
+# Purpose
+Simulate the bank's main system: each /loop fire generates one plausible batch of
+1-6 loan applications and writes it as a new pending session in
+project_credit_risk_assessment. Stateless agent invocation; no internal state between
+fires. Cross-project result write populates the consumer queue directly via Caminho A
+(aiuar_result_output points to a freshly-named **session_cra_batch_{random_6} under
+the consumer project).
+
+---
+
+# Governance
+as_of                    = "2026-04-19"
+policy_version           = "CRA_SIM_V1"
+seed                     = 42
+
+substrate_type           = FILESYSTEM
+aiuar_root               = ...\aiuar\
+aiuar                    = *****contextspace_example****adaoaper***project_cra_integration**session_1
+aiuar_logic_source       = aiuar
+aiuar_data_source        = aiuar
+aiuar_result_output      = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_cra_batch_{random_6}
+
+resolution_mode            = DETERMINISTIC
+primary_resolver           = CODE
+requires_llm_reasoning     = false
+primary_resolution_by_code = REQUIRED
+instrumental_code_role     = RESOLUTION_CORE
+resolution_scope           = ALL_APPLY_STEPS
+
+execution_id             = {YYYYMMDD}_{random_6}
+response_contract        = STRUCTURED_OUTPUT_REQUIRED
+output_result_format     = JSON
+runtime                  = python
+execution_trigger        = python_runtime
+pipeline_resolution      = INFERENCE
+
+audit_level              = FULL
+audit_policy             = LOG_EACH_RESULT_STEP
+
+language_policy_default  = EN
+schema_mode              = restrict
+
+aiurm_markers_location   = IN_JSON_BODY
+
+project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+
+[*aiurm_governance_cra_integration] #0
+
+---
+
+# Data
+
+*data_sim_template
+*data_sim_policy
+
+---
+
+# Logic
+
+*logic_synthesize_credit_batch
+
+---
+
+# Result
+
+R1. Synthesize and inject application batch into CRA queue
+apply *logic_synthesize_credit_batch to *data_sim_template and *data_sim_policy
+[*data_credit_application] #3
+
+---
+
+# End of pipeline definition

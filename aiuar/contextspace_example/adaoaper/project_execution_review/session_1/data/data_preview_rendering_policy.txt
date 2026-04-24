@@ -1,0 +1,53 @@
+{
+  "marker_purpose": "Rendering policy for Execution Review preview artifacts under WORKER mode (single session per run).",
+  "marker_role": "Consumed by *logic_render_tables, *logic_render_summary_nl, and *logic_extract_insights to control output format, density, language, and layout. All policy values here override the *_default governance fields when both are present.",
+  "table_policy": {
+    "format": "MARKDOWN",
+    "max_rows_per_table": 50,
+    "truncate_indicator_row": "| ... | N more rows truncated | ... |",
+    "empty_table_placeholder_row": "| (no matching source artifacts in claimed session) |",
+    "currency_label": "(BRL)",
+    "tables_to_emit": [
+      {
+        "table_id": "applications_overview",
+        "purpose": "One row per application in the claimed session. Columns: application_id, total_score, approval_status, proposed_rate_band, primary_driver, primary_risk_factor.",
+        "source_artifacts": ["result_credit_risk_analysis", "result_loan_proposal", "result_decision_reasoning_nl"],
+        "row_grain": "per_application"
+      },
+      {
+        "table_id": "session_overview",
+        "purpose": "Single-row summary of the claimed session. Columns: session_name, batch_size, approved_count, declined_count, conditional_count, avg_score, rate_band_distribution.",
+        "source_artifacts": ["result_credit_risk_analysis", "result_loan_proposal"],
+        "row_grain": "per_session"
+      },
+      {
+        "table_id": "policy_exercise",
+        "purpose": "One row per policy threshold or addon seen in the parameters audit of the claimed session. Columns: policy_field, declared_value, exercised_count, exercised_applications, dormant.",
+        "source_artifacts": ["result_parameters_audit"],
+        "row_grain": "per_policy_field"
+      }
+    ]
+  },
+  "nl_policy": {
+    "style": "CONCISE_EXPLANATORY",
+    "language": "EN",
+    "paragraph_count_range": [1, 3],
+    "sentences_per_paragraph_range": [2, 5],
+    "must_reference_table_rows_or_aggregates": true,
+    "forbid_marketing_language": true,
+    "forbid_advice_to_applicants": true,
+    "forbid_new_decision_criteria": true,
+    "forbid_cross_session_comparison": true
+  },
+  "ordering": {
+    "apply_step_sequence": "tables_first_then_nl_then_insights",
+    "rationale": "Concrete data before narrative; narrative before synthesis. The reader must be able to falsify NL and insights against the tables above."
+  },
+  "rendering_rules": [
+    "Column names must be human-readable (e.g., 'Approval Status', not 'approval_status').",
+    "Currency columns: append (BRL) to header.",
+    "Numeric cells: round scores to integer; rates to 2 decimals; amounts to 2 decimals.",
+    "Empty cells: render '-' (single dash), never leave blank."
+  ]
+}
+[*data_preview_rendering_policy] #0

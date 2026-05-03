@@ -12,35 +12,35 @@ Demonstrate AIURM/AIUAR through an HR analysis workflow using simulated data.
 ---
 
 # Governance
-as_of                    = "2026-03-25"
-policy_version           = "HRPOL_ONBOARDING_V1"
-seed                     = 42
+as_of              = "2026-03-25"
+policy_version     = "HRPOL_ONBOARDING_V1"
+seed               = 42
 
-substrate_type           = FILESYSTEM
-aiuar_root               = ...\aiuar\
-aiuar                    = *****contextspace_example****adaoaper***project_rh_analysis_example**session_1
-aiuar_data_source        = aiuar
-aiuar_logic_source       = aiuar
-aiuar_result_output      = aiuar
+substrate_type      = FILESYSTEM
+aiuar_root          = ...\aiuar\
+aiuar               = *****contextspace_example****adaoaper***project_rh_analysis_example**session_1
+aiuar_data_source   = aiuar
+aiuar_logic_source  = aiuar
+aiuar_result_output = aiuar
 
-execution_id             = {YYYYMMDD}_{random_6}
-response_contract        = STRUCTURED_OUTPUT_REQUIRED
-output_result_format     = JSON
-runtime                  = python
-execution_trigger        = python_runtime
+execution_id         = {YYYYMMDD}_{random_6}
+response_contract    = STRUCTURED_OUTPUT_REQUIRED
+output_result_format = JSON
+runtime              = python
+execution_trigger    = python_runtime
 
-audit_level              = FULL
-audit_policy             = LOG_EACH_RESULT_STEP
+audit_level          = FULL
+audit_policy         = LOG_EACH_RESULT_STEP
 
-language_policy_default  = EN
-schema_mode              = restrict
+language_policy_default = EN
+schema_mode             = restrict
 
-aiurm_markers_location   = IN_JSON_BODY
+aiurm_markers_location = IN_JSON_BODY
 
-project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
-project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
-project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
-project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+project_audit      = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code       = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log        = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception  = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
 
 [*aiurm_governance_rh_analysis_example] #0
 

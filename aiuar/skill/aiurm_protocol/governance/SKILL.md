@@ -146,12 +146,49 @@ aiuar          = *****contextspace_environment****tracker***project_audit**sessi
 | `output_result_format` | e.g. `JSON`, `TEXT` |
 | `runtime` | e.g. `python`, `native` |
 | `execution_trigger` | e.g. `python_runtime`, `manual` |
-| `python_execution_policy` | e.g. `REGENERATE_EXECUTOR_FROM_CURRENT_SESSION` |
+| `code_execution_policy` | `REUSE_IF_PRESENT` (default if absent) \| `REGENERATE_ALWAYS` (ignore existing code, always generate fresh) |
 | `audit_level` | e.g. `FULL`, `MINIMAL` |
 | `audit_policy` | e.g. `LOG_EACH_RESULT_STEP` |
 | `language_policy_default` | e.g. `EN`, `PT` |
 | `schema_mode` | e.g. `restrict`, `permissive` |
 | `aiurm_markers_location` | e.g. `IN_JSON_BODY`, `INLINE` |
+
+### Resolution mode fields (Optional fields)
+
+These fields together declare HOW Apply steps are resolved.
+
+| Field | Values | Description |
+|---|---|---|
+| `resolution_mode` | `INFERENCE` \| `DETERMINISTIC` | Top-level resolution paradigm |
+| `primary_resolver` | `MODEL` \| `CODE` | Who resolves Apply steps |
+| `requires_llm_reasoning` | `true` \| `false` | Whether LLM inference is mandatory |
+| `primary_resolution_by_code` | `FORBIDDEN` \| `REQUIRED` | Code's authority over resolution |
+| `instrumental_code_role` | `IO_ONLY` \| `RESOLUTION_CORE` | Code's allowed scope when present |
+| `resolution_scope` | `ALL_APPLY_STEPS` \| `PER_STEP` | Whether the contract applies uniformly |
+
+### Canonical presets
+
+**INFERENCE preset** — LLM-driven resolution:
+```
+resolution_mode            = INFERENCE
+primary_resolver           = MODEL
+requires_llm_reasoning     = true
+primary_resolution_by_code = FORBIDDEN
+instrumental_code_role     = IO_ONLY
+resolution_scope           = ALL_APPLY_STEPS
+```
+
+**DETERMINISTIC preset** — code-driven resolution:
+```
+resolution_mode            = DETERMINISTIC
+primary_resolver           = CODE
+requires_llm_reasoning     = false
+primary_resolution_by_code = REQUIRED
+instrumental_code_role     = RESOLUTION_CORE
+resolution_scope           = ALL_APPLY_STEPS
+```
+
+If absent, default behavior is implementation-defined per executor.
 
 ### Result artifact format rule
 
@@ -223,6 +260,16 @@ project_code      = *****contextspace_environment****tracker***project_code*aiur
 
 Note: `project_changelog` is NOT declared in governance — it is resolved automatically
 by the changelog SKILL from the active contextspace environment convention.
+
+### Field extensibility
+
+Governance is an extensible control structure. Some projects may implement
+specific fields without necessarily being cited in this SKILL — for example,
+`aiuar_review_target`, `claim_strategy`, `human_readability_mode`,
+`synthetic_data_expansion_policy`.
+
+Such fields are valid as project-specific contract and must be preserved on
+read and rewrite. The SKILL documents the core; project governance carries the rest.
 
 ---
 

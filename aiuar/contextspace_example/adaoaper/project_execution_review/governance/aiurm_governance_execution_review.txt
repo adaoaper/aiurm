@@ -19,61 +19,61 @@ reviewer (project_execution_review).
 ---
 
 # Governance
-as_of                          = "2026-04-21"
-policy_version                 = "REVIEW_DEMO_V2"
-seed                           = 42
+as_of               = "2026-04-21"
+policy_version      = "REVIEW_DEMO_V2"
+seed                = 42
 
-substrate_type                 = FILESYSTEM
-aiuar_root                     = ...\aiuar\
-aiuar                          = *****contextspace_example****adaoaper***project_execution_review**session_1
-aiuar_logic_source             = aiuar
+substrate_type      = FILESYSTEM
+aiuar_root          = ...\aiuar\
+aiuar               = *****contextspace_example****adaoaper***project_execution_review**session_1
+aiuar_logic_source  = aiuar
 
-aiuar_review_target            = *****contextspace_example****adaoaper***project_credit_risk_assessment
-review_scope                   = WORKER
+aiuar_review_target = *****contextspace_example****adaoaper***project_credit_risk_assessment
+review_scope        = WORKER
 
-claim_target                   = SESSION
-claim_strategy                 = NO_RESULT_MARKER_PRESENT *result_preview_insights
-claim_size                     = 1
+claim_target        = SESSION
+claim_strategy      = NO_RESULT_MARKER_PRESENT *result_preview_insights
+claim_size          = 1
 
-aiuar_data_source              = {aiuar_review_target}**session_{claimed}
-aiuar_result_output            = {aiuar_review_target}**session_{claimed}
+aiuar_data_source    = {aiuar_review_target}**session_{claimed}
+aiuar_result_output  = {aiuar_review_target}**session_{claimed}
 
-execution_id                   = {YYYYMMDD}_{random_6}
-response_contract              = STRUCTURED_OUTPUT_REQUIRED
-output_result_format           = JSON
-runtime                        = python
-execution_trigger              = python_runtime
+execution_id         = {YYYYMMDD}_{random_6}
+response_contract    = STRUCTURED_OUTPUT_REQUIRED
+output_result_format = JSON
+runtime              = python
+execution_trigger    = python_runtime
 
-resolution_mode                = INFERENCE
-primary_resolver               = MODEL
-requires_llm_reasoning         = true
-primary_resolution_by_code     = FORBIDDEN
-instrumental_code_role         = IO_ONLY
-resolution_scope               = ALL_APPLY_STEPS
+resolution_mode            = INFERENCE
+primary_resolver           = MODEL
+requires_llm_reasoning     = true
+primary_resolution_by_code = FORBIDDEN
+instrumental_code_role     = IO_ONLY
+resolution_scope           = ALL_APPLY_STEPS
 
-human_readability_mode         = ENABLED
-human_readability_scope        = ALL_APPLY_STEPS
-natural_language_output        = REQUIRED
-table_output                   = REQUIRED
-insight_output                 = REQUIRED
-table_format_default           = MARKDOWN
-table_max_rows                 = 50
-nl_style_default               = CONCISE_EXPLANATORY
-nl_language_default            = EN
-insight_depth_default          = ACTIONABLE
+human_readability_mode  = ENABLED
+human_readability_scope = ALL_APPLY_STEPS
+natural_language_output = REQUIRED
+table_output            = REQUIRED
+insight_output          = REQUIRED
+table_format_default    = MARKDOWN
+table_max_rows          = 50
+nl_style_default        = CONCISE_EXPLANATORY
+nl_language_default     = EN
+insight_depth_default   = ACTIONABLE
 
-audit_level                    = FULL
-audit_policy                   = LOG_EACH_RESULT_STEP
+audit_level             = FULL
+audit_policy            = LOG_EACH_RESULT_STEP
 
-language_policy_default        = EN
-schema_mode                    = restrict
+language_policy_default = EN
+schema_mode             = restrict
 
-aiurm_markers_location         = IN_JSON_BODY
+aiurm_markers_location  = IN_JSON_BODY
 
-project_audit     = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
-project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
-project_log       = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
-project_exception = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
+project_audit      = *****contextspace_environment****tracker***project_audit*aiurm_governance_project_audit
+project_code       = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_log        = *****contextspace_environment****tracker***project_log*aiurm_governance_project_log
+project_exception  = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
 
 [*aiurm_governance_execution_review] #0
 

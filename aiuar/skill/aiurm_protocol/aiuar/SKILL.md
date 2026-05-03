@@ -36,8 +36,8 @@ The diagram below uses tree notation for readability only.
 aiuar_root/aiuar/
 └── *****contextspace_environment/
     └── ****entity/
-        ├── governance/   ← pipeline definition (read-only during execution)
         └── ***project_1/
+            ├── governance/   ← pipeline definition (read-only during execution)
             └── **session_1/
                 ├── data/     ← *data_x markers
                 ├── logic/    ← *logic_x markers

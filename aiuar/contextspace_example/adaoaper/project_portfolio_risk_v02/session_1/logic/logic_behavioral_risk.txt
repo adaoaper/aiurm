@@ -1,0 +1,53 @@
+﻿Purpose: score observable behavioral misalignment proxies.
+HIGH SCORE = HIGHER behavioral risk.
+TOTAL = MIN(100, A1 + A2 + A3 + B + C + D)
+
+Definitions:
+- high_vol_pct = weight of assets tagged crypto_like OR growth_tech OR speculative
+- high_vol_norm = profile-specific value from *data_profile_norms
+
+A1. Recency / Performance Chasing
+- high_vol_pct <= high_vol_norm = 0
+- high_vol_pct > high_vol_norm AND <= 1.25 Ã— high_vol_norm = 10
+- high_vol_pct > 1.25 Ã— high_vol_norm AND <= 40% = 20
+- high_vol_pct > 40% = 35
+Select the highest matching bucket only.
+
+A2. Herding / Social Proof
+- crowd_trade_asset_count = 0 = 0
+- crowd_trade_asset_count = 1 AND crowd_trade_pct <= 25% = 8
+- crowd_trade_asset_count >= 2 OR crowd_trade_pct >= 30% = 15
+- crowd_trade_pct > 60% = 25
+Select the highest matching bucket only.
+
+A3. Overconfidence / Concentration
+- largest_asset_pct < 20% = 0
+- 20â€“29.99% = 5
+- 30â€“39.99% = 10
+- >= 40% = 18
+
+B. Volatility Tolerance Gap
+ratio = high_vol_pct / high_vol_norm
+- ratio <= 1.00 = 0
+- >1.00 and <=1.75 = 10
+- >1.75 and <=2.50 = 20
+- >2.50 = 30
+
+C. Loss Aversion Drift Risk
+- defensive_ballast_pct >= 30% = 0
+- 15â€“29.99% = 5
+- 1â€“14.99% = 10
+- 0% = 15
+
+D. Narrative Capture
+- narrative_proxy_pct = 0 = 0
+- >0 and <=25% = 5
+- >25% = 10
+
+Behavioral Risk Categories:
+- 0â€“25 = Low
+- 26â€“50 = Moderate
+- 51â€“75 = Severe
+- 76â€“100 = Extreme
+[*logic_behavioral_risk] #0
+

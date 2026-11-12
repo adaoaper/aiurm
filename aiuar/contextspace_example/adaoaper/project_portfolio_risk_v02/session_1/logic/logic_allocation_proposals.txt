@@ -1,0 +1,12 @@
+﻿Generate rule-triggered proposals only. Do not simulate reallocations here.
+
+Rules:
+- allocation_class_weight > 40% â†’ propose diversification
+- crypto_like_pct > profile crypto_like_cap â†’ propose crypto-like reduction
+- Conservative and bond_pct < 50% â†’ propose bond increase
+- Balanced and growth_tech_pct > 35% â†’ propose cap at 25%
+- liquid_pct < 50% â†’ propose liquidity increase using ETF, government bond, or cash
+- largest_asset_pct > 35% â†’ propose single-asset concentration reduction
+- largest_sector_pct > 50% â†’ propose sector diversification
+[*logic_allocation_proposals] #0
+

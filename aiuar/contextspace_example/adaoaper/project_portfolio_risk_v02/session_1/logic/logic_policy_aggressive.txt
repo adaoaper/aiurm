@@ -1,0 +1,18 @@
+﻿Purpose: generate deterministic rebalancing outcomes under *data_aggressive_policy.
+
+Input:
+- normalized portfolio collection
+- portfolio feature collection
+- aggressive policy parameters
+
+Output:
+- one aggressive policy-simulation outcome per portfolio_id
+
+Rules:
+- Use the deterministic resolution rules defined in *logic_policy_conservative.
+- Replace conservative thresholds, destination_priority, and funding_priority
+  with the values defined in *data_aggressive_policy.
+- Record before_state, violations, ordered_actions, after_state,
+  and residual_violations.
+[*logic_policy_aggressive] #0
+

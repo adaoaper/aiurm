@@ -1,0 +1,32 @@
+﻿Purpose: generate deterministic rebalancing outcomes under *data_conservative_policy.
+
+Input:
+- normalized portfolio collection
+- portfolio feature collection
+- conservative policy parameters
+
+Output:
+- one conservative policy-simulation outcome per portfolio_id
+
+Rules:
+- Derive violations from policy thresholds:
+  - crypto_over = MAX(0, crypto_like_pct - crypto_like_cap)
+  - bonds_short = MAX(0, bonds_min - bond_pct)
+  - liquidity_short = MAX(0, liquid_min - liquid_pct)
+  - tech_over = MAX(0, technology_exposure_pct - tech_exposure_cap)
+  - single_asset_over = excess above single_asset_max by asset
+  - sector_over = excess above single_sector_max by sector
+- Resolve crypto_over using crypto_proxy first, then crypto, in descending weight.
+- Fill bonds_short using destination_priority.
+- Fill liquidity_short using destination_priority.
+- Resolve tech_over using funding_priority.
+- Resolve single_asset_over and sector_over according to the declared limits.
+- Recalculate affected weights after each action.
+- Continue resolution until no applicable violation remains or no permitted
+  action can reduce residual violations.
+- Never create negative positions.
+- Never introduce assets outside destination_priority.
+- Record before_state, violations, ordered_actions, after_state,
+  and residual_violations.
+[*logic_policy_conservative] #0
+

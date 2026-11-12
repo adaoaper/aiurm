@@ -1,0 +1,28 @@
+﻿{
+  "policy_id": "CONSERVATIVE_V02",
+  "crypto_like_cap": 0.0,
+  "bonds_min": 0.6,
+  "liquid_min": 0.75,
+  "single_asset_max": 0.2,
+  "single_sector_max": 0.35,
+  "tech_exposure_cap": 0.2,
+  "destination_priority": [
+    "GOV_2Y",
+    "CORP_AAA",
+    "CASH_USD"
+  ],
+  "funding_priority": [
+    "crypto_proxy",
+    "crypto",
+    "speculative_equity",
+    "innovation_etf",
+    "growth_tech",
+    "tech_equity",
+    "private_credit",
+    "real_estate",
+    "broad_equity"
+  ],
+  "rounding": "ROUND_2_DECIMALS"
+}
+[*data_conservative_policy] #0
+

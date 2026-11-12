@@ -8,8 +8,8 @@ INPUTS
 - *data_sim_policy   -> batch size distribution, diversity requirements, freshness
                         rules, session naming pattern, metadata to propagate
 
-EXECUTION SEMANTICS (pipeline_resolution = INFERENCE)
-The LLM must:
+EXECUTION SEMANTICS
+The executor must:
 
 1. Sample batch_size from *data_sim_policy.batch_size_distribution.weights.
 

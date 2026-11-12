@@ -1,0 +1,38 @@
+﻿Purpose: derive portfolio-level features from normalized portfolio data.
+
+Input:
+- normalized portfolio collection
+
+Output:
+- one feature record per portfolio_id
+
+Derive:
+- computed_total_value
+- distinct_allocation_classes
+- distinct_allocation_class_count
+- asset_weights
+- allocation_class_weights
+- sector_weights
+- largest_asset_id
+- largest_asset_pct
+- largest_sector
+- largest_sector_pct
+- liquid_pct
+- crypto_like_pct
+- crypto_proxy_pct
+- growth_tech_pct
+- speculative_pct
+- bond_pct
+- long_duration_pct
+- credit_spread_sensitive_pct
+- hidden_beta_pct
+- crowd_trade_pct
+- crowd_trade_asset_count
+- narrative_proxy_pct
+- defensive_ballast_pct
+- technology_exposure_pct
+- data_quality_flags
+- alias_trace
+- normalization_override
+[*logic_portfolio_features] #0
+

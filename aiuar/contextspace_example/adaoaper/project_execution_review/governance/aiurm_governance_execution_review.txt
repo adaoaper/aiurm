@@ -21,7 +21,6 @@ reviewer (project_execution_review).
 # Governance
 as_of               = "2026-04-21"
 policy_version      = "REVIEW_DEMO_V2"
-seed                = 42
 
 substrate_type      = FILESYSTEM
 aiuar_root          = ...\aiuar\
@@ -44,12 +43,7 @@ output_result_format = JSON
 runtime              = python
 execution_trigger    = python_runtime
 
-resolution_mode            = INFERENCE
-primary_resolver           = MODEL
-requires_llm_reasoning     = true
-primary_resolution_by_code = FORBIDDEN
-instrumental_code_role     = IO_ONLY
-resolution_scope           = ALL_APPLY_STEPS
+resolution_mode_default = INFERENCE
 
 human_readability_mode  = ENABLED
 human_readability_scope = ALL_APPLY_STEPS

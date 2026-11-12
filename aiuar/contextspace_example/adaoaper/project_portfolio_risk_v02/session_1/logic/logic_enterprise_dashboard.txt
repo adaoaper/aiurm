@@ -1,0 +1,11 @@
+﻿Purpose: generate an executive aggregation from recorded results only.
+
+Rules:
+- Use pointers to previously generated results.
+- Do not recompute metrics.
+- Do not create new thresholds.
+- Produce an objective summary and compact tables for risk scores,
+  portfolio features, macro overlay, behavioral risk, stress results,
+  executive outcomes, and policy comparison.
+[*logic_enterprise_dashboard] #0
+

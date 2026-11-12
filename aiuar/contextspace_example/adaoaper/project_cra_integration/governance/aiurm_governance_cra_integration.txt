@@ -19,7 +19,6 @@ the consumer project).
 # Governance
 as_of               = "2026-04-19"
 policy_version      = "CRA_SIM_V1"
-seed                = 42
 
 substrate_type      = FILESYSTEM
 aiuar_root          = ...\aiuar\
@@ -28,12 +27,7 @@ aiuar_logic_source  = aiuar
 aiuar_data_source   = aiuar
 aiuar_result_output = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_cra_batch_{random_6}
 
-resolution_mode            = DETERMINISTIC
-primary_resolver           = CODE
-requires_llm_reasoning     = false
-primary_resolution_by_code = REQUIRED
-instrumental_code_role     = RESOLUTION_CORE
-resolution_scope           = ALL_APPLY_STEPS
+resolution_mode_default = DETERMINISTIC
 
 execution_id         = {YYYYMMDD}_{random_6}
 response_contract    = STRUCTURED_OUTPUT_REQUIRED

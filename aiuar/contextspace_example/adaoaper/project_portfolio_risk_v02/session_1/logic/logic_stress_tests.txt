@@ -1,0 +1,98 @@
+﻿Asset bucket shocks:
+{
+  "MarketDownturn": {
+    "broad_equity": -0.3,
+    "tech_equity": -0.35,
+    "growth_tech": -0.45,
+    "innovation_etf": -0.55,
+    "speculative_equity": -0.7,
+    "crypto": -0.6,
+    "crypto_proxy": -0.75,
+    "gov_bond_ST": 0.03,
+    "gov_bond_MT": 0.05,
+    "gov_bond_LT": 0.07,
+    "ig_corp_bond": 0.02,
+    "bbb_hy_bond": -0.08,
+    "gold": 0.15,
+    "energy": -0.2,
+    "cash": 0.0,
+    "real_estate": -0.25,
+    "private_credit": -0.18,
+    "commodities": 0.1
+  },
+  "InflationSpike": {
+    "broad_equity": -0.15,
+    "tech_equity": -0.25,
+    "growth_tech": -0.35,
+    "innovation_etf": -0.35,
+    "speculative_equity": -0.35,
+    "crypto": -0.4,
+    "crypto_proxy": -0.55,
+    "gov_bond_ST": -0.03,
+    "gov_bond_MT": -0.06,
+    "gov_bond_LT": -0.12,
+    "ig_corp_bond": -0.1,
+    "bbb_hy_bond": -0.1,
+    "gold": 0.25,
+    "energy": 0.4,
+    "cash": 0.0,
+    "real_estate": -0.08,
+    "private_credit": -0.12,
+    "commodities": 0.25
+  },
+  "RateHike(+200bps)": {
+    "broad_equity": -0.2,
+    "tech_equity": -0.3,
+    "growth_tech": -0.4,
+    "innovation_etf": -0.4,
+    "speculative_equity": -0.4,
+    "crypto": -0.5,
+    "crypto_proxy": -0.65,
+    "gov_bond_ST": -0.02,
+    "gov_bond_MT": -0.07,
+    "gov_bond_LT": -0.25,
+    "ig_corp_bond": -0.12,
+    "bbb_hy_bond": -0.18,
+    "gold": 0.05,
+    "energy": -0.1,
+    "cash": 0.0,
+    "real_estate": -0.18,
+    "private_credit": -0.15,
+    "commodities": -0.05
+  },
+  "TechCrash": {
+    "broad_equity": -0.15,
+    "tech_equity": -0.5,
+    "growth_tech": -0.65,
+    "innovation_etf": -0.7,
+    "speculative_equity": -0.65,
+    "crypto": -0.35,
+    "crypto_proxy": -0.6,
+    "gov_bond_ST": 0.04,
+    "gov_bond_MT": 0.06,
+    "gov_bond_LT": 0.08,
+    "ig_corp_bond": 0.04,
+    "bbb_hy_bond": 0.02,
+    "gold": 0.1,
+    "energy": -0.05,
+    "cash": 0.0,
+    "real_estate": -0.1,
+    "private_credit": -0.05,
+    "commodities": 0.05
+  }
+}
+
+Metrics:
+- scenario_return_pct = SUM(asset_weight Ã— bucket_shock)
+- worst_scenario_return_pct = MIN(scenario_return_pct)
+- average_scenario_return_pct = MEAN(scenario_return_pct)
+- average_loss_pct = ABS(MIN(0, average_scenario_return_pct))
+
+Stress grade by average_loss_pct:
+- A < 10%
+- B >=10% and <20%
+- C >=20% and <30%
+- D >=30% and <40%
+- F >=40%
+[*logic_stress_tests] #0
+

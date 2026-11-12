@@ -1,0 +1,62 @@
+﻿Evaluate severe rules first, then moderate rules, then aligned.
+{
+  "Conservative": {
+    "crypto_like_cap": 0.0,
+    "growth_tech_cap": 0.1,
+    "bond_min": 0.5,
+    "liquid_min": 0.7,
+    "high_vol_norm": 0.15,
+    "alignment_rules": {
+      "severe_mismatch_if": [
+        "crypto_like_pct > 0.10",
+        "speculative_pct > 0.15"
+      ],
+      "moderate_mismatch_if": [
+        "crypto_like_pct > 0.00",
+        "growth_tech_pct > 0.15",
+        "bond_pct < 0.50",
+        "liquid_pct < 0.70"
+      ]
+    }
+  },
+  "Balanced": {
+    "crypto_like_cap": 0.1,
+    "growth_tech_cap": 0.25,
+    "bond_min": 0.15,
+    "liquid_min": 0.5,
+    "high_vol_norm": 0.35,
+    "alignment_rules": {
+      "severe_mismatch_if": [
+        "crypto_like_pct > 0.30",
+        "speculative_pct > 0.25"
+      ],
+      "moderate_mismatch_if": [
+        "crypto_like_pct > 0.10",
+        "growth_tech_pct > 0.30",
+        "bond_pct < 0.15",
+        "liquid_pct < 0.50"
+      ]
+    }
+  },
+  "Aggressive": {
+    "crypto_like_cap": 0.5,
+    "growth_tech_cap": 0.5,
+    "bond_min": 0.1,
+    "liquid_min": 0.4,
+    "high_vol_norm": 0.6,
+    "alignment_rules": {
+      "severe_mismatch_if": [
+        "crypto_like_pct > 0.70",
+        "largest_sector_pct > 0.80",
+        "liquid_pct < 0.25"
+      ],
+      "moderate_mismatch_if": [
+        "crypto_like_pct > 0.50",
+        "largest_sector_pct > 0.65",
+        "liquid_pct < 0.40"
+      ]
+    }
+  }
+}
+[*data_profile_norms] #0
+

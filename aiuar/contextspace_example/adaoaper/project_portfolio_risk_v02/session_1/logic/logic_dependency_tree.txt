@@ -1,0 +1,9 @@
+﻿Purpose: generate the complete workflow dependency tree.
+
+Rules:
+- Include all data, parameter, logic, result, and automatic markers.
+- Represent marker dependencies in Graphviz/DOT format.
+- Connect each result marker to the markers referenced in its canonical
+  execution command.
+[*logic_dependency_tree] #0
+

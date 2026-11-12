@@ -1,0 +1,10 @@
+﻿Generate scenario impact flags and ordered actions only.
+{
+  "ESG_mandatory": "Exclude BBB or lower and private-credit exposure; overweight AAA",
+  "Crypto_zero_conservative": "For Conservative portfolios, reduce crypto_like_pct to 0%",
+  "Tech_exposure_cap": "Reduce technology_exposure_pct to <=20%",
+  "Defensive_shift": "Shift 15% toward government and investment-grade bonds",
+  "Alternative_beta": "Shift 10% toward commodities during InflationSpike"
+}
+[*logic_exec_scenarios] #0
+

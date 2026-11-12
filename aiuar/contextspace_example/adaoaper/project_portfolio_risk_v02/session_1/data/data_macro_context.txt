@@ -1,0 +1,20 @@
+﻿{
+  "inflation_forecast": 3.2,
+  "gdp_outlook": 1.5,
+  "fed_rate_projection": 4.25,
+  "oil_volatility_index": 28,
+  "tail_risk_index": 0.62,
+  "market_regime": "Mid-cycle Softening",
+  "systemic_signals": [
+    "Tech Overextension",
+    "Crypto Momentum Decay",
+    "LongDurationPressure",
+    "CreditSpreadAlert",
+    "NegativeRealYieldRisk",
+    "LiquidityCompression",
+    "HiddenBetaExposure",
+    "SuitabilityTightening"
+  ]
+}
+[*data_macro_context] #0
+

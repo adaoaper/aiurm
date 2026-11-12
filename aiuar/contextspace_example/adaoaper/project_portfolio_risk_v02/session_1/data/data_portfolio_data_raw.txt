@@ -1,0 +1,1336 @@
+﻿[
+  {
+    "portfolio_id": "PF001",
+    "investor_name": "Alice Johnson",
+    "age": 45,
+    "risk_profile": "Balanced",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "AAPL",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 60000.0
+      },
+      {
+        "asset": "TSLA",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 40000.0
+      },
+      {
+        "asset": "US Treasury 10Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 80000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 70000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF002",
+    "investor_name": "Brian Smith",
+    "age": 32,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 120000.0,
+    "holdings": [
+      {
+        "asset": "Ethereum",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 50000.0
+      },
+      {
+        "asset": "ARKK ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 40000.0
+      },
+      {
+        "asset": "NIO",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF003",
+    "investor_name": "Catherine Lee",
+    "age": 55,
+    "risk_profile": "Conservative",
+    "reported_total_value": 300000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 120000.0
+      },
+      {
+        "asset": "Corporate Bond AAA",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 100000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 80000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF004",
+    "investor_name": "Daniel Martinez",
+    "age": 29,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 95000.0,
+    "holdings": [
+      {
+        "asset": "BTC",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 25000.0
+      },
+      {
+        "asset": "Bitcoin",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 15000.0
+      },
+      {
+        "asset": "ETH",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 25000.0
+      },
+      {
+        "asset": "Tech Growth Fund",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF005",
+    "investor_name": "Emily Davis",
+    "age": 39,
+    "risk_profile": "Balanced",
+    "reported_total_value": 180000.0,
+    "holdings": [
+      {
+        "asset": "MSFT",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 50000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 40000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 45000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 45000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF006",
+    "investor_name": "Frank Wilson",
+    "age": 60,
+    "risk_profile": "Conservative",
+    "reported_total_value": 220000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 100000.0
+      },
+      {
+        "asset": "Corporate Bond BBB",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 60000.0
+      },
+      {
+        "asset": "MicroStrategy (MSTR)",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 60000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF007",
+    "investor_name": "Grace Kim",
+    "age": 27,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 80000.0,
+    "holdings": [
+      {
+        "asset": "ETH",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 30000.0
+      },
+      {
+        "asset": "Solana",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 20000.0
+      },
+      {
+        "asset": "Innovation ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF008",
+    "investor_name": "Henry Clark",
+    "age": 50,
+    "risk_profile": "Balanced",
+    "reported_total_value": 275000.0,
+    "holdings": [
+      {
+        "asset": "AMZN",
+        "type": "Equity",
+        "sector": "E-Commerce",
+        "value": 70000.0
+      },
+      {
+        "asset": "Energy ETF",
+        "type": "ETF",
+        "sector": "Energy",
+        "value": 50000.0
+      },
+      {
+        "asset": "Corporate Bond A+",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 85000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 70000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF009",
+    "investor_name": "Isabella Moore",
+    "age": 42,
+    "risk_profile": "Conservative",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 20Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 120000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 50000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF010",
+    "investor_name": "Jack Thompson",
+    "age": 36,
+    "risk_profile": "Balanced",
+    "reported_total_value": 150000.0,
+    "holdings": [
+      {
+        "asset": "Meta",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 35000.0
+      },
+      {
+        "asset": "Coinbase (COIN)",
+        "type": "Equity",
+        "sector": "Financial Services",
+        "value": 30000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 30000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 55000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF011",
+    "investor_name": "Karen White",
+    "age": 61,
+    "risk_profile": "Conservative",
+    "reported_total_value": 320000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 30Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 150000.0
+      },
+      {
+        "asset": "Corporate Bond AA",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 120000.0
+      },
+      {
+        "asset": "Dividend ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 50000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF012",
+    "investor_name": "Leo Garcia",
+    "age": 33,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 110000.0,
+    "holdings": [
+      {
+        "asset": "Ethereum",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 40000.0
+      },
+      {
+        "asset": "ARKK ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 35000.0
+      },
+      {
+        "asset": "SPCE",
+        "type": "Equity",
+        "sector": "Aerospace",
+        "value": 35000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF013",
+    "investor_name": "Maria Lopez",
+    "age": 48,
+    "risk_profile": "Balanced",
+    "reported_total_value": 260000.0,
+    "holdings": [
+      {
+        "asset": "Apple",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 70000.0
+      },
+      {
+        "asset": "Energy Bond",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 60000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 65000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 65000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF014",
+    "investor_name": "Nathan Brown",
+    "age": 41,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 175000.0,
+    "holdings": [
+      {
+        "asset": "Bitcoin",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 70000.0
+      },
+      {
+        "asset": "Tech Growth ETF",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 50000.0
+      },
+      {
+        "asset": "Tesla",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 55000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF015",
+    "investor_name": "Olivia Perez",
+    "age": 52,
+    "risk_profile": "Conservative",
+    "reported_total_value": 280000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 120000.0
+      },
+      {
+        "asset": "Corporate Bond A+",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 80000.0
+      },
+      {
+        "asset": "Dividend ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 80000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF016",
+    "investor_name": "Paula Mendes",
+    "age": 58,
+    "risk_profile": "Conservative",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "Spot Bitcoin ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 25000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 110000.0
+      },
+      {
+        "asset": "Corporate Bond AAA",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 80000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 35000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF017",
+    "investor_name": "Quentin Hall",
+    "age": 44,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "AAPL",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 30000.0
+      },
+      {
+        "asset": "Apple",
+        "type": "Equity",
+        "sector": "Consumer Electronics",
+        "value": 35000.0
+      },
+      {
+        "asset": "MSFT",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 40000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 45000.0
+      },
+      {
+        "asset": "US Treasury 10Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 50000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF018",
+    "investor_name": "Rita Sharma",
+    "age": 35,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 120000.0,
+    "holdings": [
+      {
+        "asset": "COIN",
+        "type": "Equity",
+        "sector": "Financial Services",
+        "value": 25000.0
+      },
+      {
+        "asset": "Coinbase (COIN)",
+        "type": "Equity",
+        "sector": "Financial Services",
+        "value": 20000.0
+      },
+      {
+        "asset": "BTC",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 30000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 25000.0
+      },
+      {
+        "asset": "Cash",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 20000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF019",
+    "investor_name": "Samuel Turner",
+    "age": 63,
+    "risk_profile": "Conservative",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "REIT ETF",
+        "type": "ETF",
+        "sector": "Real Estate",
+        "value": 50000.0
+      },
+      {
+        "asset": "Private Credit Fund",
+        "type": "Alternatives",
+        "sector": "Private Credit",
+        "value": 70000.0
+      },
+      {
+        "asset": "Corporate Bond BBB",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 50000.0
+      },
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 80000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF020",
+    "investor_name": "Tatiana Alves",
+    "age": 46,
+    "risk_profile": "Balanced",
+    "reported_total_value": 190000.0,
+    "holdings": [
+      {
+        "asset": "MSFT",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 60000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 70000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 50000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF021",
+    "investor_name": "Uma Patel",
+    "age": 38,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 170000.0,
+    "holdings": [
+      {
+        "asset": "Tesla",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 45000.0
+      },
+      {
+        "asset": "Bitcoin",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 35000.0
+      },
+      {
+        "asset": "Tech Growth ETF",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 40000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 30000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 20000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF022",
+    "investor_name": "Victor Huang",
+    "age": 67,
+    "risk_profile": "Conservative",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 30Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 175000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 25000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 50000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF023",
+    "investor_name": "Wendy Costa",
+    "age": 49,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "AAPL",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 45000.0
+      },
+      {
+        "asset": "MSFT",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 45000.0
+      },
+      {
+        "asset": "Meta",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 40000.0
+      },
+      {
+        "asset": "Tech Growth Fund",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 35000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 35000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF024",
+    "investor_name": "Xavier Reed",
+    "age": 31,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 150000.0,
+    "holdings": [
+      {
+        "asset": "BTC",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 45000.0
+      },
+      {
+        "asset": "ETH",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 30000.0
+      },
+      {
+        "asset": "SOL",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 30000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 15000.0
+      },
+      {
+        "asset": "Innovation ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF025",
+    "investor_name": "Yara Oliveira",
+    "age": 59,
+    "risk_profile": "Conservative",
+    "reported_total_value": 280000.0,
+    "holdings": [
+      {
+        "asset": "Coinbase",
+        "type": "Equity",
+        "sector": "Financial Services",
+        "value": 30000.0
+      },
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 110000.0
+      },
+      {
+        "asset": "Corporate Bond AA",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 90000.0
+      },
+      {
+        "asset": "Dividend ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 50000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF026",
+    "investor_name": "Zachary Brooks",
+    "age": 43,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "BTC ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 30000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 50000.0
+      },
+      {
+        "asset": "US Treasury 10Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 60000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 60000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF027",
+    "investor_name": "Ana Ribeiro",
+    "age": 34,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 150000.0,
+    "holdings": [
+      {
+        "asset": "Private Credit Fund",
+        "type": "Alternatives",
+        "sector": "Private Credit",
+        "value": 45000.0
+      },
+      {
+        "asset": "ARKK ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 37500.0
+      },
+      {
+        "asset": "SPCE",
+        "type": "Equity",
+        "sector": "Aerospace",
+        "value": 30000.0
+      },
+      {
+        "asset": "Cash",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 37500.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF028",
+    "investor_name": "Bruno Ferreira",
+    "age": 64,
+    "risk_profile": "Conservative",
+    "reported_total_value": 240000.0,
+    "holdings": [
+      {
+        "asset": "Corporate Bond BBB",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 90000.0
+      },
+      {
+        "asset": "Private Credit Fund",
+        "type": "Alternatives",
+        "sector": "Private Credit",
+        "value": 60000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 60000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF029",
+    "investor_name": "Camila Nunes",
+    "age": 47,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "Energy ETF",
+        "type": "ETF",
+        "sector": "Energy",
+        "value": 45000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 45000.0
+      },
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 60000.0
+      },
+      {
+        "asset": "Energy Bond",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 30000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 20000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF030",
+    "investor_name": "Diego Santos",
+    "age": 37,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 160000.0,
+    "holdings": [
+      {
+        "asset": "TSLA",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 30000.0
+      },
+      {
+        "asset": "Tesla",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 30000.0
+      },
+      {
+        "asset": "ARKK",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 40000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 40000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 20000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF031",
+    "investor_name": "Elena Moretti",
+    "age": 70,
+    "risk_profile": "Conservative",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 50000.0
+      },
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 50000.0
+      },
+      {
+        "asset": "US Treasury 20Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 80000.0
+      },
+      {
+        "asset": "US Treasury 30Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 70000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF032",
+    "investor_name": "Felipe Rocha",
+    "age": 40,
+    "risk_profile": "Balanced",
+    "reported_total_value": 180000.0,
+    "holdings": [
+      {
+        "asset": "Bitcoin ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 30000.0
+      },
+      {
+        "asset": "COIN",
+        "type": "Equity",
+        "sector": "Financial Services",
+        "value": 25000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 45000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 50000.0
+      },
+      {
+        "asset": "Cash",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF033",
+    "investor_name": "Gabriela Lima",
+    "age": 28,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 150000.0,
+    "holdings": [
+      {
+        "asset": "NIO",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 30000.0
+      },
+      {
+        "asset": "SPCE",
+        "type": "Equity",
+        "sector": "Aerospace",
+        "value": 30000.0
+      },
+      {
+        "asset": "ARKK ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 40000.0
+      },
+      {
+        "asset": "Innovation ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 30000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 20000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF034",
+    "investor_name": "Hugo Martins",
+    "age": 62,
+    "risk_profile": "Conservative",
+    "reported_total_value": 215000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 5Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 90000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 60000.0
+      },
+      {
+        "asset": "Corporate Bond A",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 30000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF035",
+    "investor_name": "Ines Duarte",
+    "age": 51,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "Commodities ETF",
+        "type": "Commodity",
+        "sector": "Commodities",
+        "value": 40000.0
+      },
+      {
+        "asset": "REIT ETF",
+        "type": "Alternatives",
+        "sector": "Real Estate",
+        "value": 40000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 40000.0
+      },
+      {
+        "asset": "US Treasury 10Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 50000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 30000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF036",
+    "investor_name": "Joao Pereira",
+    "age": 30,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 150000.0,
+    "holdings": [
+      {
+        "asset": "BTC",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 35000.0
+      },
+      {
+        "asset": "Tech Growth ETF",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 35000.0
+      },
+      {
+        "asset": "Energy ETF",
+        "type": "ETF",
+        "sector": "Energy",
+        "value": 30000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 25000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 25000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF037",
+    "investor_name": "Karla Souza",
+    "age": 37,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 160000.0,
+    "holdings": [
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 20000.0
+      },
+      {
+        "asset": "S&P500 ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 40000.0
+      },
+      {
+        "asset": "ARKK ETF",
+        "type": "ETF",
+        "sector": "Innovation",
+        "value": 40000.0
+      },
+      {
+        "asset": "TSLA",
+        "type": "Equity",
+        "sector": "Automotive",
+        "value": 60000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF038",
+    "investor_name": "Lucas Andrade",
+    "age": 57,
+    "risk_profile": "Conservative",
+    "reported_total_value": 250000.0,
+    "holdings": [
+      {
+        "asset": "BTC ETF",
+        "type": "ETF",
+        "sector": "Diversified",
+        "value": 18000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 42000.0
+      },
+      {
+        "asset": "Corporate Bond AAA",
+        "type": "Bond",
+        "sector": "Corporate",
+        "value": 90000.0
+      },
+      {
+        "asset": "US Treasury 2Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 100000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF039",
+    "investor_name": "Mariana Silva",
+    "age": 45,
+    "risk_profile": "Balanced",
+    "reported_total_value": 200000.0,
+    "holdings": [
+      {
+        "asset": "AAPL",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 35000.0
+      },
+      {
+        "asset": "US Treasury 10Y",
+        "type": "Bond",
+        "sector": "Government",
+        "value": 35000.0
+      },
+      {
+        "asset": "Healthcare ETF",
+        "type": "ETF",
+        "sector": "Healthcare",
+        "value": 35000.0
+      },
+      {
+        "asset": "Gold ETF",
+        "type": "Commodity",
+        "sector": "Precious Metals",
+        "value": 35000.0
+      },
+      {
+        "asset": "REIT ETF",
+        "type": "Alternatives",
+        "sector": "Real Estate",
+        "value": 35000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 25000.0
+      }
+    ]
+  },
+  {
+    "portfolio_id": "PF040",
+    "investor_name": "Nicolas Castro",
+    "age": 33,
+    "risk_profile": "Aggressive",
+    "reported_total_value": 105000.0,
+    "holdings": [
+      {
+        "asset": "MicroStrategy",
+        "type": "Equity",
+        "sector": "Technology",
+        "value": 35000.0
+      },
+      {
+        "asset": "BTC",
+        "type": "Crypto",
+        "sector": "Digital Assets",
+        "value": 30000.0
+      },
+      {
+        "asset": "Tech Growth Fund",
+        "type": "ETF",
+        "sector": "Technology",
+        "value": 25000.0
+      },
+      {
+        "asset": "Cash USD",
+        "type": "Cash",
+        "sector": "Cash",
+        "value": 10000.0
+      }
+    ]
+  }
+]
+[*data_portfolio_data_raw] #0
+

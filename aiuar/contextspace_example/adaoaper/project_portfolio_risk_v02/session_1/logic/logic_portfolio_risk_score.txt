@@ -1,0 +1,44 @@
+﻿Purpose: produce a single auditable safety score where HIGH SCORE = SAFER.
+
+A) ASSET CLASS STABILITY â€” continuous, max 30
+AssetStability_raw = SUM(asset_weight_i Ã— stability_points_i)
+
+B) DIVERSIFICATION â€” strict discrete buckets, max 25
+- >= 5 distinct allocation classes = 25
+- 3â€“4 classes = 18
+- 2 classes = 12
+- 1 class = 5
+
+C) SECTOR CONCENTRATION â€” strict discrete buckets, max 20
+- largest_sector_pct < 30% = 20
+- largest_sector_pct >= 30% and < 50% = 12
+- largest_sector_pct >= 50% = 5
+
+D) LIQUIDITY â€” strict discrete buckets, max 15
+- liquid_pct >= 70% = 15
+- liquid_pct >= 40% and < 70% = 10
+- liquid_pct < 40% = 5
+
+E) RISK PROFILE ALIGNMENT â€” strict discrete buckets, max 10
+Evaluate the conditions defined in *data_profile_norms in this order:
+1) severe_mismatch_if any condition is true â†’ 2
+2) moderate_mismatch_if any condition is true â†’ 6
+3) otherwise aligned â†’ 10
+
+BUCKET ENFORCEMENT
+- No interpolation, smoothing, or fractional bucket values.
+- If a metric falls on a threshold boundary, use the explicitly declared
+  comparison operator.
+- Any non-allowed bucket value is a POLICY VIOLATION and must be recomputed.
+
+FINAL SCORE
+final_score = AssetStability_raw + diversification + sector + liquidity + alignment
+Round final_score to 1 decimal.
+
+FINAL CATEGORIES
+- 80â€“100 = "Low Risk Portfolio"
+- 65â€“79.9 = "Moderate Risk Portfolio"
+- 50â€“64.9 = "Elevated Risk Portfolio"
+- < 50 = "High Risk Portfolio"
+[*logic_portfolio_risk_score] #0
+

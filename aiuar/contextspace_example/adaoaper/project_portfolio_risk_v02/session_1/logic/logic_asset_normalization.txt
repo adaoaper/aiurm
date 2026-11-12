@@ -1,0 +1,18 @@
+﻿Purpose: materialize a canonical portfolio representation before any scoring.
+
+Rules:
+1) Resolve each raw holding asset label through *data_asset_aliases.
+2) Replace raw type, sector, stability, stress, liquidity, and behavioral tags
+   with values from *data_asset_taxonomy_canonical.
+3) Aggregate duplicate holdings that resolve to the same canonical asset_id.
+4) computed_total_value = SUM(normalized holding values).
+5) total_variance_pct =
+   ABS(reported_total_value - computed_total_value) / computed_total_value * 100.
+6) If total_variance_pct > *data_param_risk_scoring.data_quality_tolerance_pct,
+   record data_quality_flag = "REPORTED_TOTAL_MISMATCH".
+7) Use computed_total_value as the denominator for all downstream calculations.
+8) Preserve an alias_trace list and a normalization_override list for audit.
+9) No unsupported asset label may be silently classified. If an alias is absent,
+   record unresolved_asset and stop downstream calculation for that portfolio.
+[*logic_asset_normalization] #0
+

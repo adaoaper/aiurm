@@ -242,7 +242,7 @@ Cross-contextspace reference — full address, all levels explicit:
 
 ## EXECUTE COMMAND
 
-`execute` targets the governance file `aiurm_governance_{project}` of a project and runs its pipeline linearly — loading governance fields, resolving Data and Logic markers, and executing Result steps in order.
+`execute` targets the governance file `aiurm_governance_{project}` of a project and runs its pipeline linearly: it loads the governance fields, then executes the Result steps in order. Each step resolves the Data and Logic markers of its own Apply block when it is executed.
 
 Valid forms:
 

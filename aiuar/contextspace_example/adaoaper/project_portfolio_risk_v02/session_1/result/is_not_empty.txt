@@ -1,0 +1,2 @@
+﻿Result directory initialized for AIURM materialized project.
+

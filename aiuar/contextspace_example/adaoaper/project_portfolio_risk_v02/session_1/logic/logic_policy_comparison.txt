@@ -1,0 +1,15 @@
+﻿Purpose: compare recorded conservative and aggressive policy outcomes.
+
+Rules:
+- Use recorded results only.
+- Restate recorded deltas, counts, grades, totals, and residual violations.
+- Reference the logic blocks that produced the recorded results.
+- Do not recompute prior results.
+- Do not introduce new scenarios, probabilities, projections,
+  or regulatory reinterpretations.
+
+Output:
+- one compact comparison table
+- 5â€“8 evidence-based takeaways
+[*logic_policy_comparison] #0
+

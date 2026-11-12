@@ -1,0 +1,27 @@
+﻿{
+  "policy_mode": "Auto",
+  "scoring_mode": "STRICT_DISCRETE_BUCKETS",
+  "interpolation_allowed": false,
+  "bucket_tie_breaker": "FLOOR_TO_RISKIER_BUCKET",
+  "data_quality_tolerance_pct": 0.5,
+  "bucket_rules": {
+    "diversification": [25, 18, 12, 5],
+    "sector_concentration": [20, 12, 5],
+    "liquidity": [15, 10, 5],
+    "profile_alignment": [10, 6, 2]
+  },
+  "weights": {
+    "asset_stability": 0.30,
+    "diversification": 0.25,
+    "sector_concentration": 0.20,
+    "liquidity": 0.15,
+    "profile_alignment": 0.10
+  },
+  "rounding": {
+    "component_points": "NO_ROUNDING",
+    "final_score": "ROUND_1_DECIMAL",
+    "weights_pct": "ROUND_2_DECIMALS"
+  }
+}
+[*data_param_risk_scoring] #0
+

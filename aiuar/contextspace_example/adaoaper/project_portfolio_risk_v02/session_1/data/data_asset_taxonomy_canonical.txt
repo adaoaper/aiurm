@@ -1,0 +1,527 @@
+﻿Taxonomy values override raw holding labels for sector, class, stability,
+stress bucket, liquidity, and behavioral tags.
+{
+  "AAPL": {
+    "aliases": [
+      "AAPL",
+      "Apple"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Technology",
+    "stability_points": 15,
+    "stress_bucket": "tech_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "blue_chip",
+      "tech"
+    ]
+  },
+  "MSFT": {
+    "aliases": [
+      "MSFT",
+      "Microsoft"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Technology",
+    "stability_points": 15,
+    "stress_bucket": "tech_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "blue_chip",
+      "tech"
+    ]
+  },
+  "META": {
+    "aliases": [
+      "META",
+      "Meta"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Technology",
+    "stability_points": 15,
+    "stress_bucket": "tech_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "blue_chip",
+      "tech"
+    ]
+  },
+  "AMZN": {
+    "aliases": [
+      "AMZN",
+      "Amazon"
+    ],
+    "allocation_class": "Equity",
+    "sector": "E-Commerce",
+    "stability_points": 15,
+    "stress_bucket": "broad_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "blue_chip"
+    ]
+  },
+  "TSLA": {
+    "aliases": [
+      "TSLA",
+      "Tesla"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Automotive",
+    "stability_points": 10,
+    "stress_bucket": "growth_tech",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "growth_tech",
+      "crowd_trade",
+      "narrative_proxy"
+    ]
+  },
+  "NIO": {
+    "aliases": [
+      "NIO"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Automotive",
+    "stability_points": 10,
+    "stress_bucket": "growth_tech",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "growth_tech",
+      "narrative_proxy"
+    ]
+  },
+  "SPCE": {
+    "aliases": [
+      "SPCE",
+      "Virgin Galactic"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Aerospace",
+    "stability_points": 5,
+    "stress_bucket": "speculative_equity",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "speculative",
+      "narrative_proxy"
+    ]
+  },
+  "COIN": {
+    "aliases": [
+      "COIN",
+      "Coinbase (COIN)",
+      "Coinbase"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto_proxy",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crypto_proxy",
+      "crowd_trade",
+      "narrative_proxy",
+      "hidden_beta"
+    ]
+  },
+  "MSTR": {
+    "aliases": [
+      "MSTR",
+      "MicroStrategy (MSTR)",
+      "MicroStrategy"
+    ],
+    "allocation_class": "Equity",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto_proxy",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crypto_proxy",
+      "crowd_trade",
+      "narrative_proxy",
+      "hidden_beta"
+    ]
+  },
+  "BTC": {
+    "aliases": [
+      "BTC",
+      "Bitcoin"
+    ],
+    "allocation_class": "Crypto",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crowd_trade",
+      "narrative_proxy"
+    ]
+  },
+  "ETH": {
+    "aliases": [
+      "ETH",
+      "Ethereum"
+    ],
+    "allocation_class": "Crypto",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crowd_trade",
+      "narrative_proxy"
+    ]
+  },
+  "SOL": {
+    "aliases": [
+      "SOL",
+      "Solana"
+    ],
+    "allocation_class": "Crypto",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crowd_trade",
+      "narrative_proxy"
+    ]
+  },
+  "SP500_ETF": {
+    "aliases": [
+      "S&P500 ETF",
+      "SP500 ETF",
+      "S&P 500 ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Diversified",
+    "stability_points": 20,
+    "stress_bucket": "broad_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "broad_market"
+    ]
+  },
+  "DIVIDEND_ETF": {
+    "aliases": [
+      "Dividend ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Diversified",
+    "stability_points": 20,
+    "stress_bucket": "broad_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "HEALTHCARE_ETF": {
+    "aliases": [
+      "Healthcare ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Healthcare",
+    "stability_points": 20,
+    "stress_bucket": "broad_equity",
+    "liquidity_status": "liquid",
+    "behavioral_tags": []
+  },
+  "ENERGY_ETF": {
+    "aliases": [
+      "Energy ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Energy",
+    "stability_points": 20,
+    "stress_bucket": "energy",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "inflation_hedge"
+    ]
+  },
+  "TECH_GROWTH_ETF": {
+    "aliases": [
+      "Tech Growth ETF",
+      "Tech Growth Fund"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Technology",
+    "stability_points": 10,
+    "stress_bucket": "growth_tech",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "growth_tech",
+      "narrative_proxy"
+    ]
+  },
+  "ARKK": {
+    "aliases": [
+      "ARKK ETF",
+      "ARKK"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Innovation",
+    "stability_points": 10,
+    "stress_bucket": "innovation_etf",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "growth_tech",
+      "crowd_trade",
+      "narrative_proxy",
+      "hidden_beta"
+    ]
+  },
+  "INNOVATION_ETF": {
+    "aliases": [
+      "Innovation ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Innovation",
+    "stability_points": 10,
+    "stress_bucket": "innovation_etf",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "growth_tech",
+      "narrative_proxy",
+      "hidden_beta"
+    ]
+  },
+  "SPOT_BTC_ETF": {
+    "aliases": [
+      "Spot Bitcoin ETF",
+      "Bitcoin ETF",
+      "BTC ETF"
+    ],
+    "allocation_class": "ETF",
+    "sector": "Digital Assets",
+    "stability_points": 5,
+    "stress_bucket": "crypto_proxy",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "crypto_like",
+      "crypto_proxy",
+      "crowd_trade",
+      "narrative_proxy",
+      "hidden_beta"
+    ]
+  },
+  "GOV_2Y": {
+    "aliases": [
+      "US Treasury 2Y"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Government",
+    "stability_points": 30,
+    "stress_bucket": "gov_bond_ST",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "GOV_5Y": {
+    "aliases": [
+      "US Treasury 5Y"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Government",
+    "stability_points": 30,
+    "stress_bucket": "gov_bond_ST",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "GOV_10Y": {
+    "aliases": [
+      "US Treasury 10Y"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Government",
+    "stability_points": 30,
+    "stress_bucket": "gov_bond_MT",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "GOV_20Y": {
+    "aliases": [
+      "US Treasury 20Y"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Government",
+    "stability_points": 30,
+    "stress_bucket": "gov_bond_LT",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast",
+      "long_duration"
+    ]
+  },
+  "GOV_30Y": {
+    "aliases": [
+      "US Treasury 30Y"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Government",
+    "stability_points": 30,
+    "stress_bucket": "gov_bond_LT",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast",
+      "long_duration"
+    ]
+  },
+  "CORP_AAA": {
+    "aliases": [
+      "Corporate Bond AAA"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Corporate",
+    "stability_points": 25,
+    "stress_bucket": "ig_corp_bond",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "CORP_AA": {
+    "aliases": [
+      "Corporate Bond AA"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Corporate",
+    "stability_points": 25,
+    "stress_bucket": "ig_corp_bond",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "CORP_A_PLUS": {
+    "aliases": [
+      "Corporate Bond A+"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Corporate",
+    "stability_points": 25,
+    "stress_bucket": "ig_corp_bond",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "CORP_A": {
+    "aliases": [
+      "Corporate Bond A"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Corporate",
+    "stability_points": 25,
+    "stress_bucket": "ig_corp_bond",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "CORP_BBB": {
+    "aliases": [
+      "Corporate Bond BBB"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Corporate",
+    "stability_points": 18,
+    "stress_bucket": "bbb_hy_bond",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "credit_spread_sensitive"
+    ]
+  },
+  "ENERGY_BOND": {
+    "aliases": [
+      "Energy Bond"
+    ],
+    "allocation_class": "Bond",
+    "sector": "Energy",
+    "stability_points": 18,
+    "stress_bucket": "bbb_hy_bond",
+    "liquidity_status": "liquidity_risk",
+    "behavioral_tags": [
+      "credit_spread_sensitive",
+      "energy"
+    ]
+  },
+  "GOLD_ETF": {
+    "aliases": [
+      "Gold ETF"
+    ],
+    "allocation_class": "Commodity",
+    "sector": "Precious Metals",
+    "stability_points": 20,
+    "stress_bucket": "gold",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast",
+      "inflation_hedge"
+    ]
+  },
+  "COMMODITIES_ETF": {
+    "aliases": [
+      "Commodities ETF"
+    ],
+    "allocation_class": "Commodity",
+    "sector": "Commodities",
+    "stability_points": 18,
+    "stress_bucket": "commodities",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "inflation_hedge"
+    ]
+  },
+  "CASH_USD": {
+    "aliases": [
+      "Cash USD",
+      "USD Cash",
+      "Cash"
+    ],
+    "allocation_class": "Cash",
+    "sector": "Cash",
+    "stability_points": 30,
+    "stress_bucket": "cash",
+    "liquidity_status": "liquid",
+    "behavioral_tags": [
+      "defensive_ballast"
+    ]
+  },
+  "REIT_ETF": {
+    "aliases": [
+      "REIT ETF",
+      "Real Estate ETF"
+    ],
+    "allocation_class": "Alternatives",
+    "sector": "Real Estate",
+    "stability_points": 18,
+    "stress_bucket": "real_estate",
+    "liquidity_status": "liquid",
+    "behavioral_tags": []
+  },
+  "PRIVATE_CREDIT_FUND": {
+    "aliases": [
+      "Private Credit Fund"
+    ],
+    "allocation_class": "Alternatives",
+    "sector": "Private Credit",
+    "stability_points": 12,
+    "stress_bucket": "private_credit",
+    "liquidity_status": "illiquid",
+    "behavioral_tags": [
+      "credit_spread_sensitive"
+    ]
+  }
+}
+[*data_asset_taxonomy_canonical] #0
+

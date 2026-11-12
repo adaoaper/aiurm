@@ -1,0 +1,32 @@
+﻿Purpose: explain recorded results without recomputation.
+
+Output:
+- one explanation block per portfolio_id
+
+Include:
+- final risk score and category exactly as recorded
+- recorded score components
+- selected buckets or thresholds
+- 1â€“2 recorded drivers per score component
+- alias or taxonomy override when present
+- detected Reasoning-Mode
+- macro flags, behavioral category, stress grade, and policy violations only
+  when previously generated
+
+Constraints:
+- no new inference
+- no recomputation
+- no new thresholds
+- no suggestions
+
+Allowed Reasoning-Modes:
+- representational
+- empirical
+- narrative
+- causal
+- creative
+- simulated
+- realistic
+- logical
+[*logic_structural_xai] #0
+

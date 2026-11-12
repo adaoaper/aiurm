@@ -12,7 +12,7 @@ requires: aiurm, aiuar
 
 ---
 
-# GOVERNANCE v0.2
+# GOVERNANCE v0.3
 Contractual standard for AIURM/AIUAR governance files.
 
 Dependency chain: aiurm → aiuar → governance
@@ -104,7 +104,7 @@ Rules:
 
 | Value type | Format | Examples |
 |---|---|---|
-| Numeric | no quotes | `seed = 42` |
+| Numeric | no quotes | `table_max_rows = 50` |
 | Path | no quotes | `aiuar_root = ...\aiuar\` |
 | AIUAR address | no quotes | `aiuar = *****contextspace****entity***project**session` |
 | Keyword / enum | no quotes | `output_result_format = JSON` |
@@ -140,55 +140,27 @@ aiuar          = *****contextspace_environment****tracker***project_audit**sessi
 
 | Field | Description |
 |---|---|
-| `seed` | Reproducibility seed |
 | `policy_version` | Policy set identifier | e.g. `"HRPOL_V1"` |
 | `response_contract` | e.g. `STRUCTURED_OUTPUT_REQUIRED` |
 | `output_result_format` | e.g. `JSON`, `TEXT` |
 | `runtime` | e.g. `python`, `native` |
 | `execution_trigger` | e.g. `python_runtime`, `manual` |
-| `code_execution_policy` | `REUSE_IF_PRESENT` (default if absent) \| `REGENERATE_ALWAYS` (ignore existing code, always generate fresh) |
 | `audit_level` | e.g. `FULL`, `MINIMAL` |
 | `audit_policy` | e.g. `LOG_EACH_RESULT_STEP` |
 | `language_policy_default` | e.g. `EN`, `PT` |
 | `schema_mode` | e.g. `restrict`, `permissive` |
 | `aiurm_markers_location` | e.g. `IN_JSON_BODY`, `INLINE` |
 
-### Resolution mode fields (Optional fields)
-
-These fields together declare HOW Apply steps are resolved.
+### Resolution mode field (optional)
 
 | Field | Values | Description |
 |---|---|---|
-| `resolution_mode` | `INFERENCE` \| `DETERMINISTIC` | Top-level resolution paradigm |
-| `primary_resolver` | `MODEL` \| `CODE` | Who resolves Apply steps |
-| `requires_llm_reasoning` | `true` \| `false` | Whether LLM inference is mandatory |
-| `primary_resolution_by_code` | `FORBIDDEN` \| `REQUIRED` | Code's authority over resolution |
-| `instrumental_code_role` | `IO_ONLY` \| `RESOLUTION_CORE` | Code's allowed scope when present |
-| `resolution_scope` | `ALL_APPLY_STEPS` \| `PER_STEP` | Whether the contract applies uniformly |
+| `resolution_mode_default` | `INFERENCE` \| `HYBRID` \| `DETERMINISTIC` \| `AUTO` | Project-wide resolution mode, applied to every Result step that carries no mode suffix |
 
-### Canonical presets
+If the field is absent, steps without a mode suffix are resolved as `AUTO`.
 
-**INFERENCE preset** — LLM-driven resolution:
-```
-resolution_mode            = INFERENCE
-primary_resolver           = MODEL
-requires_llm_reasoning     = true
-primary_resolution_by_code = FORBIDDEN
-instrumental_code_role     = IO_ONLY
-resolution_scope           = ALL_APPLY_STEPS
-```
-
-**DETERMINISTIC preset** — code-driven resolution:
-```
-resolution_mode            = DETERMINISTIC
-primary_resolver           = CODE
-requires_llm_reasoning     = false
-primary_resolution_by_code = REQUIRED
-instrumental_code_role     = RESOLUTION_CORE
-resolution_scope           = ALL_APPLY_STEPS
-```
-
-If absent, default behavior is implementation-defined per executor.
+The modes, the per-step mode suffix, and what the executor is expected to do in each
+are defined in RESOLUTION MODE.
 
 ### Result artifact format rule
 
@@ -258,9 +230,6 @@ project_exception = *****contextspace_environment****tracker***project_exception
 project_code      = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
 ```
 
-Note: `project_changelog` is NOT declared in governance — it is resolved automatically
-by the changelog SKILL from the active contextspace environment convention.
-
 ### Field extensibility
 
 Governance is an extensible control structure. Some projects may implement
@@ -308,16 +277,17 @@ When `project_code` is declared, it designates the location where the AI must pl
 The AI MUST create a node named:
 
 ```
-result_code__{contextspace}__{project}__{execution_id}/
+result_code__{contextspace}__{project}/
 ```
 
 inside the active `project_code` session result path, whenever it needs to write such artifacts.
 
 Rules:
+- There is one node per calling project, kept across executions. Reusing and updating the code in it follows the logic of the `project_code` project.
 - The folder or node is created only when the AI has artifacts to store — if nothing was generated, no node is created.
 - The internal structure and naming of the node's contents are entirely free — the protocol does not prescribe them.
 - The AI MUST NOT create execution artifacts at `aiuar_root` or outside this node.
-- Code generation is instrumental only. The AI MAY generate code when needed for coherent governance resolution, and SHOULD avoid unnecessary code generation when governance can be resolved without it.
+- Whether a step is resolved by code is decided by its resolution mode (see RESOLUTION MODE): code is the resolver in `DETERMINISTIC` steps, computes under the model's direction in `HYBRID` steps, and is limited to input and output in `INFERENCE` steps. Beyond what the mode calls for, the AI SHOULD avoid unnecessary code generation.
 
 ---
 
@@ -380,7 +350,7 @@ Rules:
 
 R{n}. {Title}
 apply *{logic_marker} to *{data_marker_x} and *{data_marker_y}...
-[*{result_marker}] #{intention_suffix}
+[*{result_marker}] #{intention_suffix} {MODE}
 ...
 
 ```
@@ -389,6 +359,7 @@ Rules:
 - Every result step must have: a numbered title, an Apply block, and a marker assignment.
 - The intention suffix (`#0`) is strongly discouraged for Result blocks.
 - The intention suffixes (`#1`, `#2`, `#3`) are strongly recommended, but not mandatory, for Result blocks.
+- A mode suffix (`INFERENCE`, `HYBRID`, `DETERMINISTIC`, `AUTO`) may follow the intention suffix on the marker line. It is optional and declares how that step must be resolved — see RESOLUTION MODE.
 - `R1.`, `R2.`, `R3.`, etc. are human-readable identifiers only. They do not define execution order by themselves.
 - Execution follows the logical order of result blocks in the governance file, unless an explicit rule states otherwise.
 - **The result marker is the primary identifier of a step — never `Rn`.** The AI must always reference a step by its marker (e.g., `*result_x`), not by its numeric label.
@@ -396,7 +367,140 @@ Rules:
 
 ---
 
+## RESOLUTION MODE
+
+### Why it exists
+
+The model's attention is the scarce resource of a governed execution.
+
+A capable executor can resolve almost any step by writing code. The numbers come out
+right, and nobody has looked at the data. What humans want from an AI is not only the
+result but its presence at the points that matter.
+
+The resolution mode is how the governance author declares, step by step, where the
+model's own look is required and where calculation is enough. The author answers one
+question per step: does this step need the model's eyes, is calculation enough, or both?
+
+This section explains the intent so that the executor can act on it, including in
+situations the text does not enumerate.
+
+### The modes
+
+Each mode is defined by what the model's attention must pass over.
+
+| Mode | The model's attention passes over |
+|---|---|
+| `INFERENCE` | the rule, the data, and the result |
+| `HYBRID` | the rule, plus the inputs and outputs of the delegated computation |
+| `DETERMINISTIC` | the rule only |
+
+**INFERENCE** — the model's look is required on everything.
+
+Expected of the executor:
+- Read the data itself; do not hand it to a parser.
+- Interpret the rule and resolve the step by its own reasoning.
+- Notice what a calculation would not notice, and record it.
+- Use code only for input and output (reading and writing artifacts), never to produce the step's answer.
+
+**HYBRID** — code guarantees the number; the contract guarantees the look.
+
+Expected of the executor:
+- Keep the judgment (interpreting the rule, classifying, choosing) and delegate the arithmetic to code.
+- Read what goes into the computation and what comes out of it.
+- Record what it observes: anomalies, surprises, values that are well-formed but look wrong.
+
+Two shapes are valid and may be combined in one step: the model judges and code computes
+from that judgment; or code computes and the model examines the outcome. The model is not
+expected to re-check the arithmetic. A step in which the model only forwards the code's
+output has not been resolved in `HYBRID` mode.
+
+**DETERMINISTIC** — calculation is enough.
+
+Expected of the executor:
+- Read the rule and translate it faithfully into code.
+- Run the code and report the result.
+
+The data does not need to enter the model's context, and no observation is contracted.
+
+**AUTO** — the choice is delegated to the executor.
+
+`AUTO` is not a fourth way of resolving a step. It asks the executor to choose one of the
+three modes above for that step and to record the choice.
+
+Expected of the executor:
+- Choose by the intent of this section, not by cost alone: ask where a look would notice something a calculation would not.
+- Do not resolve every step by code by default; that defeats the purpose of the contract.
+- Fulfil the expectations of the mode it chose.
+
+### Where the mode is declared
+
+Per step — a mode suffix on the marker line of a Result step, after the intention suffix:
+
+```
+R8. Generate Stress Test Results
+apply *logic_stress_tests to *result_portfolio_data_normalized
+[*result_stress_test_results] #3 DETERMINISTIC
+```
+
+Rules:
+- Canonical spelling is uppercase: `INFERENCE`, `HYBRID`, `DETERMINISTIC`, `AUTO`.
+- The order is fixed: `[*marker] #n MODE`.
+- The intention suffix and the mode suffix are optional and independent: `[*marker] HYBRID` is valid.
+- The mode suffix is valid only on the marker line of a Result step. It has no meaning on the governance marker or in the Data and Logic sections.
+
+The marker line carries both sides of the attention contract: `#n` declares how much
+the human will read; the mode declares where the model must look.
+
+Per project — one governance field:
+
+```
+resolution_mode_default = INFERENCE
+```
+
+Precedence:
+
+1. The mode suffix on the step.
+2. `resolution_mode_default`.
+3. Neither is present: `AUTO`.
+
+Code used in `HYBRID` and `DETERMINISTIC` steps runs under the project-wide `runtime` and
+`execution_trigger` fields and is stored according to the Mandatory project_code rule.
+
+### What is recorded
+
+Declared where it matters; recorded where delegated.
+
+The audit record of every completed Result step must carry:
+
+| Field | Rule |
+|---|---|
+| `resolution_applied` | Mandatory. The mode actually used: `INFERENCE`, `HYBRID`, or `DETERMINISTIC`. Never `AUTO`. |
+| `ai_observation` | Mandatory when the applied mode is `INFERENCE` or `HYBRID`: what the model noticed while looking. When there is nothing to report, say so explicitly — this distinguishes "looked and saw nothing" from "did not look". Also mandatory, in any mode, when the applied mode differs from the declared one: state the deviation and its reason. |
+
+The human reads in the audit where the model looked and where it calculated, and adjusts
+the suffixes for the next execution.
+
+### When the declared mode cannot be followed
+
+The executor follows the declared mode as far as it honestly can. This is new ground and
+no execution is perfect: what the contract forbids is silence, not deviation.
+
+- If a step is resolved differently from what was declared, in whole or in part, the executor records the mode it actually used in `resolution_applied` and states the deviation and its reason in `ai_observation`.
+- Replacing a required look with code is the deviation this contract most wants to avoid. When it happens, it must be visible in the audit.
+- A step that cannot be resolved in any mode follows the existing failure path: it is recorded as failed or aborted, and subsequent steps that do not depend on it may continue.
+
+### Legacy resolution fields (v0.2)
+
+Governance files written for v0.2 may still carry the six resolution fields.
+
+- `resolution_mode = X` is read as `resolution_mode_default = X`.
+- `primary_resolver`, `requires_llm_reasoning`, `primary_resolution_by_code`, `instrumental_code_role`, and `resolution_scope` are no longer part of the contract. They have no effect, do not count as project-specific fields under the Field extensibility rule, and should be removed when the file is next edited.
+
+---
+
 ## RECOMMENDED GOVERNANCE STRUCTURE
+
+This list is a guide for whoever writes or reviews a governance file.
 
 - Follow strict AIURM, AIUAR, and governance definitions.
 - File naming and location follow the convention: `governance/aiurm_governance_{project}.txt`.
@@ -417,6 +521,10 @@ Rules:
 ## GOVERNED EXECUTION PREMISES — MARKER RESOLUTION
 
 Markers referenced in an Apply block are resolved during execution of the corresponding Result step.
+
+Good practice: the executor persists the result of each Apply as soon as it is available.
+Work already done stays recorded if the execution is interrupted, and later steps start
+from the written result.
 
 Resolution requires:
 
@@ -469,7 +577,7 @@ Violations:
 
 ---
 
-# governance skill v0.2 — part of the AIURM Protocol
+# governance skill v0.3 — part of the AIURM Protocol
 
 Created by Adao Aparecido Ernesto (2025)
 aiurm.org | X: @adaoaper | GitHub: github.com/adaoaper/aiurm

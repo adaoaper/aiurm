@@ -1,0 +1,18 @@
+﻿Do not modify the base score. Produce a parallel contextual overlay.
+
+Flags:
+- "Tech Overextension" if technology_exposure_pct > 30%
+- "Crypto Momentum Decay" if crypto_like_pct > 20%
+- "LongDurationPressure" if long_duration_pct > 25%
+- "CreditSpreadAlert" if credit_spread_sensitive_pct > 20%
+- "NegativeRealYieldRisk" if bond_pct > 45% AND inflation_forecast > 3.0
+- "LiquidityCompression" if liquid_pct < 50%
+- "HiddenBetaExposure" if hidden_beta_pct > 15%
+- "SuitabilityTightening" if profile_alignment_score < 10
+
+Overlay severity:
+- 0â€“1 flags = "WATCH"
+- 2â€“3 flags = "HEIGHTENED"
+- >= 4 flags = "CRITICAL"
+[*logic_macro_overlay] #0
+

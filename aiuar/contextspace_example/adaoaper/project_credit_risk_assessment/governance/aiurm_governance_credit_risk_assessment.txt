@@ -17,7 +17,6 @@ Logic and policy parameters are anchored in session_1 and resolved via cross-ses
 # Governance
 as_of               = "2026-04-19"
 policy_version      = "CREDIT_DEMO_V1"
-seed                = 42
 
 substrate_type      = FILESYSTEM
 aiuar_root          = ...\aiuar\
@@ -26,12 +25,7 @@ aiuar_logic_source  = aiuar
 aiuar_data_source   = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_{claimed}
 aiuar_result_output = *****contextspace_example****adaoaper***project_credit_risk_assessment**session_{claimed}
 
-resolution_mode            = INFERENCE 
-primary_resolver           = MODEL 
-requires_llm_reasoning     = true 
-primary_resolution_by_code = FORBIDDEN 
-instrumental_code_role     = IO_ONLY 
-resolution_scope           = ALL_APPLY_STEPS
+resolution_mode_default = INFERENCE
 
 execution_id         = {YYYYMMDD}_{random_6}
 response_contract    = STRUCTURED_OUTPUT_REQUIRED

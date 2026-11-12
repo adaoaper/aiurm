@@ -16,7 +16,6 @@ explainability.
 
 # Governance
 as_of                            = "2026-04-03"
-seed                             = 42
 model_version                    = "HitToLead_application_profile_v0_2"
 target_label                     = "Protein_X_pocket_A"
 policy_version                   = "SM_HTL_OPT_v0_2"

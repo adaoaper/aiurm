@@ -10,5 +10,6 @@ logic_applied       : list of logic markers used in the apply block
 data_consumed       : list of data markers used in the apply block
 result_produced     : result marker assigned by the apply block
 key_fields          : principal fields of the logic applied (summary, at AI discretion)
-ai_observation      : optional AI insight about what was produced or why
+resolution_applied  : mode actually used to resolve the step - INFERENCE | HYBRID | DETERMINISTIC (never AUTO)
+ai_observation      : what the AI noticed while resolving the step - mandatory when resolution_applied is INFERENCE or HYBRID (state explicitly when there is nothing to report), optional when DETERMINISTIC; also mandatory when resolution_applied differs from the declared mode (state the deviation and its reason)
 [*data_audit_event] #0

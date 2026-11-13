@@ -277,13 +277,13 @@ When `project_code` is declared, it designates the location where the AI must pl
 The AI MUST create a node named:
 
 ```
-result_code__{contextspace}__{project}/
+result_code__{contextspace}__{project}__{execution_id}/
 ```
 
 inside the active `project_code` session result path, whenever it needs to write such artifacts.
 
 Rules:
-- There is one node per calling project, kept across executions. Reusing and updating the code in it follows the logic of the `project_code` project.
+- The AI follows the `project_code` governance declared by the calling project. That governance may instruct the use of specific, previously generated code.
 - The folder or node is created only when the AI has artifacts to store — if nothing was generated, no node is created.
 - The internal structure and naming of the node's contents are entirely free — the protocol does not prescribe them.
 - The AI MUST NOT create execution artifacts at `aiuar_root` or outside this node.

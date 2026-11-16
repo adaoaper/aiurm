@@ -3,23 +3,69 @@ AIURM/AIUAR Context Space Workflow Specification
 DLR Methodology
 
 # Workflow
-Environment — Communication Project (v0.1-potential)
+Environment — Communication Project (v0.1-experimental)
+Generic Agent-to-Agent Coordination over Filesystem
 
 # Purpose
-Inter-project and inter-agent message passing.
-Enables asynchronous communication between projects within the same contextspace or across contextspaces.
-Potential applications: event notification, agent messaging, pub/sub coordination.
+Generic coordinator for the co-execution of any target AIUAR project by two agents.
+Co-execution is launched on the target, never on this project:
+execute ***{target_project}*governance as {agent_self} in co-execution with {agent_peer} coordinated by ***project_communication*governance
+The target pipeline is executed under its own governance contract; this project only governs
+turn-taking. It knows nothing about the target's steps: progress is carried only by the message
+artifacts in this session's result. Before each target Result step the agent claims the peer's
+message (proof that the peer finished its step) and is granted one turn; after the step it
+publishes a message *result_communication_{timestamp}_{randomid} (from/to in body) identifying
+the target and the step resolved. Flow per turn: claim -> one target Result step -> send.
+The loop ends when the target pipeline has no unresolved step (END message).
 
 ---
 
 # Governance
-as_of                    = "2026-03-26"
-status                   = POTENTIAL
+as_of                    = "2026-11-15"
+status                   = EXPERIMENTAL
+policy_version           = "COMMUNICATION_V01_EXP"
 language_policy_default  = EN
 
 substrate_type           = FILESYSTEM
 aiuar_root               = ...\aiuar\
 aiuar                    = *****contextspace_environment****organizer***project_communication**session_1
+aiuar_data_source        = aiuar
+aiuar_logic_source       = aiuar
+aiuar_result_output      = aiuar
+session_policy           = FIXED
+
+coordination_mode        = CO_EXECUTION
+launch_form              = "execute ***{target_project}*governance as {agent_self} in co-execution with {agent_peer} coordinated by ***project_communication*governance"
+agent_participants       = claude, codex
+agent_initiator          = claude
+agent_self               = DECLARED_AT_LAUNCH
+agent_peer               = DECLARED_AT_LAUNCH
+turn_size                = 1
+execution_loop           = UNTIL_TARGET_COMPLETE
+hook_before_target_step  = *result_communication_claim
+hook_after_target_step   = *result_communication_{timestamp}_{randomid}
+
+claim_target             = RESULT_ARTIFACT
+claim_pattern            = result_communication_{YYYYMMDD_HHMMSS}_{random_6}.json
+claim_strategy           = TO_SELF_NO_REPLY_PRESENT
+claim_size               = 1
+claim_poll_interval_sec  = 30
+claim_timeout_sec        = 3600
+
+message_write_mode       = ATOMIC_TMP_RENAME
+message_timestamp_tz     = UTC
+transient_results        = *result_communication_claim
+
+execution_id             = {YYYYMMDD}_{random_6}
+response_contract        = STRUCTURED_OUTPUT_REQUIRED
+output_result_format     = JSON
+aiurm_markers_location   = IN_JSON_BODY
+runtime                  = python
+execution_trigger        = manual
+schema_mode              = restrict
+
+project_code             = *****contextspace_environment****tracker***project_code*aiurm_governance_project_code
+project_exception        = *****contextspace_environment****tracker***project_exception*aiurm_governance_project_exception
 
 [*aiurm_governance_project_communication] #0
 
@@ -27,26 +73,26 @@ aiuar                    = *****contextspace_environment****organizer***project_
 
 # Data
 
-*data_message
+*data_communication_target
 
 ---
 
 # Logic
 
-*logic_communication_send
 *logic_communication_receive
+*logic_communication_send
 
 ---
 
 # Result
 
-R1. Send message
-apply *logic_communication_send to *data_message
-[*result_communication_send] #0
+R1. Claim turn
+apply *logic_communication_receive to *data_communication_target
+[*result_communication_claim] #1 HYBRID
 
-R2. Receive message
-apply *logic_communication_receive to *data_message
-[*result_communication_receive] #0
+R2. Send message
+apply *logic_communication_send to *data_communication_target and *result_communication_claim
+[*result_communication_{timestamp}_{randomid}] #1 DETERMINISTIC
 
 ---
 

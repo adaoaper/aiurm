@@ -1,0 +1,6 @@
+This file is a placeholder so session_1/result/ is tracked under FILESYSTEM substrate.
+Message artifacts are written here by the agents (session_policy = FIXED):
+  - result_communication_{YYYYMMDD_HHMMSS}_{random_6}.json   (from/to inside the body)
+Target progress is carried only by these messages. Threads are separated by target
+(aiuar_target + execution_id); a finished thread (END, REJECTED, ABORTED) is never resumed.
+This file is not a message and must be ignored by the claim.

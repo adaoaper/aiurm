@@ -1,0 +1,81 @@
+L1. Launch binding
+- Co-execution is launched on the target (governance.launch_form):
+  execute ***{target_project}*governance as {agent_self} in co-execution with {agent_peer} coordinated by ***project_communication*governance
+- Meaning of each clause:
+    execute ***{target_project}*governance -> the target pipeline, executed under its own governance contract
+    as {agent_self}                        -> identity of this executor
+    in co-execution with {agent_peer}      -> the other executor of the same target
+    coordinated by ...                     -> this project governs turn-taking: a target Result step is resolved
+                                              only inside a granted turn (L5), never by plain linear execution
+- This step runs before every target Result step (governance.hook_before_target_step).
+- *data_communication_target is materialized from the launch command (see its resolution_protocol).
+- agent_self and agent_peer must be different and both in governance.agent_participants (exact, lowercase match);
+  otherwise exception AGENT_IDENTITY_INVALID to project_exception; stop.
+
+L2. Messages and threads
+- Messages are the files matching governance.claim_pattern in the active session result.
+  Ignore *.tmp and any other file.
+- A thread is the set of messages sharing the same target.aiuar_target and target.execution_id.
+- Only threads whose target.aiuar_target equals *data_communication_target.aiuar_target are considered.
+- Current thread = the most recent thread without a terminal message (END, REJECTED, ABORTED).
+- No open thread:
+    agent_self == governance.agent_initiator -> new thread; no claim (claim_reason = THREAD_START).
+    otherwise                                -> wait (L3) for the first message of a new thread addressed to self.
+
+L3. Claim (claim_strategy = TO_SELF_NO_REPLY_PRESENT)
+- The claim answers one question: has the peer finished its step?
+- A message is claimable when ALL hold:
+    to == agent_self
+    from == agent_peer
+    it belongs to the current thread (or opens a new thread, for the non-initiator)
+    no message from agent_self exists with in_reply_to == its communication_id
+- Resume: if the last message of the current thread was sent by agent_self, there is nothing to claim yet; wait.
+- Expected: exactly one candidate. If several, take the latest timestamp_utc and record it in claim_note.
+- No candidate -> wait governance.claim_poll_interval_sec and rescan.
+  Total wait > governance.claim_timeout_sec -> exception CLAIM_TIMEOUT to project_exception; stop.
+- The polling mechanism is free. Any polling code is stored per this project's project_code rule.
+
+L4. Verification of the claimed message
+- RESOLVED message: the step it reports must really be resolved in the target:
+    the artifact at step_resolved.aiuar_address exists
+    its aiurm_marker == "[" + step_resolved.result_marker + "]"
+    its execution_id == target.execution_id
+    sha256 of its bytes == step_resolved.sha256
+- Pass -> VERIFIED. Fail -> FAILED: exception VERIFICATION_FAILED to project_exception; no turn is granted;
+  *logic_communication_send emits REJECTED.
+- Claimed END, REJECTED or ABORTED -> no turn is granted; stop the loop; send nothing.
+
+L5. Turn grant
+- THREAD_START or a VERIFIED claim grants agent_self one turn = governance.turn_size target Result step(s).
+- Target binding (session and execution_id of the target execution):
+    THREAD_START -> the executor evaluates the target aiuar_result_output exactly once and generates the target
+                    execution_id in the format the target governance declares.
+    otherwise    -> taken verbatim from the claimed message (target.aiuar_session, target.execution_id).
+  Never re-evaluate the target session or generate a new target execution_id inside an open thread.
+- Next step (derived from the messages, never planned here):
+    resolved set = every step_resolved.result_marker reported with status_marker RESOLVED in the current thread
+    next step    = the first Result step of the target governance, in its logical order, whose marker is not in the resolved set
+    no next step -> the target is complete; no turn is granted; *logic_communication_send emits END.
+- Obligations of the granted turn:
+    resolve exactly the next step, under the target governance contract (Apply block, resolution mode, result
+    contract, environment writes) with the bound session and execution_id;
+    every Result marker used as input must be in the resolved set, otherwise follow the target's UNRESOLVABLE_MARKER path;
+    never resolve a target step outside a granted turn; never modify a result written by the peer;
+    add "executor_agent": agent_self to every target audit and log record of the turn;
+    code written for the turn goes into the target's project_code node under a per-agent subfolder {agent_self}/.
+- Resume: if the next step's result already exists in the bound session with the thread execution_id and was not
+  reported in any message, it is agent_self's interrupted turn: verify it and reuse it instead of resolving again.
+
+L6. Transient result (governance.transient_results — not persisted; embedded in the outgoing message)
+*result_communication_claim = {
+  "agent_self": "...", "agent_peer": "...",
+  "claim_reason": "THREAD_START | PEER_MESSAGE | PEER_TERMINAL",
+  "claimed_communication_id": "... | null",
+  "verification": "VERIFIED | FAILED | NOT_APPLICABLE",
+  "turn_granted": true | false,
+  "target": { "aiuar_target": "...", "aiuar_session": "... | null", "execution_id": "... | null" },
+  "resolved_markers": ["*result_...", "..."],
+  "next_step": { "step_title": "...", "result_marker": "*result_..." } | null,
+  "claim_note": "... | null"
+}
+[*logic_communication_receive] #0

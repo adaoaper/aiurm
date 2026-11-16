@@ -1,0 +1,14 @@
+{
+  "marker_purpose": "AIUAR reference to the target project being co-executed.",
+  "marker_role": "Resolver descriptor. No target is stored here: the executor materializes this marker at launch from the target named in the launch command. Read-only during execution.",
+  "aiuar_target": "DECLARED_AT_LAUNCH",
+  "resolution_protocol": {
+    "source": "launch command — the governance address that follows the first 'execute' (see governance.launch_form)",
+    "normalization": "Normalize the target to its full governance address *****{contextspace}****{entity}***{project}*{governance_marker}, taking contextspace, entity and project from the target governance's own aiuar field and governance_marker from the target governance marker line. The normalized address is the value both agents write in every message (target.aiuar_target), so thread matching is exact.",
+    "on_missing_target": "This project executed directly, without a target -> exception TARGET_UNDECLARED via project_exception; stop.",
+    "on_unresolvable_target": "Target governance not found or not loadable -> exception TARGET_UNRESOLVABLE via project_exception; stop."
+  },
+  "materialized_shape": {
+    "aiuar_target": "*****{contextspace}****{entity}***{project}*{governance_marker}"
+  }
+}

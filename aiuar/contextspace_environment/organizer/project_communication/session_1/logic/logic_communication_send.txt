@@ -1,0 +1,50 @@
+L1. When and what
+- This step runs after every granted turn (governance.hook_after_target_step) and whenever the claim ends without a turn.
+- The outcome of the turn is read from the target result artifact of *result_communication_claim.next_step,
+  resolved by its full AIUAR address in the bound target session.
+    turn granted, target step completed         -> RESOLVED
+    turn granted, target step failed or aborted -> ABORTED   (step_resolved = the failed step, sha256 null)
+    no turn: target complete (no next step)     -> END       (step_resolved = null)
+    no turn: claim verification FAILED          -> REJECTED  (step_resolved = the claimed step; agent_note = failed checks)
+    no turn: claimed END / REJECTED / ABORTED, CLAIM_TIMEOUT, identity or target exception -> send nothing.
+
+L2. Identity and file
+- communication_id = {YYYYMMDD_HHMMSS}_{random_6}  (UTC, 6 lowercase hex chars)
+- File: result_communication_{communication_id}.json in the active session result.
+- Never overwrite: on name collision generate a new random_6.
+
+L3. Schema (strict JSON, schema_mode = restrict, field order fixed)
+{
+  "aiurm_marker": "[*result_communication_{communication_id}]",
+  "aiuar_address": "*****contextspace_environment****organizer***project_communication**session_1*result_communication_{communication_id}",
+  "communication_id": "...",
+  "from": "{agent_self}",
+  "to": "{agent_peer}",
+  "in_reply_to": "{claimed_communication_id} | null",
+  "timestamp_utc": "YYYY-MM-DDTHH:MM:SSZ",
+  "target": {
+    "aiuar_target": "{*data_communication_target.aiuar_target}",
+    "aiuar_session": "{full AIUAR address of the bound target session}",
+    "execution_id": "{target execution_id}"
+  },
+  "step_resolved": {
+    "step_title": "...",
+    "result_marker": "*result_...",
+    "aiuar_address": "{full AIUAR address of the target result}",
+    "resolution_applied": "INFERENCE | HYBRID | DETERMINISTIC | null",
+    "sha256": "{hex of the target result file bytes} | null"
+  } | null,
+  "status_marker": "RESOLVED | END | REJECTED | ABORTED",
+  "agent_note": "... | null"
+}
+- The target block is copied verbatim through the thread.
+- step_resolved carries the target's own identifiers: title and marker exactly as declared in the target governance.
+- sha256 is computed over the exact bytes of the target result file after it is written.
+
+L4. Atomic write
+- Write {file}.tmp in the same folder, then rename. Messages are immutable and append-only.
+
+L5. Loop
+- After RESOLVED, return to *logic_communication_receive (governance.execution_loop = UNTIL_TARGET_COMPLETE).
+- After END, REJECTED or ABORTED the sender stops.
+[*logic_communication_send] #0

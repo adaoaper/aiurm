@@ -41,7 +41,7 @@ aiuar                   = *****contextspace_environment****tracker***project_aud
 
 R1. Write audit record
 apply *logic_audit_write to *data_audit_event
-[*result_audit__{origin_contextspace}__{origin_project}__{origin_session}__{timestamp}] #0
+[*result_audit__{origin_contextspace}__{origin_project}__{result_output_session}__{timestamp}] #0
 
 ---
 

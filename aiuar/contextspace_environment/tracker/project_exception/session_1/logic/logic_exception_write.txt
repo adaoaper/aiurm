@@ -4,7 +4,9 @@ L1. Exception write policy
     origin_contextspace         : contextspace of the calling project
     origin_entity               : entity of the calling project
     origin_project              : project name of the calling project
-    origin_session              : session of the calling project
+    origin_aiuar_logic_source : full resolved AIUAR session address of the executing business project’s logic source
+    origin_aiuar_data_source : full resolved AIUAR session address of the executing business project’s data source
+    origin_aiuar_result_output : full resolved AIUAR session address of the executing business project’s designated result destination
     timestamp                   : YYYYMMDD_HHMMSS
     step                        : R block where the exception occurred
     title                       : step title
@@ -17,4 +19,5 @@ L1. Exception write policy
     executor_insight            : optional diagnostic message from the executor
 - Exception records are quarantined for inspection — never auto-deleted.
 - Emit the result artifact with full exception content.
+- For the record marker, derive {result_output_session} from the session name in origin_aiuar_result_output (e.g. session_2).
 [*logic_exception_write] #0

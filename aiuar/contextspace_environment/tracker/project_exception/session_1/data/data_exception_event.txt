@@ -2,7 +2,9 @@ D1. Exception event schema
 origin_contextspace          : contextspace of the calling project
 origin_entity                : entity of the calling project
 origin_project               : project name of the calling project
-origin_session               : session of the calling project
+origin_aiuar_logic_source : full resolved AIUAR session address of the executing business project’s logic source
+origin_aiuar_data_source : full resolved AIUAR session address of the executing business project’s data source
+origin_aiuar_result_output : full resolved AIUAR session address of the executing business project’s designated result destination
 timestamp                    : YYYYMMDD_HHMMSS
 step_marker                  : result marker of the failed step (primary identifier)
 step_title                   : full step title including label (e.g. "R1. Performance analysis")

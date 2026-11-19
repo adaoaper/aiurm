@@ -97,6 +97,7 @@ AIUAR resolves across:
 | Filesystem            | `FILESYSTEM`        | folders and files on disk                   |
 | JSON file             | `JSON_FILE`         | nested keys in a single `.json` document    |
 | Markdown file         | `MARKDOWN_FILE`     | headings and content blocks in a `.md` file |
+| Database              | `DATABASE`          | tables and rows; the engine is given by the execute command or the connection |
 | Any structured format | `{FORMAT}_FILE`     | any single-file format following this pattern |
 
 The address notation is the same across all substrates.
@@ -110,9 +111,10 @@ This field is mandatory — execution without `substrate_type` is a protocol vio
 
 ### Declared file substrate resolution
 
-Applies to `JSON_FILE`, `MARKDOWN_FILE`, `SQLITE_FILE`, and any other declared file/database substrate.
+Applies to `JSON_FILE`, `MARKDOWN_FILE`, `DATABASE`, and any other declared file/database substrate.
 When `execute in {filename}` is used, all artifacts — governance, data, logic, and result — are resolved from the
 declared file substrate only. The executor must NOT access mirrored filesystem artifact files.
+References outside the executed project, including environment projects, are resolved in the substrate declared in their own governance.
 
 Resolution rules:
 - The substrate file is declared explicitly in the execute command using `in {filename}`

@@ -2,11 +2,15 @@ D1. Log event schema
 origin_contextspace : contextspace of the calling project
 origin_entity       : entity of the calling project
 origin_project      : project name of the calling project
-origin_session      : session of the calling project
+origin_aiuar_logic_source : full resolved AIUAR session address of the executing business project’s logic source
+origin_aiuar_data_source : full resolved AIUAR session address of the executing business project’s data source
+origin_aiuar_result_output : full resolved AIUAR session address of the executing business project’s designated result destination
+execution_id        : execution_id from governance of the calling project
 timestamp           : YYYYMMDD_HHMMSS
 step_marker         : result marker of the executed step (primary identifier)
 step_title          : full step title including label (e.g. "R1. Performance analysis")
 status              : completed | exception | pending | skipped
 exception_ref       : result_exception marker if status = exception (or null)
-ai_observation      : optional AI insight about the step execution
+ai_observation      : optional - as defined in the governance skill, focused on the step's execution process; it must not be the same as the ai_observation of ***project_audit
+ai_agent            : identification of the AI agent that executed the step, whenever available — agent, model, version, and effort level; format at the AI's discretion
 [*data_log_event] #0

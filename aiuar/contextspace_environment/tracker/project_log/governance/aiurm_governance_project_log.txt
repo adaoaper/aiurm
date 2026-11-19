@@ -43,7 +43,7 @@ aiuar                   = *****contextspace_environment****tracker***project_log
 
 R1. Write log record
 apply *logic_log_write to *data_log_event
-[*result_log__{origin_contextspace}__{origin_project}__{origin_session}__{result_marker}__{timestamp}] #0
+[*result_log__{origin_contextspace}__{origin_project}__{result_output_session}__{result_marker}__{timestamp}] #0
 
 ---
 

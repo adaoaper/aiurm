@@ -1,0 +1,12 @@
+﻿RESOLUTION INSTRUCTIONS
+- Code computes: alias resolution through *data_asset_aliases, taxonomy values from
+  *data_asset_taxonomy_canonical, aggregation of duplicate holdings, computed_total_value,
+  total_variance_pct and the data quality flag, as declared in *logic_asset_normalization.
+- Model judges: reviews the raw portfolio records and the normalized output, and decides
+  the cases the code does not resolve by the rules.
+- A portfolio that cannot be fully normalized keeps what can be normalized, with status
+  and reason; it is not dropped.
+- Before delivering, the model checks that every holding is resolved to a canonical
+  asset_id or listed as unresolved, and that holding values add up to computed_total_value.
+- The result carries an ai_observation field, as defined in the governance skill.
+[*logic_resolution_portfolio_data_normalized] #0

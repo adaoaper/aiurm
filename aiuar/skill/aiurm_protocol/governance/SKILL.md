@@ -150,6 +150,10 @@ aiuar          = *****contextspace_environment****tracker***project_audit**sessi
 | `language_policy_default` | e.g. `EN`, `PT` |
 | `schema_mode` | e.g. `restrict`, `permissive` |
 | `aiurm_markers_location` | e.g. `IN_JSON_BODY`, `INLINE` |
+| `aiurm_custom_marker` | Marker format declaration |
+| `aiurm_automatic_marker` | Auto-marker format declaration |
+| `synthetic_data_expansion_policy` | Instructions for data expansion during execution |
+| `inheritance_mode` | e.g. `full_reprocess`, `delta_reprocess` |
 
 ### Resolution mode field (optional)
 
@@ -159,29 +163,40 @@ aiuar          = *****contextspace_environment****tracker***project_audit**sessi
 
 If the field is absent, steps without a mode suffix are resolved as `AUTO`.
 
-The modes, the per-step mode suffix, and what the executor is expected to do in each
-are defined in RESOLUTION MODE.
+Follow the declared mode, or the mode selected under `AUTO`, as far as possible. If execution departs from that mode, even in part, record the mode actually used and explain what changed and why wherever `resolution_applied` is requested.
 
 ### Result artifact format rule
 
-`output_result_format = JSON` + `aiurm_markers_location = IN_JSON_BODY` together form a mandatory contract. When both are declared, every result artifact MUST include as its first two fields:
-
-```json
-{
-  "aiurm_marker": "[*result_x]",
-  "aiuar_address": "*****contextspace****entity***project**session*result_x",
-  ...
-}
-```
+Every result artifact carries its identity, `aiurm_marker` and `aiuar_address`, and its
+provenance, `execution_id` and `created_at`, in the form its format allows. The format is the
+governance `output_result_format`, or the `format` declared for that result (see Supporting
+resolution logic).
 
 | Field | Value | Purpose |
 |---|---|---|
 | `aiurm_marker` | `"[*result_x]"` | Artifact identity — marker as defined in AIURM SKILL |
 | `aiuar_address` | full AIUAR address | Artifact location — enables cross-session reference |
-| `aiurm_custom_marker` | Marker format declaration |
-| `aiurm_automatic_marker` | Auto-marker format declaration |
-| `synthetic_data_expansion_policy` | Instructions for data expansion during execution |
-| `inheritance_mode` | e.g. `full_reprocess`, `delta_reprocess` |
+| `execution_id` | `execution_id` of the producing execution | Links the result to its audit, log, exception, and code records |
+| `created_at` | `YYYYMMDD_HHMMSS`, from the system clock | When the result was persisted |
+
+`output_result_format = JSON` + `aiurm_markers_location = IN_JSON_BODY`: `aiurm_marker` and
+`aiuar_address` are the first two fields of the JSON body, followed by `execution_id` and
+`created_at`.
+
+```json
+{
+  "aiurm_marker": "[*result_x]",
+  "aiuar_address": "*****contextspace****entity***project**session*result_x",
+  "execution_id": "20260327_a3f7b2",
+  "created_at": "20260327_143012",
+  ...
+}
+```
+
+Other formats, for example:
+
+- Text formats (`TEXT`, Markdown), with `aiurm_markers_location = INLINE`: the four fields are written in the text itself.
+- Formats with no place for them (CSV, images, binaries): a JSON descriptor next to the artifact, named after the Result marker, with the four fields and a reference to the file.
 
 ### Operational concerns
 
@@ -283,7 +298,7 @@ result_code__{contextspace}__{project}__{execution_id}/
 inside the active `project_code` session result path, whenever it needs to write such artifacts.
 
 Rules:
-- The AI follows the `project_code` governance declared by the calling project. That governance may instruct the use of specific, previously generated code.
+- The AI follows the `project_code` governance declared by the calling project. That governance, or a resolution logic, may point by AIUAR address to specific, previously generated code.
 - The folder or node is created only when the AI has artifacts to store — if nothing was generated, no node is created.
 - The internal structure and naming of the node's contents are entirely free — the protocol does not prescribe them.
 - The AI MUST NOT create execution artifacts at `aiuar_root` or outside this node.
@@ -369,68 +384,26 @@ Rules:
 
 ## RESOLUTION MODE
 
-### Why it exists
-
-The model's attention is the scarce resource of a governed execution.
-
-A capable executor can resolve almost any step by writing code. The numbers come out
-right, and nobody has looked at the data. What humans want from an AI is not only the
-result but its presence at the points that matter.
-
-The resolution mode is how the governance author declares, step by step, where the
-model's own look is required and where calculation is enough. The author answers one
-question per step: does this step need the model's eyes, is calculation enough, or both?
-
-This section explains the intent so that the executor can act on it, including in
-situations the text does not enumerate.
+The resolution mode is defined by the governance for each Result step. It states how the
+step is resolved: by the model's reasoning, by code, or by both.
 
 ### The modes
 
-Each mode is defined by what the model's attention must pass over.
+**INFERENCE** — The AI reads the data and applies the rule to produce the result by its own judgment, without the aid of code.
+- Every record is resolved by inference, in full: not a summary or a sample.
+- Code is used only to read and write artifacts, never to produce the answer.
 
-| Mode | The model's attention passes over |
-|---|---|
-| `INFERENCE` | the rule, the data, and the result |
-| `HYBRID` | the rule, plus the inputs and outputs of the delegated computation |
-| `DETERMINISTIC` | the rule only |
+**DETERMINISTIC** — The AI translates the rule into code to produce the result.
+- The code follows the rule faithfully.
+- The data does not need to enter the AI's context.
 
-**INFERENCE** — the model's look is required on everything.
+**HYBRID** — A combination of `INFERENCE` and `DETERMINISTIC` to produce the result.
+- The AI keeps the judgment (interpreting the rule, classifying, choosing) and delegates the arithmetic to code.
+- The AI reads what goes into the code and what comes out of it.
 
-Expected of the executor:
-- Read the data itself; do not hand it to a parser.
-- Interpret the rule and resolve the step by its own reasoning.
-- Notice what a calculation would not notice, and record it.
-- Use code only for input and output (reading and writing artifacts), never to produce the step's answer.
+**AUTO** — The AI selects `INFERENCE`, `DETERMINISTIC`, or `HYBRID` based on the step’s logic and data.
 
-**HYBRID** — code guarantees the number; the contract guarantees the look.
-
-Expected of the executor:
-- Keep the judgment (interpreting the rule, classifying, choosing) and delegate the arithmetic to code.
-- Read what goes into the computation and what comes out of it.
-- Record what it observes: anomalies, surprises, values that are well-formed but look wrong.
-
-Two shapes are valid and may be combined in one step: the model judges and code computes
-from that judgment; or code computes and the model examines the outcome. The model is not
-expected to re-check the arithmetic. A step in which the model only forwards the code's
-output has not been resolved in `HYBRID` mode.
-
-**DETERMINISTIC** — calculation is enough.
-
-Expected of the executor:
-- Read the rule and translate it faithfully into code.
-- Run the code and report the result.
-
-The data does not need to enter the model's context, and no observation is contracted.
-
-**AUTO** — the choice is delegated to the executor.
-
-`AUTO` is not a fourth way of resolving a step. It asks the executor to choose one of the
-three modes above for that step and to record the choice.
-
-Expected of the executor:
-- Choose by the intent of this section, not by cost alone: ask where a look would notice something a calculation would not.
-- Do not resolve every step by code by default; that defeats the purpose of the contract.
-- Fulfil the expectations of the mode it chose.
+Record the mode actually used in the step’s audit record, following the `project_audit` contract when declared. If the selected mode differs, record it too.
 
 ### Where the mode is declared
 
@@ -466,35 +439,61 @@ Precedence:
 Code used in `HYBRID` and `DETERMINISTIC` steps runs under the project-wide `runtime` and
 `execution_trigger` fields and is stored according to the Mandatory project_code rule.
 
-### What is recorded
+### Observation and Insights fields by the AI
 
-Declared where it matters; recorded where delegated.
+`ai_observation`, `ai_insight`, or similar fields may be requested in any project, mainly in
+`INFERENCE` and `HYBRID` steps. The request may come from a skill, the governance, a domain
+logic, or a resolution logic, including its `RESULT SCHEMA`.
 
-The audit record of every completed Result step must carry:
+In resolving a step, the AI already pays attention to the Data, Logic, and Result throughout
+the process. When one of these fields is requested, the AI reports what it noticed, including
+anomalies, deviations, inconsistencies, and other findings it considers relevant, and explains
+why they deserve attention.
 
-| Field | Rule |
-|---|---|
-| `resolution_applied` | Mandatory. The mode actually used: `INFERENCE`, `HYBRID`, or `DETERMINISTIC`. Never `AUTO`. |
-| `ai_observation` | Mandatory when the applied mode is `INFERENCE` or `HYBRID`: what the model noticed while looking. When there is nothing to report, say so explicitly — this distinguishes "looked and saw nothing" from "did not look". Also mandatory, in any mode, when the applied mode differs from the declared one: state the deviation and its reason. |
+The AI takes into account where the field was requested, whether in the project being executed
+or in an audit, log, or exception project. It adapts what it reports and the level of detail
+to the purpose of the record, whether to inform those responsible, support an audit, help
+readers interpret logs and exceptions, or guide improvements and the evolution of the pipeline.
 
-The human reads in the audit where the model looked and where it calculated, and adjusts
-the suffixes for the next execution.
+### Supporting resolution logic (optional)
 
-### When the declared mode cannot be followed
+A Result step may also apply a logic with instructions specific to that step and/or the
+schema of its result. It is not mandatory. When used, the recommended pattern is:
 
-The executor follows the declared mode as far as it honestly can. This is new ground and
-no execution is perfect: what the contract forbids is silence, not deviation.
+- Marker name: `logic_resolution_{x}`, where `{x}` follows the name of the Result marker, not the name of the logic applied. Example: `[*result_portfolio_risk_analysis]` → `logic_resolution_portfolio_risk_analysis`.
 
-- If a step is resolved differently from what was declared, in whole or in part, the executor records the mode it actually used in `resolution_applied` and states the deviation and its reason in `ai_observation`.
-- Replacing a required look with code is the deviation this contract most wants to avoid. When it happens, it must be visible in the audit.
-- A step that cannot be resolved in any mode follows the existing failure path: it is recorded as failed or aborted, and subsequent steps that do not depend on it may continue.
+```
+RESOLUTION INSTRUCTIONS
+- ...
 
-### Legacy resolution fields (v0.2)
+RESULT SCHEMA
+- format = ...
+- result_schema = ...
+```
 
-Governance files written for v0.2 may still carry the six resolution fields.
+- `RESOLUTION INSTRUCTIONS`: how this step is resolved, complementary to its resolution mode.
+- `RESULT SCHEMA`: properties and formats of the result.
+  - `format` is optional. When absent, the result follows the governance `output_result_format`. When present, it applies to this result and may differ from the governance format.
+  - `result_schema` is declared in a form compatible with the format.
+- Both blocks are optional; use only what the step needs.
+- Whatever the schema declares, the result still carries the fields the protocol already requires (see Result artifact format rule).
 
-- `resolution_mode = X` is read as `resolution_mode_default = X`.
-- `primary_resolver`, `requires_llm_reasoning`, `primary_resolution_by_code`, `instrumental_code_role`, and `resolution_scope` are no longer part of the contract. They have no effect, do not count as project-specific fields under the Field extensibility rule, and should be removed when the file is next edited.
+Example:
+
+```
+RESULT SCHEMA
+- format = JSON
+- result_schema = JSON Schema
+```
+
+OR any other format the AI understands, that the substrate supports, and that fits the expected result.
+
+Example of use in a step:
+
+```
+apply *logic_portfolio_risk_score and *logic_resolution_portfolio_risk_analysis to *result_portfolio_features and *data_param_risk_scoring
+[*result_portfolio_risk_analysis] #3 HYBRID
+```
 
 ---
 
@@ -522,6 +521,10 @@ This list is a guide for whoever writes or reviews a governance file.
 
 Markers referenced in an Apply block are resolved during execution of the corresponding Result step.
 
+Each execution produces its own code and results from the artifacts resolved in its Apply blocks.
+Code or results from another contextspace, project, session, or execution are used only when
+the governance or a resolution logic points to them by AIUAR address.
+
 Good practice: the executor persists the result of each Apply as soon as it is available.
 Work already done stays recorded if the execution is interrupted, and later steps start
 from the written result.
@@ -537,31 +540,8 @@ Declaration without artifact, or artifact without declaration, is a resolution f
 
 If any marker referenced in an Apply block cannot be resolved, the executor must:
 
-1. Write an exception record to the `project_exception` address (from governance) using this format:
-
-```json
-{
-  "origin_contextspace": "{contextspace}",
-  "origin_entity": "{entity}",
-  "origin_project": "{project}",
-  "origin_session": "{session}",
-  "timestamp": "YYYYMMDD_HHMMSS",
-  "step": "R{n}",
-  "title": "{step title}",
-  "exception_type": "UNRESOLVABLE_MARKER",
-  "marker": "*{marker_name}",
-  "expected_in_governance_section": "Logic | Data",
-  "governance_declared": true,
-  "artifact_found": false,
-  "action": "ABORTED",
-  "executor_insight": "{optional diagnostic insight}"
-}
-```
-
-2. Name the exception result artifact:
-   `result_exception__{contextspace}__{project}__{session}__{timestamp}`
-
-3. Abort execution of the current step. Subsequent steps that do not depend on the failed marker may continue.
+1. Write an exception record to the `project_exception` address declared in the executing project's governance, following the referenced project's contract.
+2. Abort execution of the current step. Subsequent steps that do not depend on the failed marker may continue.
 
 ---
 

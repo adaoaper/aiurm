@@ -67,7 +67,7 @@ AIUAR hierarchy → SQLite tables:
 --- OUTPUT RULES ---
 
 - output file name = {contextspace}.db — written to aiuar_result_output
-- replace substrate_type = FILESYSTEM with substrate_type = SQLITE_FILE in the governance text before INSERT
+- replace substrate_type = FILESYSTEM with substrate_type = DATABASE in the governance text before INSERT
 - always add execution_id = {YYYYMMDD}_{6-char random alphanumeric} to the governance text before INSERT
 - a single .db file may contain multiple projects and entities across the same contextspace
 - DDL is always executed with IF NOT EXISTS — safe to run against an existing file

@@ -46,8 +46,10 @@ project_exception   = *****contextspace_environment****tracker***project_excepti
 ---
 # Logic
 *logic_asset_normalization
+*logic_resolution_portfolio_data_normalized
 *logic_portfolio_features
 *logic_portfolio_risk_score
+*logic_resolution_portfolio_risk_analysis
 *logic_allocation_proposals
 *logic_macro_overlay
 *logic_exec_scenarios
@@ -62,7 +64,7 @@ project_exception   = *****contextspace_environment****tracker***project_excepti
 ---
 # Result
 R1. Normalize Portfolios
-apply *logic_asset_normalization to *data_portfolio_data_raw and *data_asset_aliases and *data_asset_taxonomy_canonical and *data_param_risk_scoring
+apply *logic_asset_normalization and *logic_resolution_portfolio_data_normalized to *data_portfolio_data_raw and *data_asset_aliases and *data_asset_taxonomy_canonical and *data_param_risk_scoring
 [*result_portfolio_data_normalized] #3 HYBRID
 
 R2. Extract Portfolio Features
@@ -70,7 +72,7 @@ apply *logic_portfolio_features to *result_portfolio_data_normalized
 [*result_portfolio_features] #3 DETERMINISTIC
 
 R3. Score Portfolios
-apply *logic_portfolio_risk_score to *result_portfolio_features and *data_param_risk_scoring and *data_profile_norms
+apply *logic_portfolio_risk_score and *logic_resolution_portfolio_risk_analysis to *result_portfolio_features and *data_param_risk_scoring and *data_profile_norms
 [*result_portfolio_risk_analysis] #3 HYBRID
 
 R4. Generate Allocation Proposals

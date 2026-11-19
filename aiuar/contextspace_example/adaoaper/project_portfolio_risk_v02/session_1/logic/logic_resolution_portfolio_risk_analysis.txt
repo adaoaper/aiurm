@@ -1,0 +1,167 @@
+﻿RESOLUTION INSTRUCTIONS
+- Code computes: A (asset stability), B (diversification), C (sector concentration),
+  D (liquidity), final_score and category, as declared in *logic_portfolio_risk_score.
+- Model judges: E (risk profile alignment), evaluating the conditions of *data_profile_norms
+  for each portfolio and listing the triggered rules.
+- Model judges boundary cases only for continuous metrics (percentages and scores),
+  not for integer counts.
+- A portfolio that cannot be fully scored keeps the components that can be computed,
+  with status and reason; it is not dropped.
+- Before delivering, the model checks that each component is in its declared set,
+  final_score is within 0-100 and category matches final_score.
+
+RESULT SCHEMA
+- format = JSON
+- result_schema = JSON Schema 2020-12:
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "aiurm_marker",
+    "aiuar_address",
+    "execution_id",
+    "created_at",
+    "portfolios",
+    "ai_observation"
+  ],
+  "properties": {
+    "aiurm_marker": {
+      "const": "[*result_portfolio_risk_analysis]"
+    },
+    "aiuar_address": {
+      "type": "string"
+    },
+    "execution_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "pattern": "^[0-9]{8}_[0-9]{6}$"
+    },
+    "portfolios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "portfolio_id",
+          "risk_profile",
+          "status",
+          "components",
+          "alignment",
+          "final_score",
+          "category"
+        ],
+        "properties": {
+          "portfolio_id": {
+            "type": "string"
+          },
+          "risk_profile": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "complete",
+              "partial",
+              "unavailable"
+            ]
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "components": {
+            "type": "object",
+            "properties": {
+              "asset_stability": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 30
+              },
+              "diversification": {
+                "enum": [
+                  25,
+                  18,
+                  12,
+                  5,
+                  null
+                ]
+              },
+              "sector_concentration": {
+                "enum": [
+                  20,
+                  12,
+                  5,
+                  null
+                ]
+              },
+              "liquidity": {
+                "enum": [
+                  15,
+                  10,
+                  5,
+                  null
+                ]
+              },
+              "profile_alignment": {
+                "enum": [
+                  10,
+                  6,
+                  2,
+                  null
+                ]
+              }
+            }
+          },
+          "alignment": {
+            "type": "object",
+            "properties": {
+              "result": {
+                "enum": [
+                  "aligned",
+                  "moderate_mismatch",
+                  "severe_mismatch",
+                  null
+                ]
+              },
+              "triggered_rules": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "final_score": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "boundary_cases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ai_observation": {
+      "type": "string"
+    }
+  }
+}
+[*logic_resolution_portfolio_risk_analysis] #0
